@@ -3,91 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
-    <link rel="stylesheet" href="../style.css">
-    <title>Njanyana Xaba - Portfolio</title>
+    <title>Portfolio - JayTee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap">
     <style>
-        /* 3-column grid for project gallery */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html { font-size: 62.5%; background: black; }
+        body { background: black; color: white; min-height: 100vh; width: 100%; }
+        header {
+            position: absolute; top: 0; left: 0; width: 100%;
+            padding: 2rem 9%; background: black;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        }
+        .name { font-size: 3rem; color: #b74b4b; font-weight: 800; transition: 0.5s; }
+        .name:hover { transform: scale(1.1); }
+        nav { display: flex; gap: 2rem; }
+        nav a {
+            font-size: 1.8rem; color: white; margin-left: 4rem; font-weight: 500;
+            transition: 0.3s; border-bottom: 3px solid transparent;
+        }
+        nav a:hover, nav a.active { color: #b74b4b; border-bottom: 3px solid #b74b4b; }
+        .hamburger { display: none; font-size: 2.5rem; color: #b74b4b; cursor: pointer; }
+        .menu-toggle { display: none; }
+        @media (max-width: 995px) {
+            header { padding: 2rem 4%; }
+            nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: black; flex-direction: column; align-items: center; }
+            .hamburger { display: block; }
+            #menu-toggle:checked + .hamburger + nav { display: flex; }
+            nav a { margin: 10px 0; width: 100%; text-align: center; padding: 1rem 0; }
+        }
+
+        .portfolio-section {
+            padding: 12rem 9% 5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .portfolio-section h2 {
+            text-align: center; font-size: 4.5rem; margin-bottom: 1rem;
+        }
+        .portfolio-section h2 span { color: #b74b4b; }
+        .portfolio-section .subtitle {
+            text-align: center; font-size: 1.8rem; max-width: 800px;
+            margin: 0 auto 50px auto; line-height: 1.7;
+        }
         .project-gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 30px;
+            margin-top: 30px;
             width: 100%;
             max-width: 1300px;
-            margin: 0 auto;
-            padding: 20px 0;
+            margin-left: auto;
+            margin-right: auto;
         }
         .project-card {
-            background-color: rgba(255,255,255,0.87);
-            padding: 14px 16px 18px 16px;
-            border-radius: 10px;
-            box-shadow: 0 2px 14px 0 rgba(0,0,0,0.08);
-            width: 100%;
-            min-width: 0;
-            max-width: 390px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 32px 22px 24px 22px;
             text-align: left;
-            color: #101010;
-            font-weight: 300;
-            font-size: 1.55rem;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
-            align-items: stretch;
+            align-items: flex-start;
+            min-height: 420px;
+            position: relative;
+            box-shadow: 0 2px 18px 0 rgba(0,0,0,0.12);
         }
         .project-card:hover {
-            transform: scale(1.02);
+            transform: translateY(-10px) scale(1.02);
+            border-color: #b74b4b;
+            box-shadow: 0 0 25px rgba(183, 75, 75, 0.5);
+        }
+        .project-icon {
+            font-size: 4.5rem;
+            color: #b74b4b;
+            margin-bottom: 18px;
+            align-self: center;
         }
         .project-card h3 {
             color: #b74b4b;
-            font-size: 1.6em;
-            margin-bottom: 8px;
-            margin-top: 6px;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
             text-align: left;
+            width: 100%;
         }
         .project-card p {
-            font-size: 1.35rem;
-            color: #232323;
-            margin-bottom: 8px;
+            font-size: 1.5rem;
+            color: #eaeaea;
+            margin-bottom: 12px;
+            line-height: 1.5;
             text-align: left;
         }
         .project-card .pdf-links {
             margin: 4px 0 8px 0;
+            width: 100%;
         }
         .project-card a {
             color: #b74b4b;
-            font-size: 1.35rem;
+            font-size: 1.5rem;
             font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
         }
-        .project-card a:hover {
-            text-decoration: underline;
-        }
+        .project-card a:hover { text-decoration: underline; color: #d76363; }
         .project-card video,
         .project-card iframe {
             width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
+            object-fit: contain;
+            border-radius: 7px;
+            margin-bottom: 13px;
             border: 2px solid #b74b4b;
+            background: #000;
         }
+        /* Special height for project 1 video */
+        .project-card.project-video video {
+            height: 260px !important;
+        }
+        .project-card.project-video { min-height: 540px; }
+
+        /* Responsive grid */
         @media (max-width: 1100px) {
-            .project-gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .project-gallery { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 750px) {
-            .project-gallery {
-                grid-template-columns: 1fr;
-            }
-            .project-card {
-                max-width: 98vw;
-                font-size: 1.3rem;
-            }
+            .project-gallery { grid-template-columns: 1fr; }
+            .project-card { font-size: 1.3rem; padding: 16px 7px 14px 12px; }
         }
+        footer {
+            background-color: black; text-align: center; padding: 20px 0; margin-top: 40px; width: 100%;
+        }
+        footer p { color: white; margin: 0; font-size: 1.3rem; }
     </style>
 </head>
-<body class="Portfoliobody">
+<body>
     <header>
         <a href="Portfolio-Page.html" class="name">PORTFOLIO</a>
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -103,82 +158,97 @@
         </nav>
     </header>
 
-    <section class="portfolio">
-        <h1>MY PROJECTS</h1>
+    <section class="portfolio-section">
+        <h2>My <span>Projects</span></h2>
+        <p class="subtitle">Explore a selection of my work spanning design, development, multimedia, and more. Each project represents creative solutions and technical passion. Click any project for more details or to experience it live.</p>
         <div class="project-gallery">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <h3>Project 1: KID-Tracker</h3>
-                <video controls>
+            <!-- Project 1: Kid-Tracker -->
+            <div class="project-card project-video">
+                <div class="project-icon"><i class="fas fa-child"></i></div>
+                <h3>KID-Tracker</h3>
+                <video controls height="260">
                     <source src="../videos/KidTracker-Tiktok-MUF-video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <p>This project is a video, brand guideline, and marketing material showcasing my work on the Kid Tracker initiative. While I have not developed an app yet, this video highlights the concept of child safety and the importance of real-time location tracking. It represents what I have been working on so far and aims to engage and inform potential users.</p>
+                <p>
+                    Brand and marketing concept for child safety through real-time location tracking. Engaging video and materials to promote awareness. No app yet, but the vision is clear!
+                </p>
                 <div class="pdf-links">
-                    <a href="../docs/Kid-Tracker-Brand-Guideline.pdf" target="_blank">View Kid Tracker Brand Guideline</a><br>
-                    <a href="../docs/KidTracker-Marketing-Material.pdf" target="_blank">View Kid Tracker Marketing Material</a>
+                    <a href="../docs/Kid-Tracker-Brand-Guideline.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Brand Guideline</a> &nbsp;|&nbsp;
+                    <a href="../docs/KidTracker-Marketing-Material.pdf" target="_blank"><i class="fas fa-bullhorn"></i> Marketing Material</a>
                 </div>
-                <p><strong>Tools:</strong> Canva, PowerPoint, InShot, Veed.</p>
+                <p><strong>Tools:</strong> Canva, PowerPoint, InShot, Veed</p>
             </div>
-            <!-- Project 2 -->
+            <!-- Project 2: Module Tracker UI -->
             <div class="project-card">
-                <h3>Project 2: Module Tracker UI</h3>
-                <iframe src="../Module_Tracker_Guide.pdf"></iframe>
+                <div class="project-icon"><i class="fas fa-layer-group"></i></div>
+                <h3>Module Tracker UI</h3>
+                <iframe src="../Module_Tracker_Guide.pdf" height="180"></iframe>
                 <div class="pdf-links">
-                    <a href="https://njanyanajayteexaba.github.io/PrototypeModuleTrackerUI_interface/" target="_blank">--OPEN for the Experience--</a>
+                    <a href="https://njanyanajayteexaba.github.io/PrototypeModuleTrackerUI_interface/" target="_blank"><i class="fas fa-desktop"></i> Experience UI</a>
                 </div>
-                <p>This project is a prototype user interface for a Module Tracker system. 
-                It helps students efficiently track their academic modules and progress, with a clean and intuitive HTML-based design. 
-                The included guide details the features and user flow of the system.</p>
+                <p>
+                    HTML-based prototype for students to track academic modules and progress. Clean, intuitive UI with detailed user flow guide.
+                </p>
                 <div class="pdf-links">
-                    <a href="../Module_Tracker_Guide.pdf" target="_blank">View Module Tracker Guide</a><br>
-                    <a href="https://github.com/NjanyanaJayteeXaba/PrototypeModuleTrackerUI_interface" target="_blank">View on GitHub</a>
+                    <a href="../Module_Tracker_Guide.pdf" target="_blank"><i class="fas fa-book"></i> Guide</a> &nbsp;|&nbsp;
+                    <a href="https://github.com/NjanyanaJayteeXaba/PrototypeModuleTrackerUI_interface" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                 </div>
                 <p><strong>Tools:</strong> HTML, UI Prototyping</p>
             </div>
-            <!-- Project 3 -->
+            <!-- Project 3: Sesotho Dictionary Program -->
             <div class="project-card">
-                <h3>Project 3: Application Development [Sesotho Dictionary Program]</h3>
-                <iframe src="../docs/SesothoDictionary-Program.pdf"></iframe>
-                <p>This project contains code that translates common English phrases into Sesotho. The code is written in Java and requires a platform like NetBeans to run. It demonstrates a simple yet practical application of language translation using arrays and user input.</p>
+                <div class="project-icon"><i class="fas fa-language"></i></div>
+                <h3>Sesotho Dictionary Program</h3>
+                <iframe src="../docs/SesothoDictionary-Program.pdf" height="180"></iframe>
+                <p>
+                    Java code that translates common English phrases into Sesotho using arrays and user input. Practical language tool built with NetBeans.
+                </p>
                 <div class="pdf-links">
-                    <a href="../docs/SesothoDictionary-Program.pdf" target="_blank">View Full Program</a>
+                    <a href="../docs/SesothoDictionary-Program.pdf" target="_blank"><i class="fas fa-file-code"></i> Full Program</a>
                 </div>
-                <p><strong>Tools:</strong> Netbeans Software [Java programming language (Scanner, Arrays)].</p>
+                <p><strong>Tools:</strong> NetBeans, Java (Scanner, Arrays)</p>
             </div>
-            <!-- Project 4 -->
+            <!-- Project 4: Communications Networks Foundation -->
             <div class="project-card">
-                <h3>Project 4: Communications Networks Foundation [Wireless Networks]</h3>
-                <iframe src="../docs/Communications-Networks-Foundation.pdf"></iframe>
-                <p>This project showcases the planning and implementation strategies for a wireless network. The document includes detailed scenarios addressing layout, frequency bands, access points, site surveys, security measures, monitoring, and maintenance considerations. It provides a comprehensive overview of the essential components necessary for effective wireless network deployment.</p>
+                <div class="project-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Communications Networks Foundation</h3>
+                <iframe src="../docs/Communications-Networks-Foundation.pdf" height="180"></iframe>
+                <p>
+                    Planning and implementation of a wireless network: layout, bands, access points, security, and maintenance for reliable connectivity.
+                </p>
                 <div class="pdf-links">
-                    <a href="../docs/Communications-Networks-Foundation.pdf" target="_blank">View Full Document</a>
+                    <a href="../docs/Communications-Networks-Foundation.pdf" target="_blank"><i class="fas fa-file-alt"></i> Full Document</a>
                 </div>
                 <p><strong>Tools:</strong> Microsoft Word</p>
             </div>
-            <!-- Project 5 -->
+            <!-- Project 5: Jay-X-Ai Tic Tac Game -->
             <div class="project-card">
-                <h3>Project 5: Jay-X-Ai Tic Tac Game</h3>
+                <div class="project-icon"><i class="fas fa-gamepad"></i></div>
+                <h3>Jay-X-Ai Tic Tac Game</h3>
                 <div class="pdf-links">
-                    <a href="https://njanyanajayteexaba.github.io/Jay-X-Ai_Game/" target="_blank">Play The Game To Feel The Experience</a>
+                    <a href="https://njanyanajayteexaba.github.io/Jay-X-Ai_Game/" target="_blank"><i class="fas fa-play"></i> Play The Game</a>
                 </div>
-                <p>A browser-based Tic Tac Toe game featuring an AI opponent written in TypeScript. 
-                This project demonstrates algorithmic logic and interactive UI, making for a fun and challenging experience against the computer.</p>
+                <p>
+                    Browser-based Tic Tac Toe with an AI opponent in TypeScript. Fun, interactive, and a showcase of algorithmic logic.
+                </p>
                 <div class="pdf-links">
-                    <a href="https://github.com/NjanyanaJayteeXaba/Jay-X-Ai_Game" target="_blank">View on GitHub</a>
+                    <a href="https://github.com/NjanyanaJayteeXaba/Jay-X-Ai_Game" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                 </div>
                 <p><strong>Tools:</strong> TypeScript, JavaScript, HTML, CSS</p>
             </div>
-            <!-- Project 6 -->
+            <!-- Project 6: CPUT Coding Notes -->
             <div class="project-card">
-                <h3>Project 6: CPUT Coding Notes</h3>
+                <div class="project-icon"><i class="fas fa-book-open"></i></div>
+                <h3>CPUT Coding Notes</h3>
                 <div class="pdf-links">
-                    <a href="https://njanyanajayteexaba.github.io/PrototypeCPUT_CodingNotesUI_interface/index.html" target="_blank">--OPEN for the Experience--</a>
+                    <a href="https://njanyanajayteexaba.github.io/PrototypeCPUT_CodingNotesUI_interface/index.html" target="_blank"><i class="fas fa-book-reader"></i> Open Notes UI</a>
                 </div>
-                <p>This project is a curated set of coding notes designed for CPUT students. 
-                It serves as a comprehensive reference and revision resource for programming concepts and practical coding tips.</p>
+                <p>
+                    Curated coding notes for CPUT students. A comprehensive reference and revision resource for programming concepts and tips.
+                </p>
                 <div class="pdf-links">
-                    <a href="https://github.com/NjanyanaJayteeXaba/PrototypeCPUT_CodingNotesUI_interface" target="_blank">View on GitHub</a>
+                    <a href="https://github.com/NjanyanaJayteeXaba/PrototypeCPUT_CodingNotesUI_interface" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                 </div>
                 <p><strong>Tools:</strong> HTML (Notes UI)</p>
             </div>
@@ -186,7 +256,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Njanyana JayTee Xaba. All rights reserved.</p>
+        <p>&copy; 2025 Njanyana JayTee Xaba. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
