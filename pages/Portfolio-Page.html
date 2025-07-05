@@ -23,9 +23,10 @@
         nav { display: flex; gap: 2rem; }
         nav a {
             font-size: 1.8rem; color: white; margin-left: 4rem; font-weight: 500;
-            transition: 0.3s; border-bottom: 3px solid transparent;
+            transition: 0.3s;
+            border-bottom: none;
         }
-        nav a:hover, nav a.active { color: #b74b4b; border-bottom: 3px solid #b74b4b; }
+        nav a:hover, nav a.active { color: #b74b4b; border-bottom: none; }
         .hamburger { display: none; font-size: 2.5rem; color: #b74b4b; cursor: pointer; }
         .menu-toggle { display: none; }
         @media (max-width: 995px) {
