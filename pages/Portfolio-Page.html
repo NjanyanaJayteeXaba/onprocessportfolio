@@ -3,14 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
-    <link rel="stylesheet" href="../style.css">
-    <title>Njanyana Xaba - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap">
+    <title>Portfolio - JayTee Portfolio</title>
+    <style>
+        /* CORE STYLES (from your style.css) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%;
+            background: black fixed;
+        }
+
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        /* HEADER STYLES */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 9%;
+            background-color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .name {
+            font-size: 3rem;
+            color: #b74b4b;
+            font-weight: 800;
+        }
+
+        nav { display: flex; gap: 2rem; }
+
+        nav a {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #b74b4b;
+            border-bottom: 3px solid #b74b4b;
+        }
+        
+        .hamburger { display: none; cursor: pointer; font-size: 2.5rem; color: #b74b4b; }
+        .menu-toggle { display: none; }
+
+        /* FOOTER STYLES */
+        footer {
+            background-color: black;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        footer p { color: white; margin: 0; font-size: 1.3rem; }
+
+        /* --- NEW PORTFOLIO STYLES --- */
+        .portfolio-section {
+            padding: 12rem 9% 5rem;
+            min-height: 100vh;
+        }
+
+        .portfolio-section h1 {
+            text-align: center;
+            font-size: 4.5rem;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .portfolio-section h1 span {
+            color: #b74b4b;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #b74b4b;
+            box-shadow: 0 0 25px rgba(183, 75, 75, 0.4);
+        }
+
+        .project-card h3 {
+            font-size: 2.4rem;
+            color: #b74b4b;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-media {
+            width: 100%;
+            height: 250px; /* Consistent height for media */
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden; /* Ensures content fits rounded corners */
+            background-color: #000;
+        }
+
+        .project-media video,
+        .project-media iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .project-card p {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            flex-grow: 1; /* Allows description to fill space */
+            margin-bottom: 20px;
+        }
+
+        .project-links {
+            margin-bottom: 20px;
+        }
+
+        .project-links a {
+            display: block; /* Each link on a new line */
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            color: #b74b4b;
+        }
+        
+        .project-links a i { /* Icon styling */
+            margin-right: 8px;
+        }
+
+        .project-tools {
+            text-align: left;
+            margin-top: auto; /* Pushes tools to the bottom */
+        }
+
+        .project-tools strong {
+            font-size: 1.6rem;
+            color: #b74b4b;
+        }
+
+        .project-tools span {
+            font-size: 1.4rem;
+            color: #ccc;
+        }
+        
+        /* RESPONSIVE STYLES */
+        @media (max-width: 995px) {
+            header { padding: 2rem 4%; }
+            nav {
+                display: none; position: absolute; top: 100%; left: 0;
+                width: 100%; background-color: black; border-top: 1px solid #333;
+                flex-direction: column; align-items: center; padding: 1rem 0;
+            }
+            .hamburger { display: block; }
+            #menu-toggle:checked + .hamburger + nav { display: flex; }
+            nav a { margin: 10px 0; width: 100%; text-align: center; padding: 1rem 0; }
+        }
+
+        @media (max-width: 400px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+            }
+        }
+    </style>
 </head>
-<body class="Portfoliobody">
+<body>
     <header>
-        <a href="Portfolio-Page.html" class="name">PORTFOLIO</a>
+        <a href="Portfolio-Page.html" class="name">JAYTEE</a>
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="hamburger">
             <i class="fas fa-bars"></i>
@@ -18,122 +215,119 @@
         <nav>
             <a href="../index.html">Home</a>
             <a href="Portfolio-Page.html" class="active">Portfolio</a>
+            <a href="services.html">Services</a>
             <a href="About-Page.html">About</a>
             <a href="Contact-Page.html">Contact</a>
         </nav>
     </header>
 
-    <section class="portfolio">
-        <h1>MY PROJECTS</h1>
-        <br>
-        <div class="project-gallery">
+    <section class="portfolio-section">
+        <h1>My <span>Projects</span></h1>
+        
+        <div class="portfolio-grid">
+            
+            <!-- Project 1: KID-Tracker -->
             <div class="project-card">
-                <h3>Project 1: KID-Tracker</h3>
-                <br>
-                <video controls width="230" height="400">
-                    <source src="../videos/KidTracker-Tiktok-MUF-video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <br>
-                <p>This project is a video, brand guideline, and marketing material showcasing my work on the Kid Tracker initiative. While I have not developed an app yet, this video highlights the concept of child safety and the importance of real-time location tracking. It represents what I have been working on so far and aims to engage and inform potential users.</p>
-                <div class="pdf-links">
-                    <a href="../docs/Kid-Tracker-Brand-Guideline.pdf" target="_blank">View Kid Tracker Brand Guideline</a><br>
-                    <a href="../docs/KidTracker-Marketing-Material.pdf" target="_blank">View Kid Tracker Marketing Material</a>
+                <h3>KID-Tracker Initiative</h3>
+                <div class="project-media">
+                    <video controls poster="placeholder.jpg">
+                        <source src="../videos/KidTracker-Tiktok-MUF-video.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <br>
-                <p><strong>Tools:</strong> Canva, PowerPoint, InShot, Veed.</p>
+                <p>A concept project showcasing brand and marketing materials for a child safety and location tracking initiative.</p>
+                <div class="project-links">
+                    <a href="../docs/Kid-Tracker-Brand-Guideline.pdf" target="_blank"><i class="fas fa-file-alt"></i> View Brand Guideline</a>
+                    <a href="../docs/KidTracker-Marketing-Material.pdf" target="_blank"><i class="fas fa-file-alt"></i> View Marketing Material</a>
+                </div>
+                <div class="project-tools">
+                    <strong>Tools:</strong> <span>Canva, PowerPoint, InShot, Veed</span>
+                </div>
             </div>
+
+            <!-- Project 2: Module Tracker UI -->
             <div class="project-card">
-                <h3>Project 2: Module Tracker UI</h3>
-                <br>
-               
-                <iframe src="../Module_Tracker_Guide.pdf" style="width: 100%; height: 400px;"></iframe>
-                <br>
-                <div class="pdf-links">
-                    <a href="https://njanyanajayteexaba.github.io/PrototypeModuleTrackerUI_interface/"> --OPEN for the Experience-- </a>
+                <h3>Module Tracker UI</h3>
+                <div class="project-media">
+                    <iframe src="../Module_Tracker_Guide.pdf"></iframe>
                 </div>
-                <br>
-                <p>
-                    This project is a prototype user interface for a Module Tracker system. 
-                    It helps students efficiently track their academic modules and progress, with a clean and intuitive HTML-based design. 
-                    The included guide details the features and user flow of the system.
-                </p>
-                <div class="pdf-links">
-                    <a href="../Module_Tracker_Guide.pdf" target="_blank">View Module Tracker Guide</a>
-                    <br>
-                    <a href="https://github.com/NjanyanaJayteeXaba/PrototypeModuleTrackerUI_interface" target="_blank">View on GitHub</a>
+                <p>A prototype UI to help students track academic modules and progress with a clean, intuitive HTML-based design.</p>
+                <div class="project-links">
+                    <a href="https://njanyanajayteexaba.github.io/PrototypeModuleTrackerUI_interface/" target="_blank"><i class="fas fa-external-link-alt"></i> View Live Protoype</a>
+                    <a href="https://github.com/NjanyanaJayteeXaba/PrototypeModuleTrackerUI_interface" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
                 </div>
-                <br>
-                <p><strong>Tools:</strong> HTML, UI Prototyping</p>
+                <div class="project-tools">
+                    <strong>Tools:</strong> <span>HTML, UI Prototyping</span>
+                </div>
+            </div>
+
+            <!-- Project 3: Sesotho Dictionary -->
+            <div class="project-card">
+                <h3>Sesotho Dictionary App</h3>
+                <div class="project-media">
+                    <iframe src="../docs/SesothoDictionary-Program.pdf"></iframe>
+                </div>
+                <p>A Java-based desktop application that translates common English phrases into Sesotho using arrays and user input.</p>
+                 <div class="project-links">
+                    <a href="../docs/SesothoDictionary-Program.pdf" target="_blank"><i class="fas fa-file-alt"></i> View Full Program PDF</a>
+                </div>
+                <div class="project-tools">
+                    <strong>Tools:</strong> <span>Java (NetBeans), Arrays</span>
+                </div>
+            </div>
+
+            <!-- Project 4: Network Planning -->
+            <div class="project-card">
+                <h3>Wireless Network Plan</h3>
+                <div class="project-media">
+                     <iframe src="../docs/Communications-Networks-Foundation.pdf"></iframe>
+                </div>
+                <p>A comprehensive document detailing the planning and implementation strategies for deploying a secure wireless network.</p>
+                <div class="project-links">
+                    <a href="../docs/Communications-Networks-Foundation.pdf" target="_blank"><i class="fas fa-file-alt"></i> View Full Document</a>
+                </div>
+                <div class="project-tools">
+                    <strong>Tools:</strong> <span>Microsoft Word, Network Design</span>
+                </div>
             </div>
             
+            <!-- Project 5: Jay-X-Ai Tic Tac Game -->
             <div class="project-card">
-                <h3>Project 3: Application Development [Sesotho Dictionary Program]</h3>
-                <br>
-                <iframe src="../docs/SesothoDictionary-Program.pdf" style="width: 100%; height: 400px;"></iframe>
-                <br>
-                <p>This project contains code that translates common English phrases into Sesotho. The code is written in Java and requires a platform like NetBeans to run. It demonstrates a simple yet practical application of language translation using arrays and user input.</p>
-                <div class="pdf-links">
-                    <a href="../docs/SesothoDictionary-Program.pdf" target="_blank">View Full Program</a>
+                <h3>Jay-X-Ai Tic Tac Toe</h3>
+                 <div class="project-media">
+                    <!-- You can add a screenshot of your game here -->
+                    <img src="path/to/your/game_screenshot.png" alt="Tic Tac Toe Game Screenshot" style="width:100%; height:100%; object-fit:cover;">
                 </div>
-                <br>
-                <p><strong>Tools:</strong> Netbeans Software [Java programming language (Scanner, Arrays)].</p>
+                <p>A browser-based Tic Tac Toe game featuring a challenging AI opponent written in TypeScript.</p>
+                <div class="project-links">
+                    <a href="https://njanyanajayteexaba.github.io/Jay-X-Ai_Game/" target="_blank"><i class="fas fa-gamepad"></i> Play The Game</a>
+                    <a href="https://github.com/NjanyanaJayteeXaba/Jay-X-Ai_Game" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+                <div class="project-tools">
+                    <strong>Tools:</strong> <span>TypeScript, JS, HTML, CSS</span>
+                </div>
             </div>
+
+            <!-- Project 6: CPUT Coding Notes -->
             <div class="project-card">
-                <h3>Project 4: Communications Networks Foundation [Wireless Networks]</h3>
-                <br>
-                <iframe src="../docs/Communications-Networks-Foundation.pdf" style="width: 100%; height: 400px;"></iframe>
-                <br>
-                <p>This project showcases the planning and implementation strategies for a wireless network. The document includes detailed scenarios addressing layout, frequency bands, access points, site surveys, security measures, monitoring, and maintenance considerations. It provides a comprehensive overview of the essential components necessary for effective wireless network deployment.</p>
-                <div class="pdf-links">
-                    <a href="../docs/Communications-Networks-Foundation.pdf" target="_blank">View Full Document</a>
+                <h3>CPUT Coding Notes</h3>
+                <div class="project-media">
+                     <img src="path/to/your/notes_screenshot.png" alt="CPUT Coding Notes Screenshot" style="width:100%; height:100%; object-fit:cover;">
                 </div>
-                <br>
-                <p><strong>Tools:</strong> Microsoft Word</p>
+                <p>A curated set of coding notes designed as a comprehensive reference and revision resource for CPUT students.</p>
+                <div class="project-links">
+                    <a href="https://njanyanajayteexaba.github.io/PrototypeCPUT_CodingNotesUI_interface/" target="_blank"><i class="fas fa-external-link-alt"></i> View The Notes</a>
+                    <a href="https://github.com/NjanyanaJayteeXaba/PrototypeCPUT_CodingNotesUI_interface" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+                <div class="project-tools">
+                    <strong>Tools:</strong> <span>HTML, CSS (UI)</span>
+                </div>
             </div>
-        
-        <div class="project-card">
-            <h3>Project 5: Jay-X-Ai Tic Tac Game</h3>
-            <br>
-            <div class="pdf-links">
-                <a href="https://njanyanajayteexaba.github.io/Jay-X-Ai_Game/" target="_blank">Play The Game To Feel The Experience</a>
-            </div>
-            <br>
 
-            <p>
-                A browser-based Tic Tac Toe game featuring an AI opponent written in TypeScript. 
-                This project demonstrates algorithmic logic and interactive UI, making for a fun and challenging experience against the computer.
-            </p>
-            <div class="pdf-links">
-                <a href="https://github.com/NjanyanaJayteeXaba/Jay-X-Ai_Game" target="_blank">View on GitHub</a>
-            </div>
-            <br>
-            <p><strong>Tools:</strong> TypeScript, JavaScript, HTML, CSS</p>
-        </div>
-        
-        <div class="project-card">
-            <h3>Project 6: CPUT Coding Notes</h3>
-            <br>
-            <div class="pdf-links">
-                <a href="https://njanyanajayteexaba.github.io/PrototypeCPUT_CodingNotesUI_interface/index.html" target="_blank"> --OPEN for the Experience-- </a>
-            </div>
-            <br>
-
-            <p>
-                This project is a curated set of coding notes designed for CPUT students. 
-                It serves as a comprehensive reference and revision resource for programming concepts and practical coding tips.
-            </p>
-            <div class="pdf-links">
-                <a href="https://github.com/NjanyanaJayteeXaba/PrototypeCPUT_CodingNotesUI_interface" target="_blank">View on GitHub</a>
-            </div>
-            <br>
-            <p><strong>Tools:</strong> HTML (Notes UI)</p>
-        </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Njanyana JayTee Xaba. All rights reserved.</p>
+        <p>&copy; 2025 Njanyana JayTee Xaba. All rights reserved.</p>
     </footer>
 </body>
 </html>
