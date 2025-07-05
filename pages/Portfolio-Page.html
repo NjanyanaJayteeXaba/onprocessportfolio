@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap">
     <style>
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         html { font-size: 62.5%; background: black; }
         body { background: black; color: white; min-height: 100vh; width: 100%; }
         header {
@@ -24,9 +21,16 @@
         nav a {
             font-size: 1.8rem; color: white; margin-left: 4rem; font-weight: 500;
             transition: 0.3s;
-            border-bottom: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+            position: relative;
+            text-decoration: none;
         }
-        nav a:hover, nav a.active { color: #b74b4b; border-bottom: none; }
+        nav a:hover, nav a.active {
+            color: #b74b4b;
+            border-bottom: 2px solid #b74b4b;
+        }
         .hamburger { display: none; font-size: 2.5rem; color: #b74b4b; cursor: pointer; }
         .menu-toggle { display: none; }
         @media (max-width: 995px) {
@@ -34,7 +38,8 @@
             nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: black; flex-direction: column; align-items: center; }
             .hamburger { display: block; }
             #menu-toggle:checked + .hamburger + nav { display: flex; }
-            nav a { margin: 10px 0; width: 100%; text-align: center; padding: 1rem 0; }
+            nav a { margin: 10px 0; width: 100%; text-align: center; padding: 1rem 0; border-bottom: none; }
+            nav a:hover, nav a.active { border-bottom: none; }
         }
 
         .portfolio-section {
@@ -123,13 +128,10 @@
             border: 2px solid #b74b4b;
             background: #000;
         }
-        /* Special height for project 1 video */
         .project-card.project-video video {
             height: 260px !important;
         }
         .project-card.project-video { min-height: 540px; }
-
-        /* Responsive grid */
         @media (max-width: 1100px) {
             .project-gallery { grid-template-columns: repeat(2, 1fr); }
         }
