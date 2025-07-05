@@ -15,8 +15,22 @@
             padding: 2rem 9%; background: black;
             display: flex; justify-content: space-between; align-items: center; z-index: 100;
         }
-        .name { font-size: 3rem; color: #b74b4b; font-weight: 800; transition: 0.5s; }
-        .name:hover { transform: scale(1.1); }
+        .name {
+            font-size: 3rem;
+            color: #b74b4b;
+            font-weight: 800;
+            transition: 0.5s;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+            position: relative;
+            text-decoration: none;
+        }
+        .name:hover,
+        .name.active {
+            color: #b74b4b;
+            border-bottom: 2px solid #b74b4b;
+        }
         nav { display: flex; gap: 2rem; }
         nav a {
             font-size: 1.8rem; color: white; margin-left: 4rem; font-weight: 500;
@@ -40,6 +54,8 @@
             #menu-toggle:checked + .hamburger + nav { display: flex; }
             nav a { margin: 10px 0; width: 100%; text-align: center; padding: 1rem 0; border-bottom: none; }
             nav a:hover, nav a.active { border-bottom: none; }
+            .name { border-bottom: none !important; }
+            .name:hover, .name.active { border-bottom: none !important; }
         }
 
         .portfolio-section {
