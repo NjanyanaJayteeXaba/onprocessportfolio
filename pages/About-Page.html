@@ -1,62 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <title>Njanyana Xaba - About</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Extra enhancements for About page only */
+        .about-container {
+            background: rgba(25, 25, 25, 0.8);
+            box-shadow: 0 8px 40px 0 rgba(183,75,75,0.15), 0 1.5px 12px 0 rgba(0,0,0,0.18);
+            backdrop-filter: blur(3px);
+            padding: 40px 30px;
+            margin: 120px auto 30px auto;
+            border-radius: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            max-width: 950px;
+        }
+        .home-image {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #b74b4b;
+            box-shadow: 0 0 25px #b74b4b55;
+            background: #111;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .paragraph-container {
+            flex: 1;
+            min-width: 260px;
+        }
+        .aboutH2 {
+            color: #b74b4b;
+            font-size: 2.5rem;
+            font-family: 'Poppins', 'Courier New', Courier, monospace;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        .aboutP {
+            color: #eaeaea;
+            font-size: 1.6rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        .more-aboutme {
+            background: rgba(25,25,25,0.82);
+            box-shadow: 0 4px 30px 0 rgba(183,75,75,0.12);
+            border-radius: 20px;
+            padding: 36px 28px;
+            margin: 38px auto 24px auto;
+            max-width: 950px;
+        }
+        .more-aboutme ul {
+            padding-left: 18px;
+        }
+        .more-aboutme li {
+            color: #eaeaea;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        /* High-tech, dope bottom section */
+        .about-bottom-tech {
+            margin: 48px auto 0 auto;
+            padding: 40px 28px;
+            max-width: 950px;
+            background: linear-gradient(120deg, #111, #1a1a1a 70%, #b74b4b33 100%);
+            border-radius: 28px;
+            box-shadow: 0 8px 38px 0 rgba(183,75,75,0.18), 0 0.5px 10px 0 rgba(0,0,0,0.18);
+            position: relative;
+            overflow: hidden;
+            border: 2.5px solid #b74b4b33;
+        }
+        .about-bottom-tech::before {
+            content: '';
+            position: absolute;
+            top: -90px; left: -90px;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, #b74b4b88 0%, transparent 70%);
+            filter: blur(18px);
+            z-index: 0;
+        }
+        .about-bottom-tech::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; right: -70px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, #b74b4b44 0%, transparent 70%);
+            filter: blur(10px);
+            z-index: 0;
+        }
+        .about-bottom-tech-content {
+            position: relative;
+            z-index: 2;
+        }
+        .about-bottom-tech h2 {
+            font-size: 2.2rem;
+            color: #b74b4b;
+            margin-bottom: 24px;
+            text-align: center;
+            font-family: 'Poppins', 'Courier New', Courier, monospace;
+            text-shadow: 0 1px 3px #000a;
+        }
+        .about-bottom-tech p {
+            color: #fff;
+            font-size: 1.7rem;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 10px auto;
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: 0.1px;
+            text-shadow: 0 1px 5px #0005;
+        }
+        /* Responsive Tweaks */
+        @media (max-width: 900px) {
+            .about-container, .more-aboutme, .about-bottom-tech { max-width: 98vw; }
+        }
+        @media (max-width: 700px) {
+            .about-container { flex-direction: column; align-items: center; padding: 30px 8px; gap: 20px; }
+            .home-image { width: 190px; height: 190px; }
+            .paragraph-container { min-width: 0; width: 100%; }
+            .about-bottom-tech { padding: 28px 6vw; }
+        }
+        @media (max-width: 500px) {
+            .aboutH2 { font-size: 1.6rem; }
+            .aboutP, .more-aboutme li, .about-bottom-tech p { font-size: 1.1rem; }
+        }
+    </style>
 </head>
 <body>
     <header>
-		<a href="About-Page.html" class="name">ABOUT ME</a>
-
-		<input type="checkbox" id="menu-toggle" class="menu-toggle">
-		<label for="menu-toggle" class="hamburger">
-			<i class="fas fa-bars"></i>
-		</label>
-		<nav>
-			<a href="../index.html">Home</a>
-			<a href="Portfolio-Page.html">Portfolio</a>
-			<a href="About-Page.html" class="active">About</a>
-			<a href="Services.html">Services</a>
-			<a href="Contact-Page.html">Contact</a>
-		</nav>
-	</header>
+        <a href="About-Page.html" class="name active">ABOUT ME</a>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <i class="fas fa-bars"></i>
+        </label>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="Portfolio-Page.html">Portfolio</a>
+            <a href="About-Page.html" class="active">About</a>
+            <a href="Services.html">Services</a>
+            <a href="Contact-Page.html">Contact</a>
+        </nav>
+    </header>
 
     <div class="about-container">
         <img class="home-image" src="../images/profile-picture.svg" alt="Njanyana Xaba's Picture" />
         <div class="paragraph-container">
             <h2 class="aboutH2">Njanyana Xaba Also Known As "Jay-Tee Xaba"</h2>
-			<br>
-            <p class="aboutP">Hello there! I'm Jaytee, an IT professional and a passionate Second-year student in the Diploma of Information and Communication Technology at Cape Peninsula University of Technology. After successfully completing my Higher Certificate in Information and Communication Technology last year, I am eager to further my studies in this exciting field. This new chapter allows me to explore deeper technical concepts, foster my creativity, and embrace the challenges that come with advanced learning. I believe that education is a continuous journey, and I am excited to see where this path will lead me.
-				During my last year, I developed a solid foundation in programming through my studies in HTML, CSS, and JavaScript.These languages not gave me the skills, for web development but also sparked my love for coding! I had a time crafting web pages and exploring the boundless creativity of digital design possibilities. Studying the details of user experience and interface design has made me value communication through technology more, than before! As I am busy with my diploma journey now I can't wait to delve into these technologies and improve my skills further. 
-			</p>
-			<br>
-            <p class="aboutP">Besides my coding abilities I've recently started delving into Java, a language widely utilized across applications. This new journey has introduced me to object oriented programming and software development principles. I'm excited to implement my knowledge, in hands on projects and work, alongside colleagues to solve real life problems. The thrill of tackling challenges and the joy of building applications are aspects I eagerly anticipate as I progress through this dynamic learning setting.
-				In addition, to my interests I have a passion for delving into the digital realm. I love exploring the internet to uncover emerging technologies and trends that could influence our future. Being part of communities has enabled me to engage with people who share similar interests and exchange ideas and expertise. I believe that learning should be an adventure, of fascinating discoveries. As I progress in my career as an IT professional I am dedicated to making contributions to the technology community and creating an impact, on the world through innovation and cooperation.
-			</p>
-		</div>
+            <p class="aboutP">
+                Hello there! I'm JayTee, an IT professional and a passionate second-year student in the Diploma of Information and Communication Technology at Cape Peninsula University of Technology.<br><br>
+                During my last year, I developed a solid foundation in programming through my studies in HTML, CSS, and JavaScript. These languages not only gave me the skills for web development but also sparked my love for building things that matter.<br><br>
+                Besides my coding abilities, I've recently started delving into Java, a language widely used across applications. This new journey has introduced me to object-oriented programming, pushing my problem-solving skills further.<br><br>
+                In addition to my academic interests, I have a passion for exploring the digital realm. I love discovering emerging technologies and trends that could shape our future. Being part of the tech world means embracing change and always seeking growth.
+            </p>
+        </div>
     </div>
 
-	<div class="more-aboutme">
-		<h2 class="aboutH2">My Goals as an IT Professional: </h2>
-		<br>
-		<ul>
-			<li><strong>Seek Employment as a Developer:</strong> Pursue job opportunities that allow me to apply my skills and contribute to innovative solutions in the tech industry.</li>
-			<li><strong>Develop a Strong Technical Foundation:</strong> Build expertise in core programming languages such as Java, Python, and JavaScript to enhance my coding skills and open up opportunities for diverse projects.</li>
-			<li><strong>Engage in Real-World Projects:</strong> Seek internships and collaborative projects that allow me to apply my knowledge of web development, networks, and software solutions in practical scenarios, bridging the gap between theory and practice.</li>
-			<li><strong>Expand My Professional Network:</strong> Actively participate in tech meetups, online forums, and conferences to connect with industry professionals, share ideas, and learn about the latest trends and innovations in technology.</li>
-			<li><strong>Pursue Continuous Learning:</strong> Stay updated with emerging technologies and trends in the IT field by taking online courses, attending workshops, and obtaining relevant certifications to enhance my skill set.</li>
-			<li><strong>Contribute to Meaningful Projects:</strong> Aim to work on projects that make a positive impact in my community or industry, focusing on developing solutions that address real-world challenges through technology.</li>
-		</ul>
-	</div>
-	
+    <div class="more-aboutme">
+        <h2 class="aboutH2">My Goals as an IT Professional:</h2>
+        <ul>
+            <li><strong>Seek Employment as a Developer:</strong> Pursue job opportunities that allow me to apply my skills and contribute to innovative solutions in the tech industry.</li>
+            <li><strong>Develop a Strong Technical Foundation:</strong> Build expertise in core programming languages such as Java, Python, and JavaScript to enhance my coding skills and open up opportunities for advanced projects.</li>
+            <li><strong>Engage in Real-World Projects:</strong> Seek internships and collaborative projects that allow me to apply my knowledge of web development, networks, and software solutions in practical settings.</li>
+            <li><strong>Expand My Professional Network:</strong> Actively participate in tech meetups, online forums, and conferences to connect with industry professionals, share ideas, and learn about the latest developments in the field.</li>
+            <li><strong>Pursue Continuous Learning:</strong> Stay updated with emerging technologies and trends in the IT field by taking online courses, attending workshops, and obtaining relevant certifications.</li>
+            <li><strong>Contribute to Meaningful Projects:</strong> Aim to work on projects that make a positive impact in my community or industry, focusing on developing solutions that address real-world challenges.</li>
+        </ul>
+    </div>
+
+    <!-- High-tech emotional/vision section -->
+    <section class="about-bottom-tech">
+        <div class="about-bottom-tech-content">
+            <h2>What Drives Me: Art, Ambition & Authenticity</h2>
+            <p>
+                I love art. I am driven by a deep desire to build something great for people like me—people who don’t always have access or opportunity, who might not have the right tools, but still want to create and belong. I want to share my passion, my authentic self—the real JayTee Xaba—with everyone who knows the struggle. Because, honestly, you can’t outwork someone who is in love with tech the way I am.
+            </p>
+            <p>
+                For me, technology is more than code: it’s my way to process pain and turn setbacks into something beautiful. No one truly knows how much I’ve given up to get here. All the things I’ve lost, I’ve channeled into this journey—into every line of code, every late-night project, every risk.<br><br>
+                This isn’t just about skills or a career. It’s about turning struggle into innovation, and making sure that anyone who feels left out can look at my work and say: “If he can, I can too.”<br>
+                I’m not done yet. I’m only getting started.
+            </p>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2024 Njanyana jayTee Xaba. All rights reserved.</p>
+        <p>&copy; 2024 Njanyana JayTee Xaba. All rights reserved.</p>
     </footer>
 </body>
-
 </html>
