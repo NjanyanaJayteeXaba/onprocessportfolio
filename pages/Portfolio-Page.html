@@ -45,8 +45,11 @@
         }
 
         .portfolio-section {
-            padding: 12rem 9% 5rem; min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: center;
+            padding: 12rem 9% 5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .portfolio-section h2 {
             text-align: center; font-size: 4.5rem; margin-bottom: 1rem;
@@ -70,18 +73,16 @@
             background: #111;
             border: 2px solid #333;
             border-radius: 12px;
-            padding: 32px 22px 24px 22px;
+            padding: 24px;
             text-align: left;
             transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            min-height: 420px;
-            position: relative;
             box-shadow: 0 2px 18px 0 rgba(0,0,0,0.12);
         }
         .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px);
             border-color: #b74b4b;
             box-shadow: 0 0 25px rgba(183, 75, 75, 0.5);
         }
@@ -102,7 +103,7 @@
         .project-card p {
             font-size: 1.5rem;
             color: #eaeaea;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             line-height: 1.6;
             text-align: left;
             flex-grow: 1;
@@ -120,26 +121,26 @@
         }
         .project-card a:hover { text-decoration: underline; color: #d76363; }
         
-        .project-card video, .project-card iframe, .project-card img {
+        /* CSS FIX for all media in cards */
+        .project-card video,
+        .project-card iframe,
+        .project-card img {
             width: 100%;
-            object-fit: contain; /* Ensures media is not cropped */
+            height: auto; /* Let height be determined by width to keep aspect ratio */
+            max-height: 300px; /* Set a max-height to prevent videos from being too tall */
+            object-fit: contain; /* This ensures the full media is visible without cropping */
             border-radius: 7px;
             margin-bottom: 13px;
             border: 2px solid #b74b4b;
             background: #000;
         }
-        /* FIX: Prevents Kid-Tracker video from being cropped */
-        .project-card.project-video video {
-            height: auto;
-            max-height: 260px; /* Limits height without forcing it */
-        }
-        .project-card.project-video { min-height: 540px; }
+
         @media (max-width: 1100px) {
             .project-gallery { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 750px) {
             .project-gallery { grid-template-columns: 1fr; }
-            .project-card { font-size: 1.3rem; padding: 16px 7px 14px 12px; }
+            .project-card { font-size: 1.3rem; padding: 16px 12px; }
         }
         footer {
             background-color: black; text-align: center; padding: 20px 0; margin-top: 40px; width: 100%;
@@ -169,7 +170,7 @@
         
         <div class="project-gallery">
             
-            <div class="project-card project-video">
+            <div class="project-card">
                 <div class="project-icon"><i class="fas fa-child"></i></div>
                 <h3>KID-Tracker</h3>
                 <video controls>
@@ -187,7 +188,7 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-layer-group"></i></div>
                 <h3>Module Tracker UI</h3>
-                <iframe src="../Module_Tracker_Guide.pdf" height="180"></iframe>
+                <iframe src="../Module_Tracker_Guide.pdf"></iframe>
                 <div class="pdf-links">
                     <a href="https://njanyanajayteexaba.github.io/PrototypeModuleTrackerUI_interface/" target="_blank"><i class="fas fa-desktop"></i> Experience UI</a>
                 </div>
@@ -202,7 +203,7 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-language"></i></div>
                 <h3>Sesotho Dictionary Program</h3>
-                <iframe src="../docs/SesothoDictionary-Program.pdf" height="180"></iframe>
+                <iframe src="../docs/SesothoDictionary-Program.pdf"></iframe>
                 <p>Java code that translates common English phrases into Sesotho using arrays and user input. Practical language tool built with NetBeans.</p>
                 <div class="pdf-links">
                     <a href="../docs/SesothoDictionary-Program.pdf" target="_blank"><i class="fas fa-file-code"></i> Full Program</a>
@@ -213,7 +214,7 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-network-wired"></i></div>
                 <h3>Communications Networks Foundation</h3>
-                <iframe src="../docs/Communications-Networks-Foundation.pdf" height="180"></iframe>
+                <iframe src="../docs/Communications-Networks-Foundation.pdf"></iframe>
                 <p>Planning and implementation of a wireless network: layout, bands, access points, security, and maintenance for reliable connectivity.</p>
                 <div class="pdf-links">
                     <a href="../docs/Communications-Networks-Foundation.pdf" target="_blank"><i class="fas fa-file-alt"></i> Full Document</a>
@@ -224,10 +225,10 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-gamepad"></i></div>
                 <h3>Jay-X-Ai Tic Tac Game</h3>
+                <p>Browser-based Tic Tac Toe with an AI opponent in TypeScript. Fun, interactive, and a showcase of algorithmic logic.</p>
                 <div class="pdf-links">
                     <a href="https://njanyanajayteexaba.github.io/Jay-X-Ai_Game/" target="_blank"><i class="fas fa-play"></i> Play The Game</a>
                 </div>
-                <p>Browser-based Tic Tac Toe with an AI opponent in TypeScript. Fun, interactive, and a showcase of algorithmic logic.</p>
                 <div class="pdf-links">
                     <a href="https://github.com/NjanyanaJayteeXaba/Jay-X-Ai_Game" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                 </div>
@@ -237,10 +238,10 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-book-open"></i></div>
                 <h3>CPUT Coding Notes</h3>
+                <p>Curated coding notes for CPUT students. A comprehensive reference and revision resource for programming concepts and tips.</p>
                 <div class="pdf-links">
                     <a href="https://njanyanajayteexaba.github.io/PrototypeCPUT_CodingNotesUI_interface/index.html" target="_blank"><i class="fas fa-book-reader"></i> Open Notes UI</a>
                 </div>
-                <p>Curated coding notes for CPUT students. A comprehensive reference and revision resource for programming concepts and tips.</p>
                 <div class="pdf-links">
                     <a href="https://github.com/NjanyanaJayteeXaba/PrototypeCPUT_CodingNotesUI_interface" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                 </div>
@@ -248,7 +249,7 @@
             </div>
 
             <div class="project-card">
-                <img src="../images/jaytee_art_typography.jpeg" alt="Black & White Typography Art by JayTee" style="width:100%; border-radius:12px; margin-bottom:16px; border:2px solid #b74b4b;">
+                <img src="../images/jaytee_art_typography.jpeg" alt="Black & White Typography Art by JayTee">
                 <h3>Black & White Identity Typography</h3>
                 <p>Exploring identity and style through bold typography and high-contrast visuals. This artwork fuses self-portraiture and creative text for a unique, impactful effect.<br>
                     <span style="color:#b74b4b; font-size:1.3rem;">#ArtByJaytee</span>
@@ -256,7 +257,7 @@
             </div>
             
             <div class="project-card">
-                <img src="../images/jaytee_art_avatar.jpeg" alt="JayTee Vector Avatar Art" style="width:100%; border-radius:12px; margin-bottom:16px; border:2px solid #b74b4b;">
+                <img src="../images/jaytee_art_avatar.jpeg" alt="JayTee Vector Avatar Art">
                 <h3>Vector Avatar Design</h3>
                 <p>Bold, clean vector portrait artwork, blending digital illustration and personal branding. South African flag and custom color palette for signature JayTee energy.<br>
                     <span style="color:#b74b4b; font-size:1.3rem;">#AvatarArt #DigitalIllustration</span>
@@ -264,7 +265,7 @@
             </div>
             
             <div class="project-card">
-                <img src="../images/jaytee_motivate_bw.jpeg" alt="Jaytee & Njanyana: The Journey Within" style="width:100%; border-radius:12px; margin-bottom:16px; border:2px solid #b74b4b;">
+                <img src="../images/jaytee_motivate_bw.jpeg" alt="Jaytee & Njanyana: The Journey Within">
                 <h3>Jaytee & Njanyana: The Journey Within</h3>
                 <p>This evocative black-and-white artwork captures two versions of myself—side by side, in solidarity. One is weighed down by struggle, the other offers a hand of support. This image is a lesson: sometimes, your greatest ally is the person you become through hardship. When the world feels heavy, remember—you are not alone, even within your own story.<br><br>
                 Every dreamer has two voices: the one that wants to give up, and the one that says, “We didn’t come this far just to give up.” Growth comes when you learn to encourage yourself, to sit with your pain and turn it into power. I made this piece to remind myself, and anyone who sees it, that you are both the student and the teacher in your journey. Keep going. You are becoming the person you need.
@@ -274,44 +275,50 @@
             </div>
 
             <div class="project-card">
-                 <h3>Phatwood 2025</h3>
-                 <video controls poster="../images/WhatsApp Image 2025-06-27 at 09.16.40.jpg">
+                <h3>I'mpilo (Life) – A Song from the Struggle</h3>
+                <video controls poster="../images/Impilo_Poster.jpeg">
+                    <source src="../videos/Impilo ft Notation & TheeNinetyNine.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>
+                    This project is more than a song; it's a testament. This is what happens when the hunger to create is stronger than the limitations you're given. Featuring the raw talent of my brother, **Xaba Moeketsi "Notation,"** and our friend, **Mahlangu Maxwell "Thee Ninety-Nine,"** this track was born from pure, unfiltered necessity.
+                    <br><br>
+                    We had **no studio, no professional mics, and no budget.** We had a story to tell and a fire to share it. The beat was made on my phone. The vocals were recorded on a simple Android app. This isn't just a track; it’s a lesson that the most powerful tool is your own fire.
+                </p>
+                <p style="color:#b74b4b; font-size:1.3rem; font-weight:500;">
+                    #MadeWithPassion #ResourcefulCreators #NoExcuses #JayTeeMusic
+                </p>
+            </div>
+
+            <div class="project-card">
+                 <h3>Phatwood 2025 – The Digital Mask</h3>
+                 <video controls poster="../images/phatwood_poster.jpg">
                      <source src="../videos/phatwood.mp4" type="video/mp4">
                      Your browser does not support the video tag.
                  </video>
-                 <p>This trailer concept explores a world of digital rebellion and masked identity, created using AI video tools. It’s a glimpse into a potential future, designed to build suspense and question reality.</p>
+                 <p>In a world where everyone has a digital mask, who are we really? This trailer concept was built using AI to explore that question. It’s a dark, imagined future that feels closer than we think. The lesson? In the age of avatars, the most rebellious act is to question what’s real.</p>
                  <p><strong>Technology:</strong> Canva Veo3</p>
             </div>
 
             <div class="project-card">
-                <h3>I'mpilo ft. Notation & Thee Ninety-Nine</h3>
-                <video controls poster="../videos/Impilo ft Notation & TheeNinetyNine.mp4">
-                    <source src="../videos/Impilo ft Notation & TheeNinetyNine.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p>A music visualizer for the track "I'mpilo" (Life), a collaboration with my brother **Xaba Moeketsi "Notation"** and our friend **Mahlangu Maxwell "Thee Ninety-Nine"**. This project is proof that passion beats resources—we used the Canva video editor and a simple Android app called "SingPlay" to bring this song about resilience and life's struggles to life.</p>
-                <p><strong>Technology:</strong> Canva, SingPlay</p>
+                 <h3>Resilient Identity – “Undefeated”</h3>
+                 <img src="../images/vailedpsyche.jpeg" alt="Resilient Identity Artwork by JayTee Xaba">
+                 <p>This isn’t just a picture; it’s a statement. It’s for anyone who’s been told they’re not enough. Look closer—that’s the look of a man who has taken hits from life and is still standing. It’s about turning your vulnerability into armor. The lesson is that your identity isn't what people label you; it's what you answer to after the battle.</p>
+                 <p style="color:#b74b4b; font-size:1.3rem; font-weight:500;">#ArtByJaytee #Resilience #DigitalIdentity</p>
             </div>
 
             <div class="project-card">
-                 <h3>Dream Beyond the Stars</h3>
-                 <img src="../images/WhatsApp Image 2025-07-10 at 14.35.03 (1).jpeg" alt="Dream Beyond The Stars Artwork">
-                 <p>An artwork conceived during a study break at campus, capturing a moment of creative inspiration. This piece blends cosmic imagery with motivational themes, proving that great ideas can spark anytime, anywhere.</p>
-                 <p><strong>Technology:</strong> Canva</p>
-            </div>
-            
-            <div class="project-card">
-                 <h3>Resilient Identity – “Undefeated”</h3>
-                 <img src="../images/vailedpsyche.jpeg" alt="Resilient Identity Artwork by JayTee Xaba">
-                 <p>This powerful self-portrait stands as a visual mantra of mental toughness and inner fire. It's a declaration of turning vulnerability into victory through layered design and bold typography.</p>
-                 <p><strong>#ArtByJaytee #Resilience</strong></p>
+                <h3>Dream Beyond The Stars</h3>
+                <img src="../images/Dream_Beyond.jpeg" alt="Dream Beyond The Stars Artwork by JayTee Xaba">
+                <p>I made this during a study break on campus, when the pressure was high. It’s proof that your best ideas don't come when you’re forcing them—they come when you give yourself a moment to breathe. The teaching is simple: don’t just work for your future; remember to dream in it, too.</p>
+                <p><strong>Technology:</strong> Canva</p>
             </div>
             
             <div class="project-card">
                  <h3>Break the Cycle: Do It Today</h3>
                  <div class="project-icon"><i class="fas fa-sync-alt"></i></div>
-                 <p>A bold typographic artwork that challenges the comfort of delay with a direct call to action. This piece serves as a motivational jolt to shift mindsets from "tomorrow" to "today" and ignite immediate action.</p>
-                 <p><strong>#DisciplineByJayTee #NoMoreDelays</strong></p>
+                 <p>This is a message to myself first. That voice that says "I'll do it tomorrow" is the biggest dream killer. This piece is my personal fight against that delay. The lesson is that discipline isn't punishment; it’s a form of self-respect—the hard choice you make today to build the person you want to be tomorrow.</p>
+                 <p style="color:#b74b4b; font-size:1.3rem; font-weight:500;">#DisciplineByJayTee #NoMoreDelays</p>
             </div>
 
         </div>
