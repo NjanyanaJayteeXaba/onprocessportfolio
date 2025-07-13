@@ -7,13 +7,13 @@
     <title>The Story of JayTee Xaba | From Tweeling to Tech Innovator</title>
     <meta name="description" content="Meet Njanyana 'JayTee' Xaba. Read the story of a self-taught developer from Tweeling, Free State, now studying at CPUT in Cape Town and on a mission to bridge the gap between potential and exposure in tech.">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; media-src 'self';">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      
+        /* Your existing styles are here */
         .about-container {
             background: rgba(25, 25, 25, 0.8);
             box-shadow: 0 8px 40px 0 rgba(183,75,75,0.15), 0 1.5px 12px 0 rgba(0,0,0,0.18);
@@ -67,9 +67,7 @@
             margin: 38px auto 24px auto;
             max-width: 950px;
         }
-        .more-aboutme ul {
-            padding-left: 18px;
-        }
+        .more-aboutme ul { padding-left: 18px; }
         .more-aboutme li {
             color: #eaeaea;
             font-size: 1.4rem;
@@ -77,6 +75,57 @@
             font-weight: 400;
         }
         
+        /* Styles for the new Featured Projects section */
+        .featured-work {
+            padding: 40px 0;
+            max-width: 950px;
+            margin: 38px auto 24px auto;
+        }
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .featured-card {
+            background: #1a1a1a;
+            border: 1px solid #b74b4b33;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(183, 75, 75, 0.3);
+        }
+        .featured-card video, .featured-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .featured-card h3 {
+            font-size: 2rem;
+            color: #b74b4b;
+            margin-bottom: 10px;
+        }
+        .featured-card p {
+            font-size: 1.4rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        .featured-card a {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #b74b4b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .featured-card a:hover {
+            text-decoration: underline;
+        }
+
         .about-bottom-tech {
             margin: 48px auto 0 auto;
             padding: 40px 28px;
@@ -89,49 +138,31 @@
             border: 2.5px solid #b74b4b33;
         }
         .about-bottom-tech::before {
-            content: '';
-            position: absolute;
-            top: -90px; left: -90px;
+            content: ''; position: absolute; top: -90px; left: -90px;
             width: 280px; height: 280px;
             background: radial-gradient(circle, #b74b4b88 0%, transparent 70%);
-            filter: blur(18px);
-            z-index: 0;
+            filter: blur(18px); z-index: 0;
         }
         .about-bottom-tech::after {
-            content: '';
-            position: absolute;
-            bottom: -60px; right: -70px;
+            content: ''; position: absolute; bottom: -60px; right: -70px;
             width: 200px; height: 200px;
             background: radial-gradient(circle, #b74b4b44 0%, transparent 70%);
-            filter: blur(10px);
-            z-index: 0;
+            filter: blur(10px); z-index: 0;
         }
-        .about-bottom-tech-content {
-            position: relative;
-            z-index: 2;
-        }
+        .about-bottom-tech-content { position: relative; z-index: 2; }
         .about-bottom-tech h2 {
-            font-size: 2.2rem;
-            color: #b74b4b;
-            margin-bottom: 24px;
-            text-align: center;
-            font-family: 'Poppins', 'Courier New', Courier, monospace;
+            font-size: 2.2rem; color: #b74b4b; margin-bottom: 24px;
+            text-align: center; font-family: 'Poppins', 'Courier New', Courier, monospace;
             text-shadow: 0 1px 3px #000a;
         }
         .about-bottom-tech p {
-            color: #fff;
-            font-size: 1.7rem;
-            text-align: center;
-            max-width: 750px;
-            margin: 0 auto 10px auto;
-            line-height: 1.8;
-            font-weight: 400;
-            letter-spacing: 0.1px;
-            text-shadow: 0 1px 5px #0005;
+            color: #fff; font-size: 1.7rem; text-align: center;
+            max-width: 750px; margin: 0 auto 10px auto; line-height: 1.8;
+            font-weight: 400; letter-spacing: 0.1px; text-shadow: 0 1px 5px #0005;
         }
         
         @media (max-width: 900px) {
-            .about-container, .more-aboutme, .about-bottom-tech { max-width: 98vw; }
+            .about-container, .more-aboutme, .about-bottom-tech, .featured-work { max-width: 98vw; }
         }
         @media (max-width: 700px) {
             .about-container { flex-direction: column; align-items: center; padding: 30px 8px; gap: 20px; }
@@ -186,6 +217,29 @@
         </ul>
     </div>
 
+    <section class="featured-work">
+        <h2 class="aboutH2" style="text-align: center;">Featured Work: A Glimpse of My Passion</h2>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <video controls poster="../images/Phatwood_2025.jpg">
+                    <source src="../videos/phatwood.mp4" type="video/mp4">
+                    Your browser does not support this video.
+                </video>
+                <h3>Phatwood 2025</h3>
+                <p>A trailer concept exploring digital rebellion and masked identity, created using AI video tools to question reality.</p>
+                <a href="Portfolio-Page.html#project-phatwood">View Details &rarr;</a>
+            </div>
+            <div class="featured-card">
+                <video controls poster="../images/Impilo_Poster.jpeg">
+                    <source src="../videos/Impilo ft Notation & TheeNinetyNine.mp4" type="video/mp4">
+                    Your browser does not support this video.
+                </video>
+                <h3>I'mpilo (Life)</h3>
+                <p>A music visualizer born from pure resourcefulness, proving that passion and collaboration are the most powerful tools.</p>
+                <a href="Portfolio-Page.html#project-impilo">View Details &rarr;</a>
+            </div>
+        </div>
+    </section>
     <section class="about-bottom-tech">
         <div class="about-bottom-tech-content">
             <h2>What Drives Me: Art, Ambition & Authenticity</h2>
