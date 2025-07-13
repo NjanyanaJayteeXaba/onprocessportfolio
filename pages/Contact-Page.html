@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-
+        /* Your existing styles are great. I've added new styles for the modal below. */
+        
         /* High-Tech Success Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -144,8 +145,10 @@
             <!-- Netlify will automatically place the reCAPTCHA here -->
             <div data-netlify-recaptcha="true"></div>
             <br>
-            
             <button type="submit">Send</button>
+
+            <!-- This is where the error message will appear -->
+            <p id="form-result" style="margin-top: 15px; font-size: 1.6rem;"></p>
         </form>
     </section>
 
@@ -168,26 +171,44 @@
         <p>&copy; 2024 Njanyana Jaytee Xaba. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript to handle the form submission and show the modal -->
+    <!-- UPDATED JavaScript to handle the form submission and show the modal -->
     <script>
         const form = document.getElementById('contact-form');
+        const result = document.getElementById('form-result');
         const modal = document.getElementById('success-modal');
         const closeModalButton = document.getElementById('close-modal-button');
 
         form.addEventListener('submit', function (e) {
             e.preventDefault(); // Prevent the default form submission
 
+            // ** NEW: Check if reCAPTCHA is solved **
+            const captchaResponse = grecaptcha.getResponse();
+            if (!captchaResponse) {
+                result.innerHTML = "Please solve the CAPTCHA first.";
+                result.style.color = "#b74b4b"; // Your brand's red color
+                return; // Stop the function if CAPTCHA is not solved
+            }
+
             const formData = new FormData(form);
-            fetch('/', { // Netlify handles submissions to the root path
+            result.innerHTML = "Please wait...";
+            result.style.color = "#ccc";
+
+            fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams(formData).toString(),
             })
             .then(() => {
+                result.innerHTML = ""; // Clear the "Please wait" message
                 modal.classList.add('active'); // Show the success modal
-                form.reset(); // Clear the form
+                form.reset();
+                grecaptcha.reset(); // Reset the reCAPTCHA widget
             })
-            .catch((error) => alert('Sorry, there was an error submitting your form. Please try again.'));
+            .catch((error) => {
+                result.innerHTML = "Sorry, there was an error. Please try again.";
+                result.style.color = "#b74b4b";
+                console.error(error);
+            });
         });
 
         // Close the modal when the 'x' is clicked
