@@ -4,13 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Tags -->
     <title>Contact | JayTee Xaba</title>
     <meta name="description" content="Get in touch with JayTee Xaba for collaborations, freelance opportunities, or to discuss a project. Let's build something great together.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Your existing styles are great. I've added new styles for the modal below. */
+        
+        /* High-Tech Success Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #111;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #b74b4b;
+            box-shadow: 0 0 40px rgba(183, 75, 75, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-icon {
+            font-size: 5rem;
+            color: #00b58a; /* A success green color */
+            margin-bottom: 20px;
+        }
+        .modal-content h2 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .modal-content p {
+            font-size: 1.6rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .modal-actions a {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: #b74b4b;
+            border-radius: 8px;
+            font-size: 1.6rem;
+            color: black;
+            font-weight: 700;
+            border: 2px solid #b74b4b;
+            transition: 0.3s ease;
+            cursor: pointer;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .modal-actions a:hover {
+            background-color: #111;
+            color: #b74b4b;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5rem;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-modal:hover {
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -46,8 +131,8 @@
             </div>
         </div>
 
-        <!-- NETLIFY FORM - UPDATED -->
-        <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+        <!-- FINAL NETLIFY FORM - UPDATED FOR AJAX & RECAPTCHA -->
+        <form name="contact" id="contact-form" method="POST" data-netlify="true" data-netlify-recaptcha="true">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             
@@ -57,17 +142,67 @@
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
             
-            <!-- Google reCAPTCHA div with your Site Key -->
+            <!-- Netlify will automatically place the reCAPTCHA here -->
             <div data-netlify-recaptcha="true"></div>
             <br>
             
             <button type="submit">Send</button>
         </form>
-        <!-- END OF NETLIFY FORM -->
     </section>
+
+    <!-- THE JAW-DROPPING SUCCESS MODAL (Initially hidden) -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal-button">&times;</span>
+            <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Message Received!</h2>
+            <p>Thank you for reaching out. I'll get back to you as soon as I see your message.</p>
+            <div class="modal-actions">
+                <p style="font-size: 1.4rem; color: #ccc; margin-bottom: 15px;">For an instant chat, find me here:</p>
+                <a href="https://wa.me/qr/C7BP2WDUANCXN1" target="_blank">WhatsApp</a>
+                <a href="https://www.facebook.com/Jaytee25" target="_blank">Facebook</a>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 Njanyana Jaytee Xaba. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript to handle the form submission and show the modal -->
+    <script>
+        const form = document.getElementById('contact-form');
+        const modal = document.getElementById('success-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(form);
+            fetch('/', { // Netlify handles submissions to the root path
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString(),
+            })
+            .then(() => {
+                modal.classList.add('active'); // Show the success modal
+                form.reset(); // Clear the form
+            })
+            .catch((error) => alert('Sorry, there was an error submitting your form. Please try again.'));
+        });
+
+        // Close the modal when the 'x' is clicked
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Close the modal if the user clicks on the overlay
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+
 </body>
 </html>
