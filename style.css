@@ -1,8 +1,6 @@
-/* MY CSS PROD BY JAYTEE XABA */
+/*MY CSS PROD BY JAYTEE XABA*/
 
-/* ======================================================= */
-/* 1. GLOBAL & LAYOUT STYLES */
-/* ======================================================= */
+/* HOME PAGE*/
 * {
     margin: 0;
     padding: 0;
@@ -20,44 +18,23 @@ html {
 
 body {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100vh; /* Use min-height to ensure footer is at least at the bottom */
     overflow-x: hidden;
     background-color: black;
     color: white;
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Added for footer positioning */
+    flex-direction: column; /* Added for footer positioning */
 }
 
-section {
-    min-height: 100vh;
-    padding: 12rem 9% 5rem; /* Unified padding for sections */
-    flex-grow: 1;
-}
-
-footer {
-    background-color: black;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
-    width: 100%;
-}
-
-footer p {
-    color: white;
-    margin: 0;
-    font-size: 1.3rem;
-}
-
-/* ======================================================= */
-/* 2. HEADER & NAVIGATION */
-/* ======================================================= */
 header {
+    margin-top: 20px;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 9%;
+    padding: 1rem 9%;
     background-color: black;
+    filter: drop-shadow(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -96,26 +73,18 @@ nav a.active {
     border-bottom: 3px solid #b74b4b;
 }
 
-.hamburger {
-    display: none;
-    cursor: pointer;
-    font-size: 2.5rem; 
-    font-weight: 300;
-    color: #b74b4b;
+section {
+    min-height: 100vh;
+    padding: 5rem 9% 5rem;
 }
 
-.menu-toggle {
-    display: none;
-}
-
-/* ======================================================= */
-/* 3. HOME PAGE SPECIFIC STYLES */
-/* ======================================================= */
 .home {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8rem;
+    background-color: black;
+    flex-grow: 1; /* Added for footer positioning */
 }
 
 .home .home-content h1 {
@@ -141,7 +110,7 @@ span {
 .home-img img {
     position: relative;
     width: 36vw;
-    box-shadow: 0 0 25px #b74b4b; /* Removed 'solid' */
+    box-shadow: 0 0 25px solid #b74b4b;
     cursor: pointer;
     transition: 0.2s linear;
 }
@@ -166,6 +135,54 @@ span {
     transform: scale(1.3) translateY(-5px);
     background-color: #b74b4b;
     box-shadow: 0 0 25px #b74b4b;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 2.5rem; 
+    font-weight: 300;
+    color: #b74b4b;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 995px) {
+    nav {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #161616;
+        width: 60%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-left: 3px solid #b74b4b;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    #menu-toggle:checked + .hamburger + nav {
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        background-color: black;
+        position: absolute;
+        width: 100%;
+        top: 60px; 
+        left: 0;
+    }
+
+    nav a {
+        margin: 10px 0;
+        color: white;
+    }
 }
 
 .btn {
@@ -200,7 +217,7 @@ span {
 }
 
 .typing-text span::before {
-    content: "Software Developer";
+    content: "software Developer";
     color: #b74b4b;
     animation: words 20s infinite;
 }
@@ -212,8 +229,8 @@ span {
     width: calc(100% + 8px);
     height: 100%;
     border-left: 3px solid black;
-    right: -8px;
-    animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
+    right: -8;
+    animation: cursor 0.6s infinite;
 }
 
 @keyframes cursor {
@@ -223,14 +240,62 @@ span {
 }
 
 @keyframes words {
-    0%, 25% { content: "Web Developer"; }
-    26%, 50% { content: "Programmer"; }
-    51%, 75% { content: "Graphic Designer"; }
-    76%, 100% { content: "Video Editor"; }
+    0%, 30% {
+        content: "Web Developer";
+    }
+    31%, 60% {
+        content: "Programmer";
+    }
+    61%, 80% {
+        content: "Graphic Designer";
+    }
+    81%, 100% {
+        content: "Video Editor";
+    }
 }
 
+@media (max-width: 1000px) {
+    .home {
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 995px) {
+    .home {
+        flex-direction: column;
+        margin: 5rem 4rem;
+    }
+
+    .home .home-content h3 {
+        font-size: 2.5rem;
+    }
+
+    .home-content h1 {
+        font-size: 5rem;
+    }
+
+    .home-img img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+} 
+
+footer {
+        background-color: black;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: auto; /* Pushes footer to the bottom */
+        width: 100%;
+        }
+
+footer p {
+        color: white;
+        margin: 0;
+        font-size: 1.3rem;
+        }
+
 /* ======================================================= */
-/* 4. AI ASSISTANT STYLES */
+/* NEW AND IMPROVED AI ASSISTANT STYLES */
 /* ======================================================= */
 .chat-bubble {
     position: fixed;
@@ -238,7 +303,7 @@ span {
     right: 30px;
     width: 60px;
     height: 60px;
-    background: linear-gradient(45deg, #b74b4b, #ff7e5f);
+    background-color: #b74b4b;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -253,7 +318,7 @@ span {
 }
 .chat-bubble i {
     font-size: 2.4rem;
-    color: white;
+    color: black;
 }
 .chat-window {
     position: fixed;
@@ -262,8 +327,8 @@ span {
     width: 90%;
     max-width: 400px;
     height: 500px;
-    background: #181818;
-    border: 1px solid #444;
+    background: #111;
+    border: 1px solid #b74b4b;
     border-radius: 16px;
     box-shadow: 0 8px 40px rgba(0,0,0,0.5);
     display: flex;
@@ -274,7 +339,7 @@ span {
     visibility: hidden;
     transform: translateY(20px);
     transition: all 0.3s ease;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif; /* NEW: Cool font */
 }
 .chat-window.active {
     opacity: 1;
@@ -285,18 +350,17 @@ span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #1f1f1f, #2a2a2a);
+    background: #1a1a1a;
     padding: 10px 20px;
     color: #b74b4b;
     font-weight: 600;
     font-size: 1.8rem;
     border-bottom: 1px solid #b74b4b;
-    flex-shrink: 0;
 }
 .chat-header-title {
     flex-grow: 1;
     text-align: center;
-    padding-left: 20px;
+    padding-left: 20px; /* Offset for close button */
 }
 .chat-close-button {
     background: none;
@@ -338,29 +402,26 @@ span {
     align-self: flex-start;
     border-bottom-left-radius: 4px;
 }
-.chat-message.bot.loading .typing-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20px;
-}
-.chat-message.bot.loading .typing-indicator span {
-    height: 4px;
-    width: 20px;
-    background-color: #b74b4b;
+/* NEW: Cooler "thinking" animation */
+.chat-message.bot.loading span {
     display: inline-block;
-    animation: thinking 1.2s infinite ease-in-out;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #888;
+    animation: pulse 1.5s infinite ease-in-out;
 }
-@keyframes thinking {
-    0% { transform: scaleX(0); }
-    50% { transform: scaleX(1); }
-    100% { transform: scaleX(0); }
+.chat-message.bot.loading span:nth-child(1) { animation-delay: 0.1s; }
+.chat-message.bot.loading span:nth-child(2) { animation-delay: 0.2s; }
+.chat-message.bot.loading span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
 .chat-footer {
     display: flex;
     padding: 10px;
     border-top: 1px solid #333;
-    flex-shrink: 0;
 }
 .chat-footer input {
     flex-grow: 1;
@@ -381,57 +442,4 @@ span {
     font-size: 2rem;
     cursor: pointer;
     padding: 0 15px;
-    transition: transform 0.2s;
-}
-.chat-footer button:hover {
-    transform: scale(1.1);
-}
-
-/* ======================================================= */
-/* 5. RESPONSIVE STYLES */
-/* ======================================================= */
-@media (max-width: 995px) {
-    header {
-        padding: 1rem 4%;
-    }
-    nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: black;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-    }
-    .hamburger {
-        display: block;
-    }
-    #menu-toggle:checked ~ nav {
-        display: flex;
-    }
-    nav a {
-        margin: 10px 0;
-        width: 100%;
-        text-align: center;
-    }
-    .home {
-        flex-direction: column;
-        gap: 4rem;
-        text-align: center;
-    }
-    .home-content h1 {
-        font-size: 5rem;
-    }
-    .home-content h3 {
-        font-size: 2.5rem;
-    }
-    .home-img img {
-        width: 70vw;
-        margin-top: 4rem;
-    }
-    .social-icons {
-        justify-content: center;
-    }
 }
