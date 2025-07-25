@@ -7,7 +7,7 @@
     <title>The Story of JayTee Xaba | From Free State to Tech Innovator</title>
     <link rel="canonical" href="https://jayteexaba.tech/pages/About-Page.html" />
     <meta name="description" content="Meet Njanyana 'JayTee' Xaba. Read the story of a self-taught developer from Free State, now studying at CPUT in Cape Town and on a mission to bridge the gap between potential and exposure in tech.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; media-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://*.netlify.app;">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
@@ -178,7 +178,7 @@
         }
 
         /* ======================================================= */
-        /* AI ASSISTANT STYLES */
+        /* UPGRADED AI ASSISTANT STYLES */
         /* ======================================================= */
         .chat-bubble {
             position: fixed;
@@ -186,7 +186,7 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background-color: #b74b4b;
+            background: linear-gradient(45deg, #b74b4b, #ff7e5f);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -201,7 +201,7 @@
         }
         .chat-bubble i {
             font-size: 2.4rem;
-            color: black;
+            color: white;
         }
         .chat-window {
             position: fixed;
@@ -210,8 +210,8 @@
             width: 90%;
             max-width: 400px;
             height: 500px;
-            background: #111;
-            border: 1px solid #b74b4b;
+            background: #181818;
+            border: 1px solid #444;
             border-radius: 16px;
             box-shadow: 0 8px 40px rgba(0,0,0,0.5);
             display: flex;
@@ -233,12 +233,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #1a1a1a;
+            background: linear-gradient(90deg, #1f1f1f, #2a2a2a);
             padding: 10px 20px;
             color: #b74b4b;
             font-weight: 600;
             font-size: 1.8rem;
             border-bottom: 1px solid #b74b4b;
+            flex-shrink: 0;
         }
         .chat-header-title {
             flex-grow: 1;
@@ -285,25 +286,30 @@
             align-self: flex-start;
             border-bottom-left-radius: 4px;
         }
-        .chat-message.bot.loading span {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #888;
-            animation: pulse 1.5s infinite ease-in-out;
+        /* NEW: Cooler "thinking" animation */
+        .chat-message.bot.loading .typing-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20px;
         }
-        .chat-message.bot.loading span:nth-child(1) { animation-delay: 0.1s; }
-        .chat-message.bot.loading span:nth-child(2) { animation-delay: 0.2s; }
-        .chat-message.bot.loading span:nth-child(3) { animation-delay: 0.3s; }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+        .chat-message.bot.loading .typing-indicator span {
+            height: 4px;
+            width: 20px;
+            background-color: #b74b4b;
+            display: inline-block;
+            animation: thinking 1.2s infinite ease-in-out;
+        }
+        @keyframes thinking {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
         }
         .chat-footer {
             display: flex;
             padding: 10px;
             border-top: 1px solid #333;
+            flex-shrink: 0;
         }
         .chat-footer input {
             flex-grow: 1;
@@ -324,6 +330,10 @@
             font-size: 2rem;
             cursor: pointer;
             padding: 0 15px;
+            transition: transform 0.2s;
+        }
+        .chat-footer button:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -354,7 +364,6 @@
             </p>
         </div>
     </div>
-
     <div class="more-aboutme">
         <h2 class="aboutH2">My Mission: To Build Bridges</h2>
         <p class="aboutP" style="margin-bottom: 25px;">
@@ -367,7 +376,6 @@
             <li><strong>Never Stop Learning:</strong> The tech world doesn't stand still, and neither do I. I am committed to continuous learning through courses, workshops, and certifications to stay on the front lines of innovation.</li>
         </ul>
     </div>
-
     <section class="featured-work">
         <h2 class="aboutH2" style="text-align: center;">Featured Work: A Glimpse of My Passion</h2>
         <div class="featured-grid">
@@ -404,7 +412,6 @@
             </div>
         </div>
     </section>
-
     <section class="about-bottom-tech">
         <div class="about-bottom-tech-content">
             <h2>What Drives Me: Art, Ambition & Authenticity</h2>
@@ -495,7 +502,7 @@
             messageElement.className = `chat-message ${type}`;
             
             if (type.includes('loading')) {
-                messageElement.innerHTML = '<span></span><span></span><span></span>';
+                messageElement.innerHTML = '<div class="typing-indicator"><span></span></div>';
             } else {
                 messageElement.textContent = text;
             }
