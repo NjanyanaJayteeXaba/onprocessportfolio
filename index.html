@@ -144,3 +144,149 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JayTee Xaba | Portfolio of an Upcoming South African Tech Talent</title>
+    <meta name="description" content="Discover the journey of JayTee Xaba, an upcoming and passionate ICT student from South Africa. Explore the portfolio of an emerging developer and creative technologist dedicated to building the future of digital solutions.">
+    
+    <link rel="canonical" href="https://jayteexaba.tech/" />
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="name">JayTee Portfolio</a>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <i class="fas fa-bars"></i>
+        </label>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="pages/Portfolio-Page.html">Portfolio</a>
+            <a href="pages/About-Page.html">About</a>
+            <a href="pages/Services.html">Services</a>
+            <a href="pages/Contact-Page.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="home">
+        <div class="home-img">
+            <img src="images/Home-Logo.gif" alt="Animated logo for JayTee Xaba's portfolio">
+        </div>
+        <div class="home-content">
+            <h1>Hi, It's <span>JayTee</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>My name is Njanyana "Jaytee" Xaba, and I’m an IT professional with a passion for technology and creative solutions. I have a strong foundation in software development, web design, and multimedia. With a keen interest in problem-solving, I strive to create efficient, user-friendly digital solutions.</p>
+            <div class="social-icons">
+                <a href="https://wa.me/qr/C7BP2WDUANCXN1" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://za.linkedin.com/in/njanyanajayteexaba" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/Jaytee25" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://github.com/NjanyanaJayteeXaba" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/jaytee_xaba/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <!-- Discord Icon Added -->
+                <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i></a>
+            </div>
+            <a href="pages/About-Page.html" class="btn">Start The Journey</a>
+        </div>
+    </section>
+    
+    <div class="chat-bubble" id="chat-bubble">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            <div class="chat-header-title">JayTee-AI Assistant</div>
+            <button class="chat-close-button" id="chat-close-button">&times;</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-message bot">Hey there! I'm JayTee's AI assistant. Ask me anything about the site, his journey, or if you just need some motivation.</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Ask me anything...">
+            <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Njanyana JayTee Xaba. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatWindow = document.getElementById('chat-window');
+        const chatCloseButton = document.getElementById('chat-close-button');
+        const chatBody = document.getElementById('chat-body');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+
+        const toggleChatWindow = () => {
+            chatWindow.classList.toggle('active');
+        };
+
+        chatBubble.addEventListener('click', toggleChatWindow);
+        chatCloseButton.addEventListener('click', toggleChatWindow);
+
+        const sendMessage = async () => {
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            addMessage(userMessage, 'user');
+            chatInput.value = '';
+
+            const loadingIndicator = addMessage('...', 'bot loading');
+
+            try {
+                const response = await fetch('/.netlify/functions/ask-jaytee-ai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+
+                const data = await response.json();
+                const botResponse = data.reply;
+
+                loadingIndicator.remove();
+                addMessage(botResponse, 'bot');
+
+            } catch (error) {
+                console.error('Error:', error);
+                loadingIndicator.remove();
+                addMessage("Sorry, something went wrong. The server might be busy. Please try again in a moment.", 'bot');
+            }
+        };
+
+        const addMessage = (text, type) => {
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message ${type}`;
+            
+            if (type.includes('loading')) {
+                messageElement.innerHTML = '<div class="typing-indicator"><span></span></div>';
+            } else {
+                messageElement.textContent = text;
+            }
+            
+            chatBody.appendChild(messageElement);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            return messageElement;
+        };
+
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
