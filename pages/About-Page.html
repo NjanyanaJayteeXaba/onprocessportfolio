@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
+        /* Styles specific to About Page */
         .about-container {
             background: rgba(25, 25, 25, 0.8);
             box-shadow: 0 8px 40px 0 rgba(183,75,75,0.15), 0 1.5px 12px 0 rgba(0,0,0,0.18);
             backdrop-filter: blur(3px);
             padding: 40px 30px;
-            margin: 120px auto 30px auto;
+            margin: 0 auto 30px auto; /* Adjusted margin */
             border-radius: 22px;
             display: flex;
             flex-wrap: wrap;
@@ -139,18 +140,6 @@
             overflow: hidden;
             border: 2.5px solid #b74b4b33;
         }
-        .about-bottom-tech::before {
-            content: ''; position: absolute; top: -90px; left: -90px;
-            width: 280px; height: 280px;
-            background: radial-gradient(circle, #b74b4b88 0%, transparent 70%);
-            filter: blur(18px); z-index: 0;
-        }
-        .about-bottom-tech::after {
-            content: ''; position: absolute; bottom: -60px; right: -70px;
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, #b74b4b44 0%, transparent 70%);
-            filter: blur(10px); z-index: 0;
-        }
         .about-bottom-tech-content { position: relative; z-index: 2; }
         .about-bottom-tech h2 {
             font-size: 2.2rem; color: #b74b4b; margin-bottom: 24px;
@@ -176,165 +165,6 @@
             .aboutH2 { font-size: 1.6rem; }
             .aboutP, .more-aboutme li, .about-bottom-tech p { font-size: 1.1rem; }
         }
-
-        /* ======================================================= */
-        /* UPGRADED AI ASSISTANT STYLES */
-        /* ======================================================= */
-        .chat-bubble {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #b74b4b, #ff7e5f);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(183, 75, 75, 0.4);
-            z-index: 999;
-            transition: transform 0.3s ease;
-        }
-        .chat-bubble:hover {
-            transform: scale(1.1);
-        }
-        .chat-bubble i {
-            font-size: 2.4rem;
-            color: white;
-        }
-        .chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 90%;
-            max-width: 400px;
-            height: 500px;
-            background: #181818;
-            border: 1px solid #444;
-            border-radius: 16px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-        }
-        .chat-window.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .chat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(90deg, #1f1f1f, #2a2a2a);
-            padding: 10px 20px;
-            color: #b74b4b;
-            font-weight: 600;
-            font-size: 1.8rem;
-            border-bottom: 1px solid #b74b4b;
-            flex-shrink: 0;
-        }
-        .chat-header-title {
-            flex-grow: 1;
-            text-align: center;
-            padding-left: 20px;
-        }
-        .chat-close-button {
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 2.4rem;
-            cursor: pointer;
-            line-height: 1;
-            transition: color 0.2s;
-        }
-        .chat-close-button:hover {
-            color: #fff;
-        }
-        .chat-body {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .chat-message {
-            padding: 10px 15px;
-            border-radius: 18px;
-            max-width: 80%;
-            line-height: 1.5;
-            font-size: 1.4rem;
-            word-wrap: break-word;
-        }
-        .chat-message.user {
-            background-color: #b74b4b;
-            color: black;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-        .chat-message.bot {
-            background-color: #333;
-            color: #eaeaea;
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-        /* NEW: Cooler "thinking" animation */
-        .chat-message.bot.loading .typing-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 20px;
-        }
-        .chat-message.bot.loading .typing-indicator span {
-            height: 4px;
-            width: 20px;
-            background-color: #b74b4b;
-            display: inline-block;
-            animation: thinking 1.2s infinite ease-in-out;
-        }
-        @keyframes thinking {
-            0% { transform: scaleX(0); }
-            50% { transform: scaleX(1); }
-            100% { transform: scaleX(0); }
-        }
-        .chat-footer {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #333;
-            flex-shrink: 0;
-        }
-        .chat-footer input {
-            flex-grow: 1;
-            border: none;
-            background: #222;
-            padding: 12px;
-            border-radius: 8px;
-            color: white;
-            font-size: 1.4rem;
-        }
-        .chat-footer input:focus {
-            outline: 1px solid #b74b4b;
-        }
-        .chat-footer button {
-            background: none;
-            border: none;
-            color: #b74b4b;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0 15px;
-            transition: transform 0.2s;
-        }
-        .chat-footer button:hover {
-            transform: scale(1.1);
-        }
     </style>
 </head>
 <body>
@@ -353,76 +183,81 @@
         </nav>
     </header>
 
-    <div class="about-container">
-        <img class="home-image" src="../images/vailedpsyche.jpeg" alt="A picture of JayTee Xaba" />
-        <div class="paragraph-container">
-            <h2 class="aboutH2">My Name Is Njanyana "Jay-Tee" Xaba</h2>
-            <p class="aboutP">
-                I am from a small town inside the Free State with limited access to technology. Moving to Cape Town to study ICT at CPUT and meeting new people who have different skills changed everything. It opened my eyes to the world of opportunity—and showed me the gap between raw potential and real-world exposure. That gap is what fuels me.
-                <br><br>
-                While my diploma gave me a foundation in languages like HTML, CSS, and Java, my real education happened outside the classroom. I taught myself how to deploy sites, manage domains, and solve the problems you don't find in textbooks. This journey sparked a love for building things that matter, not just for a grade, but for a purpose.
-            </p>
-        </div>
-    </div>
-    <div class="more-aboutme">
-        <h2 class="aboutH2">My Mission: To Build Bridges</h2>
-        <p class="aboutP" style="margin-bottom: 25px;">
-             This platform, jayteexaba.tech, isn’t just a portfolio—it’s my mission. It exists to show students from underserved backgrounds that they are not alone and that greatness can grow anywhere, especially where no one is looking. My professional goals are extensions of this mission:
-        </p>
-        <ul>
-            <li><strong>Build Real-World Solutions:</strong> I seek internships and developer roles not just for a job, but to get into the trenches and build innovative solutions that prove what’s possible, regardless of your starting point.</li>
-            <li><strong>Master the Craft:</strong> My focus is on deepening my expertise in Java, Python, and JavaScript. A strong technical foundation isn't just for advanced projects; it's the toolbox I'll use to build opportunities for others.</li>
-            <li><strong>Connect and Contribute:</strong> I actively participate in the tech community to connect with professionals, absorb knowledge, and share my own journey. Every connection is a chance to learn and to lift someone else up.</li>
-            <li><strong>Never Stop Learning:</strong> The tech world doesn't stand still, and neither do I. I am committed to continuous learning through courses, workshops, and certifications to stay on the front lines of innovation.</li>
-        </ul>
-    </div>
-    <section class="featured-work">
-        <h2 class="aboutH2" style="text-align: center;">Featured Work: A Glimpse of My Passion</h2>
-        <div class="featured-grid">
-            <div class="featured-card">
-                <video controls poster="../images/Impilo_Poster.jpeg">
-                    <source src="../videos/Impilo ft Notation & TheeNinetyNine.mp4" type="video/mp4">
-                    Your browser does not support this video.
-                </video>
-                <h3>I'mpilo (Life)</h3>
-                <p>A music visualizer born from pure resourcefulness, proving that passion and collaboration are the most powerful tools.</p>
-                <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
-            </div>
-             <div class="featured-card">
-                <video controls poster="../images/phatwood_poster.jpg">
-                    <source src="../videos/Phatwood.mp4" type="video/mp4">
-                    Your browser does not support this video.
-                </video>
-                <h3>Phatwood 2025</h3>
-                <p>A trailer concept exploring digital rebellion and masked identity, created using AI video tools to question reality.</p>
-                <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
-            </div>
-            <div class="featured-card">
-                <img src="../images/Dream_Beyond.jpeg" alt="Dream Beyond The Stars Artwork">
-                <h3>Dream Beyond The Stars</h3>
-                <p>An artwork conceived during a study break, proving that great ideas can spark anytime, anywhere.</p>
-                <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
-            </div>
-            <div class="featured-card">
-                 <img src="../images/Becoming.jpeg" alt="Becoming">
-                 <div class="project-icon" style="font-size: 5rem; text-align: center; padding: 2rem 0;"><i class="fas fa-sync-alt"></i></div>
-                 <h3>Break the Cycle</h3>
-                 <p>A bold typographic artwork that serves as a motivational jolt to shift mindsets from "tomorrow" to "today."</p>
-                 <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
+    <section>
+        <div class="about-container">
+            <img class="home-image" src="../images/vailedpsyche.jpeg" alt="A picture of JayTee Xaba" />
+            <div class="paragraph-container">
+                <h2 class="aboutH2">My Name Is Njanyana "Jay-Tee" Xaba</h2>
+                <p class="aboutP">
+                    I am from a small town inside the Free State with limited access to technology. Moving to Cape Town to study ICT at CPUT and meeting new people who have different skills changed everything. It opened my eyes to the world of opportunity—and showed me the gap between raw potential and real-world exposure. That gap is what fuels me.
+                    <br><br>
+                    While my diploma gave me a foundation in languages like HTML, CSS, and Java, my real education happened outside the classroom. I taught myself how to deploy sites, manage domains, and solve the problems you don't find in textbooks. This journey sparked a love for building things that matter, not just for a grade, but for a purpose.
+                </p>
             </div>
         </div>
-    </section>
-    <section class="about-bottom-tech">
-        <div class="about-bottom-tech-content">
-            <h2>What Drives Me: Art, Ambition & Authenticity</h2>
-            <p>
-                I love art. I am driven by a deep desire to build something great for people like me—people who don’t always have access or opportunity, who might not have the right tools, but still want to create and belong. I want to share my passion, my authentic self—the real JayTee Xaba—with everyone who knows the struggle. Because, honestly, you can’t outwork someone who is in love with tech the way I am.
+
+        <div class="more-aboutme">
+            <h2 class="aboutH2">My Mission: To Build Bridges</h2>
+            <p class="aboutP" style="margin-bottom: 25px;">
+                 This platform, jayteexaba.tech, isn’t just a portfolio—it’s my mission. It exists to show students from underserved backgrounds that they are not alone and that greatness can grow anywhere, especially where no one is looking. My professional goals are extensions of this mission:
             </p>
-            <p>
-                For me, technology is more than code: it’s my way to process pain and turn setbacks into something beautiful. No one truly knows how much I’ve given up to get here. All the things I’ve lost, I’ve channeled into this journey—into every line of code, every late-night project, every risk.<br><br>
-                This isn’t just about skills or a career. It’s about turning struggle into innovation, and making sure that anyone who feels left out can look at my work and say: “If he can, I can too.”<br>
-                I’m not done yet. I’m only getting started.
-            </p>
+            <ul>
+                <li><strong>Build Real-World Solutions:</strong> I seek internships and developer roles not just for a job, but to get into the trenches and build innovative solutions that prove what’s possible, regardless of your starting point.</li>
+                <li><strong>Master the Craft:</strong> My focus is on deepening my expertise in Java, Python, and JavaScript. A strong technical foundation isn't just for advanced projects; it's the toolbox I'll use to build opportunities for others.</li>
+                <li><strong>Connect and Contribute:</strong> I actively participate in the tech community to connect with professionals, absorb knowledge, and share my own journey. Every connection is a chance to learn and to lift someone else up.</li>
+                <li><strong>Never Stop Learning:</strong> The tech world doesn't stand still, and neither do I. I am committed to continuous learning through courses, workshops, and certifications to stay on the front lines of innovation.</li>
+            </ul>
+        </div>
+
+        <div class="featured-work">
+            <h2 class="aboutH2" style="text-align: center;">Featured Work: A Glimpse of My Passion</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <video controls poster="../images/Impilo_Poster.jpeg">
+                        <source src="../videos/Impilo ft Notation & TheeNinetyNine.mp4" type="video/mp4">
+                        Your browser does not support this video.
+                    </video>
+                    <h3>I'mpilo (Life)</h3>
+                    <p>A music visualizer born from pure resourcefulness, proving that passion and collaboration are the most powerful tools.</p>
+                    <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
+                </div>
+                 <div class="featured-card">
+                    <video controls poster="../images/phatwood_poster.jpg">
+                        <source src="../videos/Phatwood.mp4" type="video/mp4">
+                        Your browser does not support this video.
+                    </video>
+                    <h3>Phatwood 2025</h3>
+                    <p>A trailer concept exploring digital rebellion and masked identity, created using AI video tools to question reality.</p>
+                    <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
+                </div>
+                <div class="featured-card">
+                    <img src="../images/Dream_Beyond.jpeg" alt="Dream Beyond The Stars Artwork">
+                    <h3>Dream Beyond The Stars</h3>
+                    <p>An artwork conceived during a study break, proving that great ideas can spark anytime, anywhere.</p>
+                    <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
+                </div>
+                <div class="featured-card">
+                     <img src="../images/Becoming.jpeg" alt="Becoming">
+                     <div class="project-icon" style="font-size: 5rem; text-align: center; padding: 2rem 0;"><i class="fas fa-sync-alt"></i></div>
+                     <h3>Break the Cycle</h3>
+                     <p>A bold typographic artwork that serves as a motivational jolt to shift mindsets from "tomorrow" to "today."</p>
+                     <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-bottom-tech">
+            <div class="about-bottom-tech-content">
+                <h2>What Drives Me: Art, Ambition & Authenticity</h2>
+                <p>
+                    I love art. I am driven by a deep desire to build something great for people like me—people who don’t always have access or opportunity, who might not have the right tools, but still want to create and belong. I want to share my passion, my authentic self—the real JayTee Xaba—with everyone who knows the struggle. Because, honestly, you can’t outwork someone who is in love with tech the way I am.
+                </p>
+                <p>
+                    For me, technology is more than code: it’s my way to process pain and turn setbacks into something beautiful. No one truly knows how much I’ve given up to get here. All the things I’ve lost, I’ve channeled into this journey—into every line of code, every late-night project, every risk.<br><br>
+                    This isn’t just about skills or a career. It’s about turning struggle into innovation, and making sure that anyone who feels left out can look at my work and say: “If he can, I can too.”<br>
+                    I’m not done yet. I’m only getting started.
+                </p>
+            </div>
         </div>
     </section>
 
