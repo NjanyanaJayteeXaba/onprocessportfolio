@@ -1,6 +1,3 @@
-```javascript
-// This is the code for your secure Netlify Function.
-// It runs on Netlify's servers, not in the browser.
 
 exports.handler = async (event) => {
     // Only allow POST requests
