@@ -9,7 +9,7 @@ exports.handler = async (event) => {
     }
 
     const { message } = JSON.parse(event.body);
-    const apiKey = process.env.AIzaSyB1k9p8D_ZXPQccNKBthR3DbFz7SEctWVM; // Your secret key is safe here
+    const apiKey = process.env.GEMINI_API_KEY; // Your secret key is safe here
 
     if (!apiKey) {
         return { statusCode: 500, body: 'API key not found.' };
