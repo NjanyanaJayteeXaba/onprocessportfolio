@@ -13,13 +13,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-        /* Styles specific to About Page */
         .about-container {
             background: rgba(25, 25, 25, 0.8);
             box-shadow: 0 8px 40px 0 rgba(183,75,75,0.15), 0 1.5px 12px 0 rgba(0,0,0,0.18);
             backdrop-filter: blur(3px);
             padding: 40px 30px;
-            margin: 0 auto 30px auto; /* Adjusted margin */
+            margin: 0 auto 30px auto;
             border-radius: 22px;
             display: flex;
             flex-wrap: wrap;
@@ -261,7 +260,6 @@
         </div>
     </section>
 
-    <!-- AI Assistant HTML -->
     <div class="chat-bubble" id="chat-bubble">
         <i class="fas fa-comment-dots"></i>
     </div>
@@ -283,7 +281,6 @@
         <p>&copy; 2025 Njanyana JayTee Xaba. All rights reserved.</p>
     </footer>
 
-    <!-- AI Assistant JavaScript -->
     <script>
         const chatBubble = document.getElementById('chat-bubble');
         const chatWindow = document.getElementById('chat-window');
@@ -309,6 +306,7 @@
             const loadingIndicator = addMessage('...', 'bot loading');
 
             try {
+                // This calls your secure Netlify Function
                 const response = await fetch('/.netlify/functions/ask-jaytee-ai', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
