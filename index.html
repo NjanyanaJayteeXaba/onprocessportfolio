@@ -43,6 +43,8 @@
                 <a href="https://www.facebook.com/Jaytee25" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://github.com/NjanyanaJayteeXaba" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
                 <a href="https://www.instagram.com/jaytee_xaba/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <!-- Discord Icon Added -->
+                <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i></a>
             </div>
             <a href="pages/About-Page.html" class="btn">Start The Journey</a>
         </div>
@@ -123,7 +125,7 @@
             messageElement.className = `chat-message ${type}`;
             
             if (type.includes('loading')) {
-                messageElement.innerHTML = '<span></span><span></span><span></span>';
+                messageElement.innerHTML = '<div class="typing-indicator"><span></span></div>';
             } else {
                 messageElement.textContent = text;
             }
