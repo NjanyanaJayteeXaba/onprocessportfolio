@@ -174,7 +174,7 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-child"></i></div>
                 <h3>KID-Tracker</h3>
-                <video controls>
+                <video controls controlsList="nodownload">
                     <source src="../videos/KidTracker-Tiktok-MUF-video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -277,7 +277,7 @@
 
             <div class="project-card">
                 <h3>I'mpilo (Life) – A Song from the Struggle</h3>
-                <video controls poster="../images/Impilo_Poster.jpeg">
+                <video controls controlsList="nodownload" poster="../images/Impilo_Poster.jpeg">
                     <source src="../videos/Impilo ft Notation & TheeNinetyNine.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -293,7 +293,7 @@
 
             <div class="project-card">
                  <h3>Phatwood 2025 – The Digital Mask</h3>
-                 <video controls poster="../images/phatwood_poster.jpg">
+                 <video controls controlsList="nodownload" poster="../images/phatwood_poster.jpg">
                      <source src="../videos/Phatwood.mp4" type="video/mp4">
                      Your browser does not support the video tag.
                  </video>
@@ -338,7 +338,7 @@
 
             <div class="project-card">
                 <h3>Love of the Code</h3>
-                <video controls poster="../images/LoveOfTheCode_poster.jpg">
+                <video controls controlsList="nodownload" poster="../images/LoveOfTheCode_poster.jpg">
                     <source src="../images/LoveOfTheCode.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -358,5 +358,34 @@
     <footer>
         <p>&copy; 2025 Njanyana JayTee Xaba. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Auto-pause videos when they scroll out of view
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('video');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.25 // Video must be at least 25% visible
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    
+                    if (!entry.isIntersecting) {
+                        // Video is out of view, pause it
+                        video.pause();
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all videos
+            videos.forEach(video => {
+                observer.observe(video);
+            });
+        });
+    </script>
 </body>
 </html>
