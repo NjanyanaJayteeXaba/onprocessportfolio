@@ -213,7 +213,7 @@
             <h2 class="aboutH2" style="text-align: center;">Featured Work: A Glimpse of My Passion</h2>
             <div class="featured-grid">
                 <div class="featured-card">
-                    <video controls poster="../images/Impilo_Poster.jpeg">
+                    <video controls controlsList="nodownload" poster="../images/Impilo_Poster.jpeg">
                         <source src="../videos/Impilo ft Notation & TheeNinetyNine.mp4" type="video/mp4">
                         Your browser does not support this video.
                     </video>
@@ -222,7 +222,7 @@
                     <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
                 </div>
                  <div class="featured-card">
-                    <video controls poster="../images/phatwood_poster.jpg">
+                    <video controls controlsList="nodownload" poster="../images/phatwood_poster.jpg">
                         <source src="../videos/Phatwood.mp4" type="video/mp4">
                         Your browser does not support this video.
                     </video>
@@ -264,6 +264,34 @@
     <footer>
         <p>&copy; 2025 Njanyana JayTee Xaba. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Auto-pause videos when they scroll out of view
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('video');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.25 // Video must be at least 25% visible
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    
+                    if (!entry.isIntersecting) {
+                        // Video is out of view, pause it
+                        video.pause();
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all videos
+            videos.forEach(video => {
+                observer.observe(video);
+            });
+        });
+    </script>
 </body>
 </html>
-
