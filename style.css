@@ -171,17 +171,17 @@ span {
 }
 
 .typing-text {
-    font-size: 34px;
+    font-size: 28px;
     font-weight: 600;
-    min-width: 280px;
-    min-height: 45px;
+    min-width: 250px;
+    min-height: 40px;
     display: inline-block;
 }
 
 .typing-text span {
     position: relative;
     display: inline-block;
-    min-width: 280px;
+    min-width: 250px;
 }
 
 .typing-text span::before {
@@ -227,6 +227,103 @@ span {
     76%, 100% {
         content: "Creative Technologist";
     }
+}
+
+/* ======================================================= */
+/* CONTACT PAGE STYLES */
+/* ======================================================= */
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 6rem;
+    background-color: black;
+    padding: 10rem 9% 5rem;
+    flex-wrap: wrap;
+}
+
+.contact-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-text h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.contact-text p {
+    font-size: 1.6rem;
+    color: #ccc;
+    margin-bottom: 3rem;
+}
+
+.email-social h2 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.contact form {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.contact form label {
+    display: block;
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.contact form input,
+.contact form textarea {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.6rem;
+    color: white;
+    background-color: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    transition: border-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact form input:focus,
+.contact form textarea:focus {
+    border-color: #b74b4b;
+    outline: none;
+}
+
+.contact form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.contact form button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background-color: #b74b4b;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    color: black;
+    font-weight: 700;
+    border: 2px solid #b74b4b;
+    transition: 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.contact form button:hover {
+    background-color: black;
+    color: #b74b4b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(183, 75, 75, 0.4);
 }
 
 footer {
@@ -462,11 +559,50 @@ footer p {
     /* === RESPONSIVE FIX FOR TYPING TEXT === */
     .typing-text {
         min-width: 0; /* Allows the element to shrink */
-        font-size: 28px; /* Optional: adjust font size for smaller screens */
+        font-size: 22px; /* Reduced font size for smaller screens */
     }
     
     .typing-text span {
         min-width: 0;
+    }
+    
+    /* === CONTACT FORM RESPONSIVE === */
+    .contact {
+        flex-direction: column;
+        gap: 4rem;
+        padding: 10rem 4% 5rem;
+    }
+    
+    .contact-text h1 {
+        font-size: 4rem;
+        text-align: center;
+    }
+    
+    .contact-text p {
+        text-align: center;
+    }
+    
+    .email-social {
+        text-align: center;
+    }
+    
+    .email-social h2 {
+        font-size: 1.6rem;
+    }
+    
+    .contact form {
+        width: 100%;
+    }
+    
+    .contact form input,
+    .contact form textarea {
+        font-size: 1.4rem;
+        padding: 1rem 1.2rem;
+    }
+    
+    .contact form button {
+        font-size: 1.5rem;
+        padding: 1rem 2.5rem;
     }
     
     /* Ensure chatbot stays visible on mobile */
