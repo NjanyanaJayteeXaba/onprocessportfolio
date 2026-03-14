@@ -430,7 +430,7 @@ POST /v1beta/models/gemini-2.0-flash:generateContent
             try {
                 const response = await fetch('/.netlify/functions/model-info');
                 if (!response.ok) {
-                    throw new Error('Network response was not ok.');
+                    throw new Error(`Failed to fetch model info: ${response.status} ${response.statusText}`);
                 }
                 const data = await response.json();
                 outputPre.textContent = JSON.stringify(data, null, 2);
