@@ -80,6 +80,10 @@
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
 
+        // Conversation history kept in memory for multi-turn context.
+        // Each entry follows the Gemini API format: { role, parts: [{ text }] }
+        const chatHistory = [];
+
         const toggleChatWindow = () => {
             chatWindow.classList.toggle('active');
         };
@@ -100,7 +104,7 @@
                 const response = await fetch('/.netlify/functions/ask-jaytee-ai', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: userMessage })
+                    body: JSON.stringify({ message: userMessage, history: chatHistory })
                 });
 
                 if (!response.ok) {
@@ -109,6 +113,10 @@
 
                 const data = await response.json();
                 const botResponse = data.reply;
+
+                // Update history with the completed turn so the next request has context
+                chatHistory.push({ role: 'user', parts: [{ text: userMessage }] });
+                chatHistory.push({ role: 'model', parts: [{ text: botResponse }] });
 
                 loadingIndicator.remove();
                 addMessage(botResponse, 'bot');
