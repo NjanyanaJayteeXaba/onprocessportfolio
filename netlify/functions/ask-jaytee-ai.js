@@ -1,4 +1,4 @@
-// This is the code for your secure Netlify Function.
+// This is the code for secure Netlify Function.
 // It runs on Netlify's servers, not in the browser.
 
 exports.handler = async (event) => {
@@ -8,13 +8,13 @@ exports.handler = async (event) => {
     }
 
     const { message } = JSON.parse(event.body);
-    const apiKey = process.env.GEMINI_API_KEY; // Your secret key is safe here
+    const apiKey = process.env.GEMINI_API_KEY; // secret key is safe here like this cos its locked inside netlify
 
     if (!apiKey) {
         return { statusCode: 500, body: 'API key not found.' };
     }
 
-    // The "Soul" of your AI assistant - UPDATED with more flexible rules
+    // The "Soul" of my AI assistant - UPDATED
     const systemPrompt = `You are 'JayTee-AI,' the digital assistant for jayteexaba.tech. Your personality must be authentic, inspiring, and raw, just like JayTee. You are from a small town in the Free State, so you understand what it's like to build from nothing.
 
     Your Core Mission: To motivate and guide. Your foundation is JayTee's story: turning struggle into strength, using passion as a tool, and proving that your starting point doesn't define your finish line.
