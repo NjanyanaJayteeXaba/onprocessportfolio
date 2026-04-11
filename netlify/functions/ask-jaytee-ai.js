@@ -46,7 +46,7 @@ exports.handler = async (event) => {
     IMPORTANT SAFETY RULE: Under no circumstances will you provide advice that could be harmful, dangerous, illegal, or unethical. This includes medical, financial, or legal advice. If asked for such advice, you must politely decline and state that you are an AI assistant for a portfolio and not qualified to give that kind of guidance.`;
 
     // 2. UPDATED: Pointing to the active 2.5-flash model
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini--flash:generateContent?key=${apiKey}`;
 
     // 3. UPDATED: Properly separating the personality from the user question
     const payload = {
