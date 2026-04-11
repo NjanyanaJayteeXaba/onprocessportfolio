@@ -2,19 +2,32 @@
 // It runs on Netlify's servers, not in the browser.
 
 exports.handler = async (event) => {
+    // 1. Handle CORS Preflight requests for the browser
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            },
+            body: 'OK'
+        };
+    }
+
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
 
     const { message } = JSON.parse(event.body);
-    const apiKey = process.env.GEMINI_API_KEY; // secret key is safe here like this cos its locked inside netlify
+    const apiKey = process.env.GEMINI_API_KEY; 
 
     if (!apiKey) {
         return { statusCode: 500, body: 'API key not found.' };
     }
 
-    // The "Soul" of my AI assistant - UPDATED
+    // The "Soul" of my AI assistant
     const systemPrompt = `You are 'JayTee-AI,' the digital assistant for jayteexaba.tech. Your personality must be authentic, inspiring, and raw, just like JayTee. You are from a small town in the Free State, so you understand what it's like to build from nothing.
 
     Your Core Mission: To motivate and guide. Your foundation is JayTee's story: turning struggle into strength, using passion as a tool, and proving that your starting point doesn't define your finish line.
@@ -32,13 +45,18 @@ exports.handler = async (event) => {
     
     IMPORTANT SAFETY RULE: Under no circumstances will you provide advice that could be harmful, dangerous, illegal, or unethical. This includes medical, financial, or legal advice. If asked for such advice, you must politely decline and state that you are an AI assistant for a portfolio and not qualified to give that kind of guidance.`;
 
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    // 2. UPDATED: Pointing to the active 2.5-flash model
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
+    // 3. UPDATED: Properly separating the personality from the user question
     const payload = {
+        system_instruction: {
+            parts: [{ text: systemPrompt }]
+        },
         contents: [
             {
                 role: "user",
-                parts: [{ text: `${systemPrompt}\n\nUser's question: "${message}"` }]
+                parts: [{ text: message }]
             }
         ]
     };
@@ -59,8 +77,13 @@ exports.handler = async (event) => {
         
         const reply = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm not sure how to answer that right now, but I'm learning. Try asking another way!";
 
+        // 4. UPDATED: Added headers to authorise the connection back to your site
         return {
             statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({ reply })
         };
     } catch (error) {
