@@ -45,10 +45,10 @@ exports.handler = async (event) => {
     
     IMPORTANT SAFETY RULE: Under no circumstances will you provide advice that could be harmful, dangerous, illegal, or unethical. This includes medical, financial, or legal advice. If asked for such advice, you must politely decline and state that you are an AI assistant for a portfolio and not qualified to give that kind of guidance.`;
 
-    // 2. UPDATED: Pointing to the active 2.5-flash model
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini--flash:generateContent?key=${apiKey}`;
+    // 2. Pointing to the active 2.5-flash model
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-    // 3. UPDATED: Properly separating the personality from the user question
+    // 3. Properly separating the personality from the user question
     const payload = {
         system_instruction: {
             parts: [{ text: systemPrompt }]
@@ -77,7 +77,7 @@ exports.handler = async (event) => {
         
         const reply = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm not sure how to answer that right now, but I'm learning. Try asking another way!";
 
-        // 4. UPDATED: Added headers to authorise the connection back to your site
+        // 4. headers to authorise the connection back to your site
         return {
             statusCode: 200,
             headers: {
