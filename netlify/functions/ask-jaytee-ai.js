@@ -49,7 +49,7 @@ exports.handler = async (event) => {
     {
       "reply": "Your 2-4 sentence conversational response goes here.",
       "shortcuts": [
-        {"label": "Button Name", "url": "/link-destination.html"}
+        {"label": "Button Name", "url": "pages/link-destination.html"}
       ]
     }
     
