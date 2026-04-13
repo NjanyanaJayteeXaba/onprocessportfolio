@@ -89,7 +89,7 @@ If no shortcut is needed, leave the array empty [].`;
 
     // 3. Properly separating the personality from the user question
     const payload = {
-        system_instruction: {
+        systemInstruction: {
             parts: [{ text: systemPrompt }]
         },
         contents: [
