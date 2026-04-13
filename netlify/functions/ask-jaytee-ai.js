@@ -85,7 +85,7 @@ YOU ARE STRICTLY FORBIDDEN FROM GUESSING URLS. You MUST ONLY use the exact URLs 
 If no shortcut is needed, leave the array empty [].`;
 
     // 2. Pointing to the active 2.5-flash model
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
     // 3. Properly separating the personality from the user question
     const payload = {
