@@ -108,12 +108,23 @@
                 body: JSON.stringify({ message: userMessage })
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
+            const contentType = response.headers.get('content-type') || '';
+            let data;
+
+            if (contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const textBody = await response.text();
+                data = { reply: textBody };
             }
 
-            const data = await response.json();
-            const botResponse = data.reply;
+            if (!response.ok) {
+                throw new Error(data.reply || 'Network response was not ok.');
+            }
+
+            const botResponse = typeof data.reply === 'string' && data.reply.trim()
+                ? data.reply
+                : "I am having a little trouble thinking right now. Could you ask that again?";
             
             // Catch the shortcuts array from the backend
             const shortcuts = data.shortcuts || []; 
@@ -142,7 +153,7 @@
         } catch (error) {
             console.error('Error:', error);
             loadingIndicator.remove();
-            addMessage("Sorry, something went wrong. The server might be busy. Please try again in a moment.", 'bot');
+            addMessage(error.message || "Sorry, something went wrong. The server might be busy. Please try again in a moment.", 'bot');
         } finally {
             // Unlock the inputs regardless of success or failure
             chatInput.disabled = false;
