@@ -53,7 +53,16 @@ exports.handler = async (event) => {
       ]
     }
     
-    Only include shortcuts in the array if they naturally fit the conversation. Use appropriate URLs that match the site structure. If no shortcut is needed, leave the array empty [].`;
+    Only include shortcuts in the array if they naturally fit the conversation. 
+    YOU ARE STRICTLY FORBIDDEN FROM GUESSING URLS. You MUST ONLY use the exact URLs from this approved list:
+    - Home Page: "/index.html"
+    - Portfolio Page: "/pages/Portfolio-Page.html"
+    - About Page: "/pages/About-Page.html"
+    - Services Page: "/pages/Services.html"
+    - Contact Page: "/pages/Contact-Page.html"
+    - CV Document: "https://njanyanajayteexaba.github.io/CV/"
+    
+    If no shortcut is needed, leave the array empty [].`;
 
     // 2. Pointing to the active 2.5-flash model
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
