@@ -43,7 +43,17 @@ exports.handler = async (event) => {
     
     IMPORTANT RULE: Keep your answers concise and to the point, usually 2-4 sentences, unless the user asks for more detail.
     
-    IMPORTANT SAFETY RULE: Under no circumstances will you provide advice that could be harmful, dangerous, illegal, or unethical. This includes medical, financial, or legal advice. If asked for such advice, you must politely decline and state that you are an AI assistant for a portfolio and not qualified to give that kind of guidance.`;
+    IMPORTANT SAFETY RULE: Under no circumstances will you provide advice that could be harmful, dangerous, illegal, or unethical. This includes medical, financial, or legal advice. If asked for such advice, you must politely decline and state that you are an AI assistant for a portfolio and not qualified to give that kind of guidance.
+    
+    CRITICAL OUTPUT RULE: You must ALWAYS respond in valid JSON format using this exact structure:
+    {
+      "reply": "Your 2-4 sentence conversational response goes here.",
+      "shortcuts": [
+        {"label": "Button Name", "url": "/link-destination.html"}
+      ]
+    }
+    
+    Only include shortcuts in the array if they naturally fit the conversation. Use appropriate URLs that match the site structure. If no shortcut is needed, leave the array empty [].`;
 
     // 2. Pointing to the active 2.5-flash model
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
@@ -58,7 +68,9 @@ exports.handler = async (event) => {
                 role: "user",
                 parts: [{ text: message }]
             }
-        ]
+        ],
+        // Force the API to return clean JSON
+        generationConfig: { responseMimeType: "application/json" }
     };
 
     try {
@@ -75,16 +87,33 @@ exports.handler = async (event) => {
 
         const result = await response.json();
         
-        const reply = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm not sure how to answer that right now, but I'm learning. Try asking another way!";
+        const aiResponseText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        // Parse the AI's string into a JavaScript object
+        let aiData;
+        try {
+            aiData = JSON.parse(aiResponseText);
+        } catch (parseError) {
+            console.error('Failed to parse AI JSON:', parseError);
+            // Safety net if the AI forgets to format properly
+            aiData = { 
+                reply: "I am having a little trouble thinking right now. Could you ask that again?", 
+                shortcuts: [] 
+            };
+        }
 
-        // 4. headers to authorise the connection back to your site
+        // 4. headers to authorise the connection back to my site
         return {
             statusCode: 200,
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ reply })
+            // This Sends the structured object to the frontend
+            body: JSON.stringify({ 
+                reply: aiData.reply, 
+                shortcuts: aiData.shortcuts || [] 
+            })
         };
     } catch (error) {
         console.error('Error calling Gemini API:', error);
