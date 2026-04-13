@@ -74,7 +74,6 @@
     </footer>
     
     <script>
-        
     const chatBubble = document.getElementById('chat-bubble');
     const chatWindow = document.getElementById('chat-window');
     const chatCloseButton = document.getElementById('chat-close-button');
@@ -92,6 +91,10 @@
     const sendMessage = async () => {
         const userMessage = chatInput.value.trim();
         if (!userMessage) return;
+
+        // Lock the inputs immediately to prevent spamming
+        chatInput.disabled = true;
+        sendButton.disabled = true;
 
         addMessage(userMessage, 'user');
         chatInput.value = '';
@@ -140,6 +143,12 @@
             console.error('Error:', error);
             loadingIndicator.remove();
             addMessage("Sorry, something went wrong. The server might be busy. Please try again in a moment.", 'bot');
+        } finally {
+            // Unlock the inputs regardless of success or failure
+            chatInput.disabled = false;
+            sendButton.disabled = false;
+            // Automatically put the cursor back in the input box
+            chatInput.focus();
         }
     };
 
