@@ -78,8 +78,11 @@ exports.handler = async (event) => {
                 parts: [{ text: message }]
             }
         ],
-        // Force the API to return clean JSON
-        generationConfig: { responseMimeType: "application/json" }
+        // Force JSON and set a strict limit to minimise API usage
+        generationConfig: { 
+            responseMimeType: "application/json",
+            maxOutputTokens: 150 
+        }
     };
 
     try {
@@ -89,22 +92,34 @@ exports.handler = async (event) => {
             body: JSON.stringify(payload)
         });
 
+        // If Google says you are typing too fast (Rate Limit hit)
+        if (response.status === 429) {
+            return {
+                statusCode: 200, // Return a success code so the site doesn't break
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ 
+                    reply: "Whoa, slow down! I'm getting too many messages at once. Give me about a minute to catch my breath.", 
+                    shortcuts: [] 
+                })
+            };
+        }
+
         if (!response.ok) {
             console.error('Gemini API response error:', await response.text());
             return { statusCode: 500, body: 'Error from Gemini API.' };
         }
 
         const result = await response.json();
-        
         const aiResponseText = result.candidates?.[0]?.content?.parts?.[0]?.text;
         
-        // Parse the AI's string into a JavaScript object
         let aiData;
         try {
             aiData = JSON.parse(aiResponseText);
         } catch (parseError) {
             console.error('Failed to parse AI JSON:', parseError);
-            // Safety net if the AI forgets to format properly
             aiData = { 
                 reply: "I am having a little trouble thinking right now. Could you ask that again?", 
                 shortcuts: [] 
@@ -118,7 +133,6 @@ exports.handler = async (event) => {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json"
             },
-            // This Sends the structured object to the frontend
             body: JSON.stringify({ 
                 reply: aiData.reply, 
                 shortcuts: aiData.shortcuts || [] 
