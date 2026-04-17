@@ -184,6 +184,15 @@
             sendMessage();
         }
     });
+
+    // Auto-show help message after 10 seconds
+    let welcomeShown = false;
+    setTimeout(() => {
+        if (!welcomeShown && !chatWindow.classList.contains('active')) {
+            addMessage("Need help? Feel free to ask me anything about JayTee's work, services, or the site. I'm here to assist! 😊", 'bot');
+            welcomeShown = true;
+        }
+    }, 10000);
 </script>
 </body>
 </html>

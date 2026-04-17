@@ -173,15 +173,16 @@ span {
 .typing-text {
     font-size: 28px;
     font-weight: 600;
-    min-width: 250px;
-    min-height: 40px;
+    height: 40px;
     display: inline-block;
+    word-break: break-word;
 }
 
 .typing-text span {
     position: relative;
     display: inline-block;
-    min-width: 250px;
+    width: 280px;
+    text-align: left;
 }
 
 .typing-text span::before {
@@ -588,12 +589,13 @@ footer p {
 
     /* === RESPONSIVE FIX FOR TYPING TEXT === */
     .typing-text {
-        min-width: 0; /* Allows the element to shrink */
-        font-size: 22px; /* Reduced font size for smaller screens */
+        font-size: 20px;
+        height: 32px;
     }
     
     .typing-text span {
-        min-width: 0;
+        width: 220px;
+        text-align: left;
     }
     
     /* === CONTACT FORM RESPONSIVE === */
@@ -637,10 +639,11 @@ footer p {
     
     /* Ensure chatbot stays visible on mobile */
     .chat-bubble {
-        bottom: 20px;
-        right: 20px;
+        bottom: 20px !important;
+        right: 20px !important;
         width: 50px;
         height: 50px;
+        z-index: 999 !important;
     }
     
     .chat-bubble i {
@@ -648,10 +651,11 @@ footer p {
     }
     
     .chat-window {
-        bottom: 80px;
-        right: 20px;
-        width: 90%;
+        bottom: 80px !important;
+        right: 20px !important;
+        width: calc(100% - 40px) !important;
         max-width: 350px;
         height: 450px;
+        z-index: 1000 !important;
     }
 }
