@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="canonical" href="https://jayteexaba.tech/pages/Journey-Page.html" />
+    <title>My Journey | JayTee Xaba</title>
+    <meta name="description" content="The authentic journey of JayTee Xaba: From curiosity and setbacks to resilience, growth, and purpose. Read about the real-world lessons that shaped my path in technology.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-gPZncUtfU6tEryJis7NRaps2UnwoezBCLK3d7/ZN7MjSZKTmF18fff5QWswpEqvapane43CMviS+/L2+8Q7O7w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Journey Page Specific Styles */
+        .journey-section {
+            padding: 12rem 9% 5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .journey-section h1 {
+            text-align: center;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .journey-section h1 span {
+            color: #b74b4b;
+        }
+
+        .journey-intro {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+        }
+
+        /* Story Container */
+        .story-container {
+            background: rgba(25, 25, 25, 0.8);
+            border: 2px solid #b74b4b33;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            margin: 30px 0;
+        }
+
+        .story-header {
+            padding: 30px 40px;
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            border-bottom: 2px solid #b74b4b33;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .story-header:hover {
+            background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+            border-bottom-color: #b74b4b;
+        }
+
+        .story-header-content h2 {
+            font-size: 2.8rem;
+            color: #b74b4b;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .story-header-content p {
+            font-size: 1.5rem;
+            color: #aaa;
+            margin: 8px 0 0 0;
+        }
+
+        .toggle-icon {
+            font-size: 2.4rem;
+            color: #b74b4b;
+            transition: transform 0.3s ease;
+        }
+
+        .story-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            background: #111;
+        }
+
+        .story-content.expanded {
+            max-height: 2000px;
+            padding: 40px;
+        }
+
+        .story-text {
+            font-size: 1.6rem;
+            color: #ddd;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .story-section-title {
+            font-size: 2rem;
+            color: #b74b4b;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #b74b4b33;
+        }
+
+        /* Testimonial Card */
+        .testimonial-card {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            border-left: 4px solid #b74b4b;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(183, 75, 75, 0.2);
+        }
+
+        .testimonial-quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #b74b4b;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-size: 1.6rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-role {
+            font-size: 1.4rem;
+            color: #999;
+        }
+
+        /* Key Takeaways */
+        .key-takeaways {
+            background: rgba(183, 75, 75, 0.08);
+            border: 1px solid #b74b4b33;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .key-takeaways h3 {
+            font-size: 1.8rem;
+            color: #b74b4b;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .takeaway-item {
+            font-size: 1.5rem;
+            color: #ddd;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .takeaway-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #b74b4b;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(183, 75, 75, 0.05);
+            border-radius: 12px;
+        }
+
+        .cta-section h3 {
+            font-size: 2rem;
+            color: #b74b4b;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.6rem;
+            color: #ccc;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background-color: #b74b4b;
+            color: black;
+            border: 2px solid #b74b4b;
+            border-radius: 8px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background-color: transparent;
+            color: #b74b4b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(183, 75, 75, 0.4);
+        }
+
+        .cta-btn.secondary {
+            background-color: transparent;
+            color: #b74b4b;
+        }
+
+        .cta-btn.secondary:hover {
+            background-color: #b74b4b;
+            color: black;
+        }
+
+        /* Responsive */
+        @media (max-width: 995px) {
+            .journey-section {
+                padding: 8rem 4% 5rem;
+            }
+
+            .journey-section h1 {
+                font-size: 3.5rem;
+            }
+
+            .story-header {
+                padding: 20px 25px;
+            }
+
+            .story-header-content h2 {
+                font-size: 2.2rem;
+            }
+
+            .story-content.expanded {
+                padding: 25px;
+                max-height: 2500px;
+            }
+
+            .story-text {
+                font-size: 1.4rem;
+            }
+
+            .story-section-title {
+                font-size: 1.7rem;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .journey-section {
+                padding: 6rem 4% 5rem;
+            }
+
+            .journey-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .journey-intro {
+                font-size: 1.4rem;
+            }
+
+            .story-header-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .story-header-content p {
+                font-size: 1.2rem;
+            }
+
+            .story-text, .testimonial-quote {
+                font-size: 1.3rem;
+            }
+
+            .story-section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="name">JayTee Portfolio</a>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <i class="fas fa-bars"></i>
+        </label>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="Portfolio-Page.html">Portfolio</a>
+            <a href="About-Page.html">About</a>
+            <a href="Journey-Page.html" class="active">Journey</a>
+            <a href="Contact-Page.html">Contact</a>
+            <a href="https://njanyanajayteexaba.github.io/CV/" target="_blank" rel="noopener noreferrer">CV</a>
+        </nav>
+    </header>
+
+    <section class="journey-section">
+        <h1>The <span>Journey</span> Behind JayTee</h1>
+        <p class="journey-intro">From curiosity and setbacks to resilience, growth, and purpose. This is the real story.</p>
+
+        <div class="story-container">
+            <div class="story-header" id="storyToggle">
+                <div class="story-header-content">
+                    <h2>📖 Read My Story</h2>
+                    <p>Click to expand and discover how I got here</p>
+                </div>
+                <div class="toggle-icon" id="toggleIcon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+
+            <div class="story-content" id="storyContent">
+                <!-- The Curiosity -->
+                <div class="story-section-title">🔍 The Curiosity (High School)</div>
+                <p class="story-text">
+                    In high school, I was obsessed with understanding how technology worked behind the scenes. Droplets, VPNs, networks - I found them fascinating even though I didn't fully understand them. But I learned to configure them. Back then, data was a luxury in my small town, so when I figured out how these tools worked, I'd share them with my peers. We used zero-rated sites and tunneling to stay connected in a place where resources were scarce. It felt like I was helping my community. But that feeling didn't last long.
+                </p>
+
+                <!-- The Wake-Up Call -->
+                <div class="story-section-title">⚠️ The Wake-Up Call (The Scam)</div>
+                <p class="story-text">
+                    Then I got paranoid. "This is going to get me in trouble," I thought. So I stopped. I watched YouTube videos instead, taught myself HTML, CSS, JavaScript. But I was inconsistent, unmotivated. Then in 2021, I was chasing good results for university, hoping to get into a "good institution." Things didn't go as planned. I got admitted to a diploma program, but my results disappointed me - I knew they would close doors. So I took an unplanned gap year in 2022.
+                </p>
+                <p class="story-text">
+                    During that gap, I found a website promising to help me make money. I didn't know it was a honey pot. When they caught us, they left me with no money and a hard lesson: <strong>there is no shortcut in life</strong>. That incident changed my perspective. I realized I was vulnerable to scams because my town didn't have resources to stay updated. And I decided right then: I would pursue technology not just for myself, but to protect people like my community from being exploited the way I was.
+                </p>
+
+                <!-- The Struggle -->
+                <div class="story-section-title">🌑 The Struggle (Rejections & Darkness)</div>
+                <p class="story-text">
+                    With my poor results, getting into university felt impossible. I applied to most universities for the 2023 intake and collected rejection after rejection. I lost hope. I fell into a very dark mental space - hopeless, stuck, questioning everything. But in early 2023, God's grace happened. I got accepted to CPUT for an Honours degree in Information and Communication Technology. I hadn't even checked the requirements; I was just grateful to be accepted at all. But then I realized I didn't qualify for Honours - only for a Diploma. I was relieved and terrified at the same time.
+                </p>
+                <p class="story-text">
+                    Getting to Cape Town was another battle. My parents scraped together enough money to send me, even though it wasn't enough. But they believed in me. I made them a promise: I wasn't going to disappoint them. I was going to be the best version of myself.
+                </p>
+
+                <!-- The Grace & New Beginning -->
+                <div class="story-section-title">✨ The Grace (CPUT & Top 20)</div>
+                <p class="story-text">
+                    I arrived in Cape Town in March - late, but determined. I had to catch up with classwork immediately. As time went on, I met incredible friends with the same mindset as me. They encouraged me. To transition from Honours to Diploma, we had to work ourselves into the Top 20 of our class. It was tough, but it motivated us even more because I knew: if I didn't make it, this opportunity might end here.
+                </p>
+                <p class="story-text">
+                    Then I took Communications Networks Fundamentals. That module changed everything. It was the first time I truly understood what I'd been doing all those years - the layers of networks, the ports, the logic behind it all. Programming modules with HTML, CSS, and JavaScript made sense too. And this is where my portfolio started: it was just an assignment at first, just basic web pages. But I treated it like it mattered.
+                </p>
+                <p class="story-text">
+                    At the end of the year, I made it to the Top 20 with 6 distinctions out of 7 modules. I was proud, but more importantly, I was relieved. I knew my journey was just beginning.
+                </p>
+
+                <!-- The Real Test -->
+                <div class="story-section-title">⚡ The Real Test (Mental Health Crisis)</div>
+                <p class="story-text">
+                    Moving into the Diploma, I got accepted for Application Development—not Communications Networks like I wanted, but I was okay with it. I'd fallen in love with code. 2024 went well. New challenges, but good results.
+                </p>
+                <p class="story-text">
+                    Then came 2025, second year. I was comfortable in varsity life, still loving what I do. But my laptop - the secondhand one I'd used since the beginning - started failing. Life gave me challenges I wasn't ready for. My mental health deteriorated. My grades dropped. I stopped focusing on my wellbeing and pushed myself harder, thinking it would help. I started smoking to keep my mind calm so I could focus on work. It worked for a while. But by mid-year, everything fell apart. My mental state got so bad I ended up in a psychiatric hospital for 3-4 weeks.
+                </p>
+                <p class="story-text">
+                    I was stressed about failing, about letting everyone down. But that time in the hospital became my turning point. I realized something crucial: <strong>I can't do great work if I'm not in a great mental state</strong>. When I came back, I'd missed a lot of work. Hope was gone. I was ready to quit, to just let things be. But my family supported me. They reminded me my journey couldn't end there.
+                </p>
+                <p class="story-text">
+                    I managed to fail only one module with 45%. The rest? 3 distinctions. Out of 8 modules total. That's when I learned what Application Development really means: it teaches you who you are.
+                </p>
+
+                <!-- The Wisdom -->
+                <div class="story-section-title">🎯 The Wisdom</div>
+                <p class="story-text">
+                    My best friend, a gifted developer also in third year, told me something I carry with me every day: 
+                </p>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"Don't let setbacks get you down"</div>
+                    <div class="testimonial-author">— Tebogo Pii</div>
+                    <div class="testimonial-role">Developer, Mentor, Friend</div>
+                </div>
+
+                <p class="story-text">
+                    That phrase has saved me more times than I can count. Every time I'm losing my way, I remember it.
+                </p>
+
+                <!-- The Now -->
+                <div class="story-section-title">🚀 The Now (2026 & Beyond)</div>
+                <p class="story-text">
+                    Currently in 2026, third year, things are challenging in the best way. I'm doing the module I failed, plus third-year modules. I'm trying my best to become the version of myself I've always wanted to be. So far, I'm doing great and sober—and that's a win.
+                </p>
+                <p class="story-text">
+                    I use GitHub as my playground, sharpening my skills every day. I picked up an elective in Ethical Hacking, which opened my eyes to development from a whole new angle. Building this portfolio taught me that being a great developer and ethical hacker isn't just about the books—it's about doing the actual work. It's about obsession with learning, hands-on problem-solving, and constant refinement.
+                </p>
+                <p class="story-text">
+                    I'm open-minded, collaborative, and always ready to explore. I'm looking for an employer who believes in me—someone who sees potential and will help me grow. I have skills (some not yet certified, but proven through projects), and I know I can deliver at a level most "certified" developers would be proud of.
+                </p>
+                <p class="story-text">
+                    Getting work-integrated learning has been hard with my delayed module, but I'm confident I can be a great asset. I'm not just looking for a job—I'm looking for someone who will invest in my growth and let me invest in theirs.
+                </p>
+
+                <!-- Key Takeaways -->
+                <div class="key-takeaways">
+                    <h3>What I Carry With Me</h3>
+                    <div class="takeaway-item">No shortcuts exist—the hard way is the real way</div>
+                    <div class="takeaway-item">Mental health is not weakness; it's the foundation of greatness</div>
+                    <div class="takeaway-item">Setbacks are setup for comebacks</div>
+                    <div class="takeaway-item">My purpose is bigger than just coding—it's about protecting and helping others</div>
+                    <div class="takeaway-item">I'm still growing, and I'm not afraid to show it</div>
+                    <div class="takeaway-item">The playground (GitHub) is where real learning happens</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Let's Build Something Together</h3>
+            <p>I'm open to mentorship, WIL opportunities, and collaborations. If you believe in growth and authentic work, let's talk.</p>
+            <div class="cta-buttons">
+                <a href="Contact-Page.html" class="cta-btn">Get In Touch</a>
+                <a href="https://github.com/NjanyanaJayteeXaba" target="_blank" rel="noopener noreferrer" class="cta-btn secondary">My GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Njanyana JayTee Xaba. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const storyToggle = document.getElementById('storyToggle');
+        const storyContent = document.getElementById('storyContent');
+        const toggleIcon = document.getElementById('toggleIcon');
+
+        storyToggle.addEventListener('click', function() {
+            storyContent.classList.toggle('expanded');
+            toggleIcon.style.transform = storyContent.classList.contains('expanded') ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+    </script>
+</body>
+</html>
