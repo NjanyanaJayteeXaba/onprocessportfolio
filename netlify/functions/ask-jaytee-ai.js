@@ -1,11 +1,47 @@
 // This is the code for secure Netlify Function.
 // It runs on Netlify's servers, not in the browser.
 
+// Simple in-memory rate limiter
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minute in milliseconds
+const RATE_LIMIT_MAX_REQUESTS = 10; // Max 10 requests per minute per IP
+
+function checkRateLimit(ip) {
+    const now = Date.now();
+    if (!rateLimitMap.has(ip)) {
+        rateLimitMap.set(ip, []);
+    }
+    const timestamps = rateLimitMap.get(ip);
+    const recentRequests = timestamps.filter(t => now - t < RATE_LIMIT_WINDOW);
+    
+    if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
+        return false; // Rate limit exceeded
+    }
+    recentRequests.push(now);
+    rateLimitMap.set(ip, recentRequests);
+    return true; // Request allowed
+}
+
 exports.handler = async (event) => {
+    // Get client IP from CloudFront headers (Netlify Edge)
+    const clientIp = event.headers['x-forwarded-for']?.split(',')[0] || 
+                     event.headers['client-ip'] || 
+                     'unknown';
+    
+    // Check rate limit
+    if (!checkRateLimit(clientIp)) {
+        return {
+            statusCode: 429,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reply: 'Too many requests. Please wait a moment before sending another message.', shortcuts: [] })
+        };
+    }
+    
     const responseHeaders = {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'https://jayteexaba.tech',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Max-Age': '3600',
         'Content-Type': 'application/json'
     };
 
