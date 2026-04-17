@@ -542,27 +542,65 @@ footer p {
     nav {
         display: none;
         position: absolute;
-        top: 100%; /* Position below header */
+        top: 100%;
         left: 0;
+        right: 0;
         background-color: black;
-        width: 100%;
+        border-top: 2px solid #b74b4b33;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0;
+        padding: 1.5rem 0;
+        z-index: 99;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
     }
 
     .hamburger {
         display: block;
+        z-index: 100;
+        transition: color 0.3s ease;
+    }
+
+    .hamburger:hover {
+        color: #fff;
+        transform: scale(1.1);
     }
 
     #menu-toggle:checked ~ nav {
-        display: flex; 
+        display: flex;
+        max-height: 400px;
+        padding: 1.5rem 0;
     }
 
     nav a {
-        margin: 10px 0;
+        margin: 12px 0;
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0;
+        font-size: 1.6rem;
+        transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    nav a:hover {
+        background-color: rgba(183, 75, 75, 0.1);
     }
     
+    header {
+        padding: 1rem 4%;
+        margin-top: 10px;
+    }
+
+    .name {
+        font-size: 2rem;
+    }
+
+    .hamburger {
+        font-size: 2rem;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
     .home {
         flex-direction: column;
         margin: 0; 
