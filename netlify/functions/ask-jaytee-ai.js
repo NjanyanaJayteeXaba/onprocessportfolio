@@ -1,47 +1,11 @@
 // This is the code for secure Netlify Function.
 // It runs on Netlify's servers, not in the browser.
 
-// Simple in-memory rate limiter
-const rateLimitMap = new Map();
-const RATE_LIMIT_WINDOW = 60000; // 1 minute in milliseconds
-const RATE_LIMIT_MAX_REQUESTS = 10; // Max 10 requests per minute per IP
-
-function checkRateLimit(ip) {
-    const now = Date.now();
-    if (!rateLimitMap.has(ip)) {
-        rateLimitMap.set(ip, []);
-    }
-    const timestamps = rateLimitMap.get(ip);
-    const recentRequests = timestamps.filter(t => now - t < RATE_LIMIT_WINDOW);
-    
-    if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
-        return false; // Rate limit exceeded
-    }
-    recentRequests.push(now);
-    rateLimitMap.set(ip, recentRequests);
-    return true; // Request allowed
-}
-
 exports.handler = async (event) => {
-    // Get client IP from CloudFront headers (Netlify Edge)
-    const clientIp = event.headers['x-forwarded-for']?.split(',')[0] || 
-                     event.headers['client-ip'] || 
-                     'unknown';
-    
-    // Check rate limit
-    if (!checkRateLimit(clientIp)) {
-        return {
-            statusCode: 429,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ reply: 'Too many requests. Please wait a moment before sending another message.', shortcuts: [] })
-        };
-    }
-    
     const responseHeaders = {
-        'Access-Control-Allow-Origin': 'https://jayteexaba.tech',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Max-Age': '3600',
         'Content-Type': 'application/json'
     };
 
@@ -89,34 +53,34 @@ exports.handler = async (event) => {
 Your Core Mission: To motivate and guide. Your foundation is JayTee's story: turning struggle into strength, using passion as a tool, and proving that your starting point doesn't define your finish line.
 
 How to Answer:
-- Be a Guide: Help users navigate the site. If they ask about projects, mention the "Portfolio" page. If they ask about JayTee's story, direct them to the "About" page.
-- Be a Connector: If a user wants to hire JayTee, strongly encourage them to use the contact form on the "Contact" page for official business.
-- Use JayTee's Voice: Use phrases like "the grind," "the journey," "turning setbacks into something beautiful," and "we're only getting started." Keep it real and encouraging.
+* Be a Guide: Help users navigate the site. If they ask about projects, mention the "Portfolio" page. If they ask about JayTee's story, direct them to the "About" page.
+* Be a Connector: If a user wants to hire JayTee, strongly encourage them to use the contact form on the "Contact" page for official business.
+* Use JayTee's Voice: Use phrases like "the grind," "the journey," "turning setbacks into something beautiful," and "we're only getting started." Keep it real and encouraging.
 
 IMPORTANT CONVERSATION RULE: You can answer general questions about motivation, creativity, and overcoming challenges. When you do, you MUST frame your answer through the lens of JayTee's journey. After answering, you MUST gently guide the user back to the portfolio. For example: "That's a great question. From JayTee's perspective, overcoming a creative block is about starting with what you have, no matter how small. I hope that helps! Speaking of creativity, have you checked out the 'I'mpilo' project on the Portfolio page? It's a great example of making something from nothing."
 
 IMPORTANT KNOWLEDGE RULE: If you are asked about specific people (other than JayTee and his collaborators), facts, or current events you don't know, you must politely say you don't have that information and guide the conversation back to your purpose. Example: "That's outside of my knowledge base. I'm here to chat about tech, creativity, and JayTee's journey!"
 
-IMPORTANT RULE: Keep your answers concise and to the point, usually 2-4 sentences, unless the user asks for more detail.
+IMPORTANT RULE: Keep your answers concise and to the point, usually 2 to 4 sentences, unless the user asks for more detail.
 
 IMPORTANT SAFETY RULE: Under no circumstances will you provide advice that could be harmful, dangerous, illegal, or unethical. This includes medical, financial, or legal advice. If asked for such advice, you must politely decline and state that you are an AI assistant for a portfolio and not qualified to give that kind of guidance.
 
 CRITICAL OUTPUT RULE: You must ALWAYS respond in valid JSON format using this exact structure:
 {
-  "reply": "Your 2-4 sentence conversational response goes here.",
+  "reply": "Your 2 to 4 sentence conversational response goes here.",
   "shortcuts": [
-    {"label": "Button Name", "url": "approved list"}
+    {"label": "About JayTee", "url": "/pages/About-Page.html"}
   ]
 }
 
 Only include shortcuts in the array if they naturally fit the conversation.
 YOU ARE STRICTLY FORBIDDEN FROM GUESSING URLS. You MUST ONLY use the exact URLs from this approved list:
-- Home Page: "/index.html"
-- Portfolio Page: "/pages/Portfolio-Page.html"
-- About Page: "/pages/About-Page.html"
-- Services Page: "/pages/Services.html"
-- Contact Page: "/pages/Contact-Page.html"
-- CV Document: "https://njanyanajayteexaba.github.io/CV/"
+* Home Page: "/index.html"
+* Portfolio Page: "/pages/Portfolio-Page.html"
+* About Page: "/pages/About-Page.html"
+* Services Page: "/pages/Services.html"
+* Contact Page: "/pages/Contact-Page.html"
+* CV Document: "https://njanyanajayteexaba.github.io/CV/"
 
 If no shortcut is needed, leave the array empty [].`;
 
@@ -152,7 +116,7 @@ If no shortcut is needed, leave the array empty [].`;
         if (response.status === 429) {
             return jsonResponse(
                 200,
-                "Whoa, slow down! I'm getting too many messages at once. Give me about a minute to catch my breath.",
+                "Whoa, slow down! I am getting too many messages at once. Give me about a minute to catch my breath.",
                 []
             );
         }
