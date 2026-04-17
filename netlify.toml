@@ -5,5 +5,5 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/; img-src 'self' data: https://www.gstatic.com/recaptcha/; connect-src 'self' https://generativelanguage.googleapis.com https://www.google.com/recaptcha/;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/ https://fonts.gstatic.com; img-src 'self' data: https://www.gstatic.com/recaptcha/; connect-src 'self' https://generativelanguage.googleapis.com https://www.google.com/recaptcha/;"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
