@@ -213,21 +213,27 @@ span {
 @keyframes words {
     0%, 15% {
         content: "Software Developer";
+        font-size: 26px; 
     }
     16%, 30% {
         content: "Web Developer";
+        font-size: 28px; 
     }
     31%, 45% {
         content: "UI/UX Designer";
+        font-size: 28px; 
     }
     46%, 60% {
         content: "AI Explorer";
+        font-size: 26px;
     }
     61%, 75% {
         content: "Graphic Designer";
+        font-size: 24px;
     }
     76%, 100% {
         content: "Creative Technologist";
+        font-size: 24px; 
     }
 }
 
