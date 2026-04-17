@@ -172,9 +172,8 @@
     <footer>
         <p>&copy; 2025 Njanyana Jaytee Xaba. All rights reserved.</p>
     </footer>
-
-    <!-- UPDATED JavaScript to handle the form submission and show the modal -->
-    <script>
+    
+   <script>
         const form = document.getElementById('contact-form');
         const result = document.getElementById('form-result');
         const modal = document.getElementById('success-modal');
@@ -183,16 +182,32 @@
         form.addEventListener('submit', function (e) {
             e.preventDefault(); // Prevent the default form submission
 
-            // ** NEW: Check if reCAPTCHA is solved **
-            const captchaResponse = grecaptcha.getResponse();
-            if (!captchaResponse) {
-                result.innerHTML = "Please solve the CAPTCHA first.";
-                result.style.color = "#b74b4b"; // Your brand's red color
-                return; // Stop the function if CAPTCHA is not solved
+            // 1. Strict Empty Field Check (Prevents spacebar bypassing)
+            const nameValue = document.getElementById('name').value.trim();
+            const emailValue = document.getElementById('email').value.trim();
+            const messageValue = document.getElementById('message').value.trim();
+
+            if (!nameValue || !emailValue || !messageValue) {
+                result.innerHTML = "Please fill in all fields with valid text.";
+                result.style.color = "#b74b4b"; 
+                return; // Stop submission
             }
 
+            // Grab the form data
             const formData = new FormData(form);
-            result.innerHTML = "Please wait...";
+
+            // 2. Safe reCAPTCHA Check
+            // Netlify automatically creates this token field when the box is checked
+            const captchaToken = formData.get('g-recaptcha-response');
+            
+            if (!captchaToken) {
+                result.innerHTML = "Please solve the CAPTCHA first to prove you are human.";
+                result.style.color = "#b74b4b"; 
+                return; // Stop submission
+            }
+
+            // If it passes both checks, proceed to send
+            result.innerHTML = "Sending message... Please wait.";
             result.style.color = "#ccc";
 
             fetch('/', {
@@ -201,13 +216,17 @@
                 body: new URLSearchParams(formData).toString(),
             })
             .then(() => {
-                result.innerHTML = ""; // Clear the "Please wait" message
+                result.innerHTML = ""; // Clear the waiting message
                 modal.classList.add('active'); // Show the success modal
-                form.reset();
-                grecaptcha.reset(); // Reset the reCAPTCHA widget
+                form.reset(); // Clear the form fields
+                
+                // Safely reset the reCAPTCHA widget for the next message
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset(); 
+                }
             })
             .catch((error) => {
-                result.innerHTML = "Sorry, there was an error. Please try again.";
+                result.innerHTML = "Sorry, there was an error sending your message. Please try again.";
                 result.style.color = "#b74b4b";
                 console.error(error);
             });
@@ -218,7 +237,7 @@
             modal.classList.remove('active');
         });
 
-        // Close the modal if the user clicks on the overlay
+        // Close the modal if the user clicks on the dark overlay background
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('active');
