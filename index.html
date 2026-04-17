@@ -10,7 +10,7 @@
     <link rel="canonical" href="https://jayteexaba.tech/" />
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-gPZncUtfU6tEryJis7NRaps2UnwoezBCLK3d7/ZN7MjSZKTmF18fff5QWswpEqvapane43CMviS+/L2+8Q7O7w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap">
     <link rel="icon" type="image/png" href="/images/Favicon.png">
 </head>
@@ -25,7 +25,7 @@
             <a href="index.html" class="active">Home</a>
             <a href="pages/Portfolio-Page.html">Portfolio</a>
             <a href="pages/About-Page.html">About</a>
-            <a href="pages/Journey-Page.html">Journey</a>
+            <a href="pages/Services.html">Services</a>
             <a href="pages/Contact-Page.html">Contact</a>
             <a href="https://njanyanajayteexaba.github.io/CV/" target="_blank" rel="noopener noreferrer">CV</a>
         </nav>
@@ -73,8 +73,76 @@
         <p>&copy; 2025 Njanyana JayTee Xaba. All Rights Reserved.</p>
     </footer>
     
-    <script src="/chatbot.js"></script>
+    <script>
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatWindow = document.getElementById('chat-window');
+        const chatCloseButton = document.getElementById('chat-close-button');
+        const chatBody = document.getElementById('chat-body');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+
+        const toggleChatWindow = () => {
+            chatWindow.classList.toggle('active');
+        };
+
+        chatBubble.addEventListener('click', toggleChatWindow);
+        chatCloseButton.addEventListener('click', toggleChatWindow);
+
+        const sendMessage = async () => {
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            addMessage(userMessage, 'user');
+            chatInput.value = '';
+
+            const loadingIndicator = addMessage('...', 'bot loading');
+
+            try {
+                const response = await fetch('/.netlify/functions/ask-jaytee-ai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+
+                const data = await response.json();
+                const botResponse = data.reply;
+
+                loadingIndicator.remove();
+                addMessage(botResponse, 'bot');
+
+            } catch (error) {
+                console.error('Error:', error);
+                loadingIndicator.remove();
+                addMessage("Sorry, something went wrong. The server might be busy. Please try again in a moment.", 'bot');
+            }
+        };
+
+        const addMessage = (text, type) => {
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message ${type}`;
+            
+            if (type.includes('loading')) {
+                messageElement.innerHTML = '<div class="typing-indicator"><span></span></div>';
+            } else {
+                messageElement.textContent = text;
+            }
+            
+            chatBody.appendChild(messageElement);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            return messageElement;
+        };
+
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
-
 
