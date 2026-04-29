@@ -18,7 +18,7 @@ html {
 
 body {
     width: 100%;
-    min-height: 100vh; /* Use min-height to ensure footer is at least at the bottom */
+    min-height: 100vh; 
     overflow-x: hidden;
     background-color: black;
     color: white;
