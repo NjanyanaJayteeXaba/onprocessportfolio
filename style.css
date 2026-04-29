@@ -355,7 +355,7 @@ footer p {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(183, 75, 75, 0.4);
+    box-shadow: 0 4px 20px rgba(40, 49, 198, 0.4);
     z-index: 999;
     transition: transform 0.3s ease;
 }
