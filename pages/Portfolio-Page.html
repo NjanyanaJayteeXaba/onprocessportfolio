@@ -21,11 +21,16 @@
             display: flex; justify-content: space-between; align-items: center; z-index: 100;
         }
         .name {
-            font-size: 3rem; color: #1493ff; font-weight: 800;
-            transition: 0.5s; border: none; border-bottom: 2px solid transparent;
-            padding-bottom: 2px; position: relative; text-decoration: none;
+            font-size: 3rem;
+            color: #1493ff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.5s ease;
         }
-        .name:hover, .name.active { color: #1493ff; border-bottom: 2px solid #1493ff; }
+
+        .name:hover {
+            transform: scale(1.1);
+        }
         nav { display: flex; gap: 2rem; }
         nav a {
             font-size: 1.8rem; color: white; margin-left: 4rem; font-weight: 500;
