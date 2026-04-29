@@ -43,7 +43,7 @@ header {
 
 .name {
     font-size: 3rem;
-    color: #b74b4b;
+    color: #1493ff;
     font-weight: 800;
     cursor: pointer;
     transition: 0.5s ease;
@@ -69,8 +69,8 @@ nav a {
 
 nav a:hover,
 nav a.active {
-    color: #b74b4b;
-    border-bottom: 3px solid #b74b4b;
+    color: #1493ff;
+    border-bottom: 3px solid #1493ff;
 }
 
 section {
@@ -94,7 +94,7 @@ section {
 }
 
 span {
-    color: #b74b4b;
+    color: #1493ff;
 }
 
 .home-content h3 {
@@ -110,7 +110,7 @@ span {
 .home-img img {
     position: relative;
     width: 36vw;
-    box-shadow: 0 0 25px solid #b74b4b;
+    box-shadow: 0 0 25px solid #1493ff;
     cursor: pointer;
     transition: 0.2s linear;
 }
@@ -122,19 +122,19 @@ span {
     width: 4rem;
     height: 4rem;
     background-color: transparent;
-    border: 0.2rem solid #b74b4b;
+    border: 0.2rem solid #1493ff;
     font-size: 2rem;
     border-radius: 50%;
     margin: 1.5rem 1.5rem 1.5rem 0;
     transition: 0.3s ease;
-    color: #b74b4b;
+    color: #1493ff;
 }
 
 .social-icons a:hover {
     color: black;
     transform: scale(1.3) translateY(-5px);
-    background-color: #b74b4b;
-    box-shadow: 0 0 25px #b74b4b;
+    background-color: #1493ff;
+    box-shadow: 0 0 25px #1493ff;
 }
 
 .hamburger {
@@ -142,7 +142,7 @@ span {
     cursor: pointer;
     font-size: 2.5rem;
     font-weight: 300;
-    color: #b74b4b;
+    color: #1493ff;
 }
 
 .menu-toggle {
@@ -155,19 +155,19 @@ span {
     background-color: black;
     border-radius: 4rem;
     font-size: 1.6rem;
-    color: #b74b4b;
+    color: #1493ff;
     letter-spacing: 0.3rem;
     font-weight: 600;
-    border: 2px solid #b74b4b;
+    border: 2px solid #1493ff;
     transition: 0.3s ease;
     cursor: pointer;
 }
 
 .btn:hover {
     transform: scale(1.03);
-    background-color: #b74b4b;
+    background-color: #1493ff;
     color: black;
-    box-shadow: 0 0 25px #b74b4b;
+    box-shadow: 0 0 25px #1493ff;
 }
 
 .typing-text {
@@ -186,7 +186,7 @@ span {
 
 .typing-text span::before {
     content: "software Developer";
-    color: #b74b4b;
+    color: #1493ff;
     animation: words 20s infinite;
 }
 
@@ -203,7 +203,7 @@ span {
 
 @keyframes cursor {
     to {
-        border-left: 3px solid #b74b4b;
+        border-left: 3px solid #1493ff;
     }
 }
 
@@ -296,7 +296,7 @@ span {
 
 .contact form input:focus,
 .contact form textarea:focus {
-    border-color: #b74b4b;
+    border-color: #1493ff;
     outline: none;
 }
 
@@ -308,12 +308,12 @@ span {
 .contact form button {
     display: inline-block;
     padding: 1.2rem 3rem;
-    background-color: #b74b4b;
+    background-color: #1493ff;
     border-radius: 8px;
     font-size: 1.6rem;
     color: black;
     font-weight: 700;
-    border: 2px solid #b74b4b;
+    border: 2px solid #1493ff;
     transition: 0.3s ease;
     cursor: pointer;
     width: 100%;
@@ -321,7 +321,7 @@ span {
 
 .contact form button:hover {
     background-color: black;
-    color: #b74b4b;
+    color: #1493ff;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(183, 75, 75, 0.4);
 }
@@ -349,7 +349,7 @@ footer p {
     right: 30px;
     width: 60px;
     height: 60px;
-    background-color: #b74b4b;
+    background-color: #1493ff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -387,7 +387,7 @@ footer p {
     max-width: 400px;
     height: 500px;
     background: #111;
-    border: 1px solid #b74b4b;
+    border: 1px solid #1493ff;
     border-radius: 16px;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -413,10 +413,10 @@ footer p {
     align-items: center;
     background: #1a1a1a;
     padding: 10px 20px;
-    color: #b74b4b;
+    color: #1493ff;
     font-weight: 600;
     font-size: 1.8rem;
-    border-bottom: 1px solid #b74b4b;
+    border-bottom: 1px solid #1493ff;
 }
 
 .chat-header-title {
@@ -458,7 +458,7 @@ footer p {
 }
 
 .chat-message.user {
-    background-color: #b74b4b;
+    background-color: #1493ff;
     color: black;
     align-self: flex-end;
     border-bottom-right-radius: 4px;
@@ -506,13 +506,13 @@ footer p {
 }
 
 .chat-footer input:focus {
-    outline: 1px solid #b74b4b;
+    outline: 1px solid #1493ff;
 }
 
 .chat-footer button {
     background: none;
     border: none;
-    color: #b74b4b;
+    color: #1493ff;
     font-size: 2rem;
     cursor: pointer;
     padding: 0 15px;
@@ -555,7 +555,7 @@ footer p {
     .home {
         flex-direction: column;
         margin: 0; /* Remove margin */
-        padding: 15rem 4rem 5rem 4rem; /* Adjust padding */
+        padding: 15rem 4rem 5rem 4rem; 
         text-align: center;
     }
 
@@ -625,7 +625,7 @@ footer p {
         padding: 1rem 2.5rem;
     }
 
-    /* Ensure chatbot stays visible on mobile */
+    /* Ensures chatbot stays visible on mobile */
     .chat-bubble {
         bottom: 20px;
         right: 20px;
