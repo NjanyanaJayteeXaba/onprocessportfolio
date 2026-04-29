@@ -112,10 +112,16 @@ span {
 .home-img img {
     position: relative;
     width: 36vw;
-    box-shadow: 0 0 25px #1493ff;
+    filter: drop-shadow(0 0 15px #1493ff); 
+    background-color: transparent;
     cursor: pointer;
-    transition: 0.2s linear;
+    transition: 0.3s ease;
     border-radius: 10px;
+}
+
+.home-img img:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 25px #1493ff);
 }
 
 .social-icons a {
