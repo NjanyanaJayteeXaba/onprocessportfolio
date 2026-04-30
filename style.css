@@ -567,11 +567,19 @@ footer p {
         font-size: 5rem;
     }
 
-    .home-img img {
-        width: 80vw;
-        margin: 4rem auto 0 auto;
-        display: block; /* Forces the image to respect the auto margins */
+        /* Fixes the invisible wrapper to span the whole screen and centre items */
+    .home-img {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
+
+    /* Controls the actual size of the logo */
+    .home-img img {
+        width: 80vw; 
+        margin-top: 4rem;
+    }
+
 
 
     .social-icons {
