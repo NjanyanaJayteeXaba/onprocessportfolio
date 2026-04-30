@@ -568,7 +568,7 @@ footer p {
     }
 
     .home-img img {
-        width: 70vw;
+        width: 80vw;
         margin: 4rem auto 0 auto;
         display: block; /* Forces the image to respect the auto margins */
     }
