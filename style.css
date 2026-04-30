@@ -569,8 +569,10 @@ footer p {
 
     .home-img img {
         width: 70vw;
-        margin-top: 4rem;
+        margin: 4rem auto 0 auto;
+        display: block; /* Forces the image to respect the auto margins */
     }
+
 
     .social-icons {
         justify-content: center;
