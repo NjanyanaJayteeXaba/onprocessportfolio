@@ -22,8 +22,8 @@ body {
     overflow-x: hidden;
     background-color: black;
     color: white;
-    display: flex; /* Added for footer positioning */
-    flex-direction: column; /* Added for footer positioning */
+    display: flex; 
+    flex-direction: column; 
 }
 
 header {
@@ -219,7 +219,7 @@ span {
         content: "UI/UX Designer";
     }
     46%, 60% {
-        content: "AI Explorer";
+        content: "Prompt Engineer";
     }
     61%, 75% {
         content: "Graphic Designer";
@@ -330,7 +330,7 @@ footer {
     background-color: black;
     text-align: center;
     padding: 20px 0;
-    margin-top: auto; /* Pushes footer to the bottom */
+    margin-top: auto; 
     width: 100%;
 }
 
@@ -554,7 +554,7 @@ footer p {
 
     .home {
         flex-direction: column;
-        margin: 0; /* Remove margin */
+        margin: 0; 
         padding: 15rem 4rem 5rem 4rem; 
         text-align: center;
     }
