@@ -95,12 +95,15 @@
             padding: 20px;
             text-align: left;
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .featured-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 20px rgba(40, 49, 198, 0.3);
         }
-        .featured-card video, .featured-card img {
+        .featured-card > video, .featured-card > img, .featured-card > iframe {
             width: 100%;
             height: auto;
             max-height: 250px;
@@ -109,6 +112,63 @@
             margin-bottom: 15px;
             background-color: #000;
         }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 15px;
+            border: 2px solid #1493ff;
+        }
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .slider-wrapper img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: translateX(12%) scale(1.02);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+            margin-bottom: 0;
+            border-radius: 0;
+            border: none;
+        }
+        .slider-wrapper img.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            z-index: 1;
+        }
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .slide-btn:hover {
+            background: rgba(20, 147, 255, 0.9);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .slide-btn.prev { left: 12px; }
+        .slide-btn.next { right: 12px; }
         .featured-card h3 {
             font-size: 2rem;
             color: #1493ff;
@@ -161,11 +221,19 @@
             .about-container { flex-direction: column; align-items: center; text-align: center; padding: 30px 15px; gap: 20px; }
             .home-image { width: 190px; height: 190px; }
             .paragraph-container { min-width: 0; width: 100%; }
+            .featured-grid { grid-template-columns: 1fr; }
+            .featured-card { padding: 16px; }
+            .slider-container { aspect-ratio: 1 / 1; }
             .about-bottom-tech { padding: 28px 6vw; }
         }
         @media (max-width: 500px) {
             .aboutH2 { font-size: 1.6rem; }
             .aboutP, .more-aboutme li, .about-bottom-tech p { font-size: 1.1rem; }
+            .slide-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1.7rem;
+            }
         }
     </style>
 </head>
@@ -222,34 +290,34 @@
               <a href="../images/Njanyana Xaba.pdf" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #ffffff; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 1rem;">View Official WIL Letter</a>
          </div>
                 
-       <div class="featured-card">
-     
-         <div class="featured-card">
-           <div class="slider-container">
-           <div class="slider-wrapper" id="artwork-slider">
-            <img src="../images/Pic1.jpg" alt="Artwork 1">
-            <img src="../images/Pic2.jpg" alt="Artwork 2">
-            <img src="../images/Pic3.jpg" alt="Artwork 3">
-            <img src="../images/Pic4.jpg" alt="Artwork 4">
-            <img src="../images/Pic5.jpg" alt="Artwork 5">
-            <img src="../images/Pic6.jpg" alt="Artwork 6">
-            <img src="../images/Pic7.jpg" alt="Artwork 7">
-            <img src="../images/Pic8.jpg" alt="Artwork 8">
-           </div>
-            <button class="slide-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="slide-btn next" onclick="moveSlide(1)">&#10095;</button>
-            </div> 
-                <h3>Dream Beyond The Stars</h3>
-                <p>An artwork conceived during a study break, proving that great ideas can spark anytime, anywhere.</p>
-                <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
-            </div>
+        <div class="featured-work">
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="slider-container">
+                        <div class="slider-wrapper" id="artwork-slider">
+                            <img src="../images/Pic1.jpg" alt="Artwork 1">
+                            <img src="../images/Pic2.jpg" alt="Artwork 2">
+                            <img src="../images/Pic3.jpg" alt="Artwork 3">
+                            <img src="../images/Pic4.jpg" alt="Artwork 4">
+                            <img src="../images/Pic5.jpg" alt="Artwork 5">
+                            <img src="../images/Pic6.jpg" alt="Artwork 6">
+                            <img src="../images/Pic7.jpg" alt="Artwork 7">
+                            <img src="../images/Pic8.jpg" alt="Artwork 8">
+                        </div>
+                        <button class="slide-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Previous artwork">&#10094;</button>
+                        <button class="slide-btn next" type="button" onclick="moveSlide(1)" aria-label="Next artwork">&#10095;</button>
+                    </div>
+                    <h3>Dream Beyond The Stars</h3>
+                    <p>An artwork conceived during a study break, proving that great ideas can spark anytime, anywhere.</p>
+                    <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
+                </div>
 
                 <div class="featured-card">
-                     <img src="../images/Becoming.jpeg" alt="Becoming">
-                     <div class="project-icon" style="font-size: 5rem; text-align: center; padding: 2rem 0;"><i class="fas fa-sync-alt"></i></div>
-                     <h3>Break the Cycle</h3>
-                     <p>A bold typographic artwork that serves as a motivational jolt to shift mindsets from "tomorrow" to "today."</p>
-                     <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
+                    <img src="../images/Becoming.jpeg" alt="Becoming">
+                    <div class="project-icon" style="font-size: 5rem; text-align: center; padding: 2rem 0;"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Break the Cycle</h3>
+                    <p>A bold typographic artwork that serves as a motivational jolt to shift mindsets from "tomorrow" to "today."</p>
+                    <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>
                 </div>
             </div>
         </div>
@@ -274,8 +342,32 @@
     </footer>
 
     <script>
+        let artworkSlideIndex = 0;
+        const artworkSlides = document.querySelectorAll('#artwork-slider img');
+
+        function showArtworkSlide(index) {
+            if (!artworkSlides.length) {
+                return;
+            }
+
+            artworkSlides.forEach((slide, slideIndex) => {
+                slide.classList.toggle('active', slideIndex === index);
+            });
+        }
+
+        function moveSlide(direction) {
+            if (!artworkSlides.length) {
+                return;
+            }
+
+            artworkSlideIndex = (artworkSlideIndex + direction + artworkSlides.length) % artworkSlides.length;
+            showArtworkSlide(artworkSlideIndex);
+        }
+
         // Auto-pause videos when they scroll out of view
         document.addEventListener('DOMContentLoaded', function() {
+            showArtworkSlide(0);
+
             const videos = document.querySelectorAll('video');
             
             const observerOptions = {
@@ -299,6 +391,24 @@
             videos.forEach(video => {
                 observer.observe(video);
             });
+
+            const slider = document.querySelector('.slider-container');
+            if (slider) {
+                let touchStartX = 0;
+
+                slider.addEventListener('touchstart', function(event) {
+                    touchStartX = event.changedTouches[0].screenX;
+                }, { passive: true });
+
+                slider.addEventListener('touchend', function(event) {
+                    const touchEndX = event.changedTouches[0].screenX;
+                    const deltaX = touchStartX - touchEndX;
+
+                    if (Math.abs(deltaX) > 40) {
+                        moveSlide(deltaX > 0 ? 1 : -1);
+                    }
+                }, { passive: true });
+            }
         });
     </script>
 </body>

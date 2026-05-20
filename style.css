@@ -528,6 +528,10 @@ footer p {
 }
 
 @media (max-width: 995px) {
+    header {
+        padding: 1.5rem 4%;
+    }
+
     nav {
         display: none;
         position: absolute;
@@ -550,6 +554,10 @@ footer p {
 
     nav a {
         margin: 10px 0;
+    }
+
+    section {
+        padding: 10rem 4% 5rem;
     }
 
     .home {
