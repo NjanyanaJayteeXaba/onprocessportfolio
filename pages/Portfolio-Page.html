@@ -382,59 +382,61 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Slider Logic
-            const slides = document.querySelectorAll('#artwork-slider img');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const sliderContainer = document.querySelector('.slider-container');
-            let currentIndex = 0;
+const slides = document.querySelectorAll('#artwork-slider img');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const sliderContainer = document.querySelector('.slider-container');
 
-            if (slides.length > 0) {
-                
-                function updateSlider(index) {
-                    slides.forEach((slide, i) => {
-                        slide.classList.toggle('active', i === index);
-                    });
-                }
+// Starts at the last index instead of 0
+let currentIndex = slides.length > 0 ? slides.length - 1 : 0; 
 
-                function moveNext() {
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    updateSlider(currentIndex);
-                }
+if (slides.length > 0) {
+    
+    function updateSlider(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
 
-                function movePrev() {
-                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                    updateSlider(currentIndex);
-                }
+    function moveNext() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider(currentIndex);
+    }
 
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', moveNext);
-                }
+    function movePrev() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider(currentIndex);
+    }
 
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', movePrev);
-                }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', moveNext);
+    }
 
-                if (sliderContainer) {
-                    let touchStartX = 0;
+    if (prevBtn) {
+        prevBtn.addEventListener('click', movePrev);
+    }
 
-                    sliderContainer.addEventListener('touchstart', function(event) {
-                        touchStartX = event.changedTouches[0].screenX;
-                    }, { passive: true });
+    if (sliderContainer) {
+        let touchStartX = 0;
 
-                    sliderContainer.addEventListener('touchend', function(event) {
-                        const touchEndX = event.changedTouches[0].screenX;
-                        const deltaX = touchStartX - touchEndX;
+        sliderContainer.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
 
-                        if (Math.abs(deltaX) > 40) {
-                            if (deltaX > 0) {
-                                moveNext();
-                            } else {
-                                movePrev();
-                            }
-                        }
-                    }, { passive: true });
+        sliderContainer.addEventListener('touchend', function(event) {
+            const touchEndX = event.changedTouches[0].screenX;
+            const deltaX = touchStartX - touchEndX;
+
+            if (Math.abs(deltaX) > 40) {
+                if (deltaX > 0) {
+                    moveNext();
+                } else {
+                    movePrev();
                 }
             }
+        }, { passive: true });
+    }
+}
 
             // Video Pausing Logic
             const videos = document.querySelectorAll('video');
