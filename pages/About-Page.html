@@ -303,10 +303,10 @@
                             <img src="../images/Pic5.jpg" alt="Artwork 5">
                             <img src="../images/Pic6.jpg" alt="Artwork 6">
                             <img src="../images/Pic7.jpg" alt="Artwork 7">
-                            <img src="../images/Pic8.jpg" alt="Artwork 8">
+                            <img src="../images/Pic8.jpg" alt="Artwork 8" class="active">
                         </div>
-                        <button class="slide-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Previous artwork">&#10094;</button>
-                        <button class="slide-btn next" type="button" onclick="moveSlide(1)" aria-label="Next artwork">&#10095;</button>
+                        <button class="slide-btn prev" type="button" id="prev-btn">&#10094;</button>
+                        <button class="slide-btn next" type="button" id="next-btn">&#10095;</button>
                     </div>
                     <h3>Dream Beyond The Stars</h3>
                     <p>An artwork conceived during a study break, proving that great ideas can spark anytime, anywhere.</p>
@@ -343,74 +343,88 @@
     </footer>
 
     <script>
-        let artworkSlideIndex = 0;
-        const artworkSlides = document.querySelectorAll('#artwork-slider img');
-
-        function showArtworkSlide(index) {
-            if (!artworkSlides.length) {
-                return;
-            }
-
-            artworkSlides.forEach((slide, slideIndex) => {
-                slide.classList.toggle('active', slideIndex === index);
-            });
-        }
-
-        function moveSlide(direction) {
-            if (!artworkSlides.length) {
-                return;
-            }
-
-            artworkSlideIndex = (artworkSlideIndex + direction + artworkSlides.length) % artworkSlides.length;
-            showArtworkSlide(artworkSlideIndex);
-        }
-
-        // Auto-pause videos when they scroll out of view
         document.addEventListener('DOMContentLoaded', function() {
-            showArtworkSlide(0);
+    const slides = document.querySelectorAll('#artwork-slider img');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const sliderContainer = document.querySelector('.slider-container');
+    let currentIndex = 0;
 
-            const videos = document.querySelectorAll('video');
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.25 
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const video = entry.target;
-                    
-                    if (!entry.isIntersecting) {
-                        // Video is out of view, pause it
-                        video.pause();
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all videos
-            videos.forEach(video => {
-                observer.observe(video);
+    // Only run the slider logic if we actually have images
+    if (slides.length > 0) {
+        
+        // Force the first picture to display immediately
+        slides[0].classList.add('active');
+
+        function updateSlider(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
             });
+        }
 
-            const slider = document.querySelector('.slider-container');
-            if (slider) {
-                let touchStartX = 0;
+        function moveNext() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider(currentIndex);
+        }
 
-                slider.addEventListener('touchstart', function(event) {
-                    touchStartX = event.changedTouches[0].screenX;
-                }, { passive: true });
+        function movePrev() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider(currentIndex);
+        }
 
-                slider.addEventListener('touchend', function(event) {
-                    const touchEndX = event.changedTouches[0].screenX;
-                    const deltaX = touchStartX - touchEndX;
+        if (nextBtn) {
+            nextBtn.addEventListener('click', moveNext);
+        }
 
-                    if (Math.abs(deltaX) > 40) {
-                        moveSlide(deltaX > 0 ? 1 : -1);
+        if (prevBtn) {
+            prevBtn.addEventListener('click', movePrev);
+        }
+
+        // Keeps your mobile swipe logic working
+        if (sliderContainer) {
+            let touchStartX = 0;
+
+            sliderContainer.addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            sliderContainer.addEventListener('touchend', function(event) {
+                const touchEndX = event.changedTouches[0].screenX;
+                const deltaX = touchStartX - touchEndX;
+
+                if (Math.abs(deltaX) > 40) {
+                    if (deltaX > 0) {
+                        moveNext();
+                    } else {
+                        movePrev();
                     }
-                }, { passive: true });
+                }
+            }, { passive: true });
+        }
+    }
+
+    // Your automatic video pausing logic
+    const videos = document.querySelectorAll('video');
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.25 
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (!entry.isIntersecting) {
+                video.pause();
             }
         });
+    }, observerOptions);
+    
+    videos.forEach(video => {
+        observer.observe(video);
+    });
+});
+
     </script>
 </body>
 </html>
