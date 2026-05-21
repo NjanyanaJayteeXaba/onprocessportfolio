@@ -142,6 +142,68 @@
             background: #000;
         }
 
+        /* Slider CSS Start */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            max-height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 15px;
+            border: 2px solid #1493ff;
+        }
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .slider-wrapper img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: translateX(12%) scale(1.02);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+            margin-bottom: 0;
+            border-radius: 0;
+            border: none;
+        }
+        .slider-wrapper img.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            z-index: 1;
+        }
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+            border: none;
+        }
+        .slide-btn:hover {
+            background: rgba(20, 147, 255, 0.9);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .slide-btn.prev { left: 12px; }
+        .slide-btn.next { right: 12px; }
+        /* Slider CSS End */
+
         @media (max-width: 1100px) {
             .project-gallery { grid-template-columns: repeat(2, 1fr); }
         }
@@ -269,11 +331,23 @@
 
             <div class="project-card">
                 <h3>Dream Beyond The Stars</h3>
-                <img src="../images/Dream_Beyond.jpeg" alt="Dream Beyond The Stars Artwork by JayTee Xaba">
+                <div class="slider-container">
+                    <div class="slider-wrapper" id="artwork-slider">
+                        <img src="../images/Pic1.jpg" alt="Artwork 1" class="active">
+                        <img src="../images/Pic2.jpg" alt="Artwork 2">
+                        <img src="../images/Pic3.jpg" alt="Artwork 3">
+                        <img src="../images/Pic4.jpg" alt="Artwork 4">
+                        <img src="../images/Pic5.jpg" alt="Artwork 5">
+                        <img src="../images/Pic6.jpg" alt="Artwork 6">
+                        <img src="../images/Pic7.jpg" alt="Artwork 7">
+                        <img src="../images/Pic8.jpg" alt="Artwork 8">
+                    </div>
+                    <button class="slide-btn prev" type="button" id="prev-btn">&#10094;</button>
+                    <button class="slide-btn next" type="button" id="next-btn">&#10095;</button>
+                </div>
                 <p>I made this during a study break on campus, when the pressure was high. It’s proof that your best ideas don't come when you’re forcing them—they come when you give yourself a moment to breathe. The teaching is simple: don’t just work for your future; remember to dream in it, too.</p>
                 <p><strong>Technology:</strong> Canva</p>
             </div>
-            
             <div class="project-card">
                  <h3>Break the Cycle: Do It Today</h3>
                  <img src="../images/Becoming.jpeg" alt="Becoming">
@@ -306,10 +380,64 @@
     </footer>
 
     <script>
-        // Auto-pause videos when they scroll out of view
         document.addEventListener('DOMContentLoaded', function() {
+            // Slider Logic
+            const slides = document.querySelectorAll('#artwork-slider img');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const sliderContainer = document.querySelector('.slider-container');
+            let currentIndex = 0;
+
+            if (slides.length > 0) {
+                
+                function updateSlider(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                    });
+                }
+
+                function moveNext() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSlider(currentIndex);
+                }
+
+                function movePrev() {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateSlider(currentIndex);
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', moveNext);
+                }
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', movePrev);
+                }
+
+                if (sliderContainer) {
+                    let touchStartX = 0;
+
+                    sliderContainer.addEventListener('touchstart', function(event) {
+                        touchStartX = event.changedTouches[0].screenX;
+                    }, { passive: true });
+
+                    sliderContainer.addEventListener('touchend', function(event) {
+                        const touchEndX = event.changedTouches[0].screenX;
+                        const deltaX = touchStartX - touchEndX;
+
+                        if (Math.abs(deltaX) > 40) {
+                            if (deltaX > 0) {
+                                moveNext();
+                            } else {
+                                movePrev();
+                            }
+                        }
+                    }, { passive: true });
+                }
+            }
+
+            // Video Pausing Logic
             const videos = document.querySelectorAll('video');
-            
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -319,15 +447,12 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const video = entry.target;
-                    
                     if (!entry.isIntersecting) {
-                        // Video is out of view, pause it
                         video.pause();
                     }
                 });
             }, observerOptions);
             
-            // Observe all videos
             videos.forEach(video => {
                 observer.observe(video);
             });
