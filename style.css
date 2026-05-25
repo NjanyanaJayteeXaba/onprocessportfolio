@@ -209,14 +209,14 @@ span {
 
 /* === KEYFRAMES === */
 @keyframes words {
-    0%, 15% {
-        content: "Software Developer";
-    }
-    16%, 30% {
+    0%, 30% {
         content: "Web Developer";
     }
     31%, 45% {
         content: "UI/UX Designer";
+    }
+    31%, 45% {
+        content: "App Developer";
     }
     46%, 60% {
         content: "Prompt Engineer";
