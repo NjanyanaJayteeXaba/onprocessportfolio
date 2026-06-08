@@ -2,7 +2,7 @@
 
 <img width="885" height="165" alt="17792076627071934442064187457682" src="https://github.com/user-attachments/assets/8a1f2024-62f3-4ca3-936b-97f6672eb6ed" />
 
-Welcome to the public repository for my personal portfolio. You can view the live, fully secured site right here: [www.jayteexaba.tech](https://www.jayteexaba.tech)
+Welcome to the public repository for my personal portfolio. You can view the live, fully secured site right here: [www.jayteexaba.me](https://www.jayteexaba.me)
 
 This project is more than just a professional CV. It is my digital playground. It is where I express my ideas, document my journey as a software developer, and actively build a strong digital footprint. 
 
@@ -44,6 +44,6 @@ It takes a lot of time and patience to organise a project like this. However, se
 
 ### 📫 Get In Touch
 
-* Explore the live site: [jayteexaba.tech](https://www.jayteexaba.tech)
+* Explore the live site: [jayteexaba.me](https://www.jayteexaba.me)
 * Connect on LinkedIn: [Njanyana Xaba](https://za.linkedin.com/in/njanyana-xaba-8b6b69296)
-* Send an Email: [contactus@jayteexaba.tech](mailto:contactus@jayteexaba.tech)
+* Send an Email: [contactus@jayteexaba.me](mailto:contactus@jayteexaba.me)
