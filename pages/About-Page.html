@@ -61,6 +61,14 @@
             margin-bottom: 20px;
             font-weight: 400;
         }
+
+        .aboutP-spaced-sm {
+            margin-bottom: 20px;
+        }
+
+        .aboutP-spaced-md {
+            margin-bottom: 25px;
+        }
         .more-aboutme {
             background: rgba(25,25,25,0.82);
             box-shadow: 0 4px 30px 0 rgba(40,49,198,0.12);
@@ -191,6 +199,12 @@
             text-decoration: underline;
         }
 
+        .project-icon-featured {
+            font-size: 5rem;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
         .about-bottom-tech {
             margin: 48px auto 0 auto;
             padding: 40px 28px;
@@ -213,26 +227,62 @@
             max-width: 750px; margin: 0 auto 10px auto; line-height: 1.8;
             font-weight: 400; letter-spacing: 0.1px; text-shadow: 0 1px 5px #0005;
         }
+
+        .wil-container {
+            margin-top: 50px;
+            padding: 25px;
+            border-left: 4px solid #007bff;
+            background-color: rgba(0, 123, 255, 0.05);
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 16px;
+        }
+
+        .pdf-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 999px;
+            font-size: 1rem;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .pdf-button:hover {
+            background-color: #0062cc;
+            transform: translateY(-1px);
+        }
         
         @media (max-width: 900px) {
             .about-container, .more-aboutme, .about-bottom-tech, .featured-work { max-width: 98vw; }
         }
         @media (max-width: 700px) {
-            .about-container { flex-direction: column; align-items: center; text-align: center; padding: 30px 15px; gap: 20px; }
+            section { padding-top: 10rem; }
+            .about-container { flex-direction: column; align-items: center; text-align: center; padding: 24px 16px; gap: 20px; }
             .home-image { width: 190px; height: 190px; }
             .paragraph-container { min-width: 0; width: 100%; }
             .featured-grid { grid-template-columns: 1fr; }
             .featured-card { padding: 16px; }
             .slider-container { aspect-ratio: 1 / 1; }
             .about-bottom-tech { padding: 28px 6vw; }
+            .wil-container { padding: 20px 16px; margin-top: 32px; }
         }
         @media (max-width: 500px) {
-            .aboutH2 { font-size: 1.6rem; }
-            .aboutP, .more-aboutme li, .about-bottom-tech p { font-size: 1.1rem; }
+            .aboutH2 { font-size: 1.65rem; }
+            .aboutP, .more-aboutme li, .about-bottom-tech p { font-size: 1.12rem; line-height: 1.75; }
             .slide-btn {
                 width: 36px;
                 height: 36px;
                 font-size: 1.7rem;
+            }
+            .pdf-button {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -268,18 +318,18 @@
         </div>
 
         
-       <div class="wil-container" style="margin-top: 50px; padding: 25px; border-left: 4px solid #007bff; background-color: rgba(0, 123, 255, 0.05);">
+             <div class="wil-container">
           <h2 class="aboutH2">Work Integrated Learning (WIL)</h2>
-            <p class="aboutP" style="margin-bottom: 20px;">
+                        <p class="aboutP aboutP-spaced-sm">
               I am actively seeking a Work Integrated Learning placement for the upcoming July to November cycle. As a third-year Diploma in ICT student at CPUT, my objective is to join a professional development team in the Cape Town or Bellville area.
               I am prepared to step out of the classroom and apply my practical experience in full stack development to actual corporate challenges. I invite you to review my official university placement letter below to see how we can organise a valuable 
               partnership.
             </p>
-              <a href="../images/Njanyana Xaba.pdf" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #ffffff; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 1rem;">View Official WIL Letter</a>
+                            <a href="../images/Njanyana Xaba.pdf" target="_blank" rel="noopener noreferrer" class="pdf-button">View Official WIL Letter</a>
          </div>
         <div class="more-aboutme">
             <h2 class="aboutH2">My Mission: To Build Bridges</h2>
-            <p class="aboutP" style="margin-bottom: 25px;">
+              <p class="aboutP aboutP-spaced-md">
                  This platform, jayteexaba.tech, isn’t just a portfolio, it’s my mission. It exists to show students from any backgrounds whether underserved or not that they are not alone and that greatness can grow anywhere, especially where no one is looking. My professional goals are extensions of this mission:
             </p>
             <ul>
@@ -315,7 +365,7 @@
 
                 <div class="featured-card">
                     <img src="../images/Becoming.jpeg" alt="Becoming">
-                    <div class="project-icon" style="font-size: 5rem; text-align: center; padding: 2rem 0;"><i class="fas fa-sync-alt"></i></div>
+                    <div class="project-icon project-icon-featured"><i class="fas fa-sync-alt"></i></div>
                     <h3>Break the Cycle</h3>
                     <p>A bold typographic artwork that serves as a motivational jolt to shift mindsets from "tomorrow" to "today."</p>
                     <a href="Portfolio-Page.html">View in Portfolio &rarr;</a>

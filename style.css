@@ -471,6 +471,34 @@ footer p {
     border-bottom-left-radius: 4px;
 }
 
+.chat-shortcuts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.chat-shortcut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(20, 147, 255, 0.12);
+    border: 1px solid rgba(20, 147, 255, 0.35);
+    color: #8ecbff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.chat-shortcut:hover {
+    background: rgba(20, 147, 255, 0.22);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
 .chat-message.bot.loading span {
     display: inline-block;
     width: 8px;
@@ -658,8 +686,121 @@ footer p {
     .chat-window {
         bottom: 80px;
         right: 20px;
-        width: 90%;
-        max-width: 350px;
-        height: 450px;
+        width: calc(100vw - 32px);
+        max-width: 360px;
+        height: min(72vh, 480px);
+    }
+}
+
+@media (max-width: 640px) {
+    section {
+        padding: 9rem 1.5rem 4rem;
+    }
+
+    .home {
+        gap: 2.5rem;
+        padding: 9rem 1.5rem 4rem;
+    }
+
+    .home .home-content h1 {
+        font-size: 3.8rem;
+        line-height: 1.15;
+    }
+
+    .home-content p {
+        font-size: 1.45rem;
+        line-height: 1.7;
+    }
+
+    .home-img img {
+        width: min(88vw, 360px);
+        margin-top: 1rem;
+    }
+
+    .typing-text {
+        font-size: 1.8rem;
+        min-height: 32px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .chat-bubble {
+        right: 16px;
+        bottom: 16px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .chat-window {
+        left: 16px;
+        right: 16px;
+        bottom: 80px;
+        width: auto;
+        max-width: none;
+        height: min(72vh, 500px);
+        border-radius: 14px;
+    }
+
+    .chat-header {
+        padding: 10px 14px;
+        font-size: 1.5rem;
+    }
+
+    .chat-body {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .chat-message {
+        max-width: 92%;
+        font-size: 1.35rem;
+    }
+
+    .chat-shortcut {
+        font-size: 1.1rem;
+        padding: 7px 10px;
+    }
+
+    .chat-footer {
+        padding: 8px;
+    }
+
+    .chat-footer input {
+        font-size: 1.3rem;
+        padding: 11px;
+    }
+}
+
+@media (max-width: 420px) {
+    header {
+        padding: 1.2rem 3.5%;
+        margin-top: 8px;
+    }
+
+    .name {
+        font-size: 2.4rem;
+    }
+
+    .home .home-content h1 {
+        font-size: 3.2rem;
+    }
+
+    .home-content p {
+        font-size: 1.35rem;
+    }
+
+    .social-icons a {
+        width: 3.6rem;
+        height: 3.6rem;
+        font-size: 1.7rem;
+        margin: 1rem 1rem 1rem 0;
+    }
+
+    .chat-window {
+        bottom: 76px;
+        height: min(70vh, 460px);
     }
 }
