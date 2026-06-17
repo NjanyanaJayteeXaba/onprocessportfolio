@@ -7,7 +7,7 @@
     <title>Portfolio | JayTee Xaba</title>
     <meta name="description" content="The official portfolio of JayTee Xaba, showcasing a journey of turning struggle into innovation. Explore projects in development, design, and multimedia.">
     
-    <link rel="canonical" href="https://jayteexaba.tech/pages/Portfolio-Page.html" />
+    <link rel="canonical" href="https://jayteexaba.me/pages/Portfolio-Page.html" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap">
@@ -163,6 +163,7 @@
         
         .project-card video,
         .project-card iframe,
+        .project-card object,
         .project-card img {
             width: 100%;
             height: auto; 
@@ -248,7 +249,7 @@
             .pdf-links { gap: 8px; }
             .pdf-links a.pdf-view,
             .pdf-links a.pdf-open { width: 100%; justify-content: center; }
-            .project-card iframe { min-height: 260px; }
+            .project-card iframe, .project-card object { min-height: 260px; }
         }
         @media (max-width: 500px) {
             .portfolio-section h2 { font-size: 3rem; }
@@ -258,6 +259,7 @@
             .project-card p { font-size: 1.35rem; }
             .project-card video,
             .project-card iframe,
+            .project-card object,
             .project-card img { max-height: 240px; }
             .slider-container { max-height: 240px; }
         }
@@ -320,7 +322,9 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fab fa-figma"></i></div>
                 <h3>InternConnect Platform UI</h3>
-                <iframe src="https://docs.google.com/gview?url=https://jayteexaba.tech/docs/InternConnect_Brief_Of_Product_Owner.pdf&embedded=true"></iframe>
+                <object data="https://jayteexaba.me/docs/InternConnect_Brief_Of_Product_Owner.pdf" type="application/pdf" width="100%" height="300px">
+                    <p>Your browser does not support viewing this document. <a href="https://jayteexaba.me/docs/InternConnect_Brief_Of_Product_Owner.pdf">Download it here</a>.</p>
+                </object>
                 <p>A comprehensive multi portal user interface designed from the ground up in Figma. The project features dedicated interactive dashboards tailored for students, companies, and administrators to seamlessly organise and manage internship placements.</p>
                 <div class="pdf-links">
                     <a class="pdf-view" href="https://www.figma.com/proto/CHzFkE2rofOsEAnWwHCr5G?node-id=148:2" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Experience Figma UI</a>
@@ -332,12 +336,14 @@
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-layer-group"></i></div>
                 <h3>Module Tracker UI</h3>
-                <iframe src="https://docs.google.com/gview?url=https://jayteexaba.tech/Module_Tracker_Guide.pdf&embedded=true"></iframe>
+                <object data="https://jayteexaba.me/Module_Tracker_Guide.pdf" type="application/pdf" width="100%" height="300px">
+                    <p>Your browser does not support viewing this document. <a href="https://jayteexaba.me/Module_Tracker_Guide.pdf">Download it here</a>.</p>
+                </object>
                 <div class="pdf-links">
                     <a class="pdf-view" href="https://njanyanajayteexaba.github.io/PrototypeModuleTrackerUI_interface/" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Original Idea UX Experience </a>
                     <a class="pdf-open" href="https://moduletrackercput.netlify.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Modern UX Experience </a>
                 </div>
-                <p>𝗖𝗼𝗹𝗮𝗯 𝘄𝗶𝘁𝗵 𝗮 𝗧𝗲𝗮𝗺 - HTML-based prototype for students to track academic modules and progress. Clean, intuitive UI with detailed user flow guide.</p>
+                <p>𝗖𝗼𝗹𝗮𝗯 𝘄𝗶𝘁𝗵 𝗮 𝗧𝗲𝗮𝗺 HTML-based prototype for students to track academic modules and progress. Clean, intuitive UI with detailed user flow guide.</p>
                 <div class="pdf-links">
                     <a class="pdf-view" href="../Module_Tracker_Guide.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i> Guide</a>
                     <a class="pdf-open" href="https://github.com/NjanyanaJayteeXaba/PrototypeModuleTrackerUI_interface" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
@@ -373,9 +379,9 @@
 
         
             <div class="project-card">
-                 <h3>Your Dreams Are Bigger Than Your Limits – “Undefeated”</h3>
+                 <h3>Your Dreams Are Bigger Than Your Limits, “Undefeated”</h3>
                  <img src="../images/DreamBeyondTheStars.png" alt="Dream Beyond The Stars Artwork by JayTee Xaba">
-                 <p>This isn’t just a picture; it’s a statement. It’s for anyone who’s been told they’re not enough. Look closer to the message — that’s the man who has taken hits from life and is still standing. It’s about turning your vulnerability into armor. The lesson is that your identity isn't what people label you; it's what you answer to after the battle.</p>
+                 <p>This isn’t just a picture; it’s a statement. It’s for anyone who’s been told they’re not enough. Look closer to the message, that’s the man who has taken hits from life and is still standing. It’s about turning your vulnerability into armor. The lesson is that your identity isn't what people label you; it's what you answer to after the battle.</p>
                  <p class="project-tagline">#ArtByJaytee #DreamBeyondTheStars #DigitalIdentity</p>
             </div>
 
@@ -395,14 +401,14 @@
                     <button class="slide-btn prev" type="button" id="prev-btn">&#10094;</button>
                     <button class="slide-btn next" type="button" id="next-btn">&#10095;</button>
                 </div>
-                <p>I made this during a study break on campus, when the pressure was high. It’s proof that your best ideas don't come when you’re forcing them—they come when you give yourself a moment to breathe. The teaching is simple: don’t just work for your future; remember to dream in it, too.</p>
+                <p>I made this during a study break on campus, when the pressure was high. It’s proof that your best ideas don't come when you’re forcing them, they come when you give yourself a moment to breathe. The teaching is simple: don’t just work for your future; remember to dream in it, too.</p>
                 <p><strong>Technology:</strong> Canva</p>
             </div>
             <div class="project-card">
                  <h3>Break the Cycle: Do It Today</h3>
                  <img src="../images/Becoming.jpeg" alt="Becoming">
                  <div class="project-icon"><i class="fas fa-sync-alt"></i></div>
-                 <p>This is a message to myself first. That voice that says "I'll do it tomorrow" is the biggest dream killer. This piece is my personal fight against that delay. The lesson is that discipline isn't punishment; it’s a form of self-respect—the hard choice you make today to build the person you want to be tomorrow.</p>
+                 <p>This is a message to myself first. That voice that says "I'll do it tomorrow" is the biggest dream killer. This piece is my personal fight against that delay. The lesson is that discipline isn't punishment; it’s a form of self-respect, the hard choice you make today to build the person you want to be tomorrow.</p>
                  <p class="project-tagline">#DisciplineByJayTee #NoMoreDelays</p>
             </div>
 
@@ -413,9 +419,9 @@
                     Your browser does not support the video tag.
                 </video>
                 <p>
-                    "❤️ - Carrying dreams heavier than this bag -- walking paths that don't always lead home."
+                    "❤️ Carrying dreams heavier than this bag, walking paths that don't always lead home."
                     <br><br>
-                    This is the quiet reality of the grind. Those solitary walks across campus, head full of code, ambition weighing more than anything on your back. It’s a love for learning so deep that it fuels you, even when the path is lonely. This isn't just a video; it's a window into the developer's journey—a path of constant learning and the relentless pursuit of getting better.
+                    This is the quiet reality of the grind. Those solitary walks across campus, head full of code, ambition weighing more than anything on your back. It’s a love for learning so deep that it fuels you, even when the path is lonely. This isn't just a video; it's a window into the developer's journey, a path of constant learning and the relentless pursuit of getting better.
                 </p>
                 <p class="project-tagline">
                     #TheGrind #DeveloperJourney #CodeIsLife #NeverStopLearning
@@ -425,7 +431,7 @@
             <div class="project-card">
                 <img src="../images/jaytee_motivate_bw.jpeg" alt="Jaytee & Njanyana: The Journey Within">
                 <h3>Jaytee & Njanyana: The Journey Within</h3>
-                <p>This evocative black-and-white artwork captures two versions of myselfs-ide by side, in solidarity. One is weighed down by struggle, the other offers a hand of support. This image is a lesson: sometimes, your greatest ally is the person you become through hardship. When the world feels heavy, remember - you are not alone, even within your own story.<br><br>
+                <p>This evocative black-and-white artwork captures two versions of myself side by side, in solidarity. One is weighed down by struggle, the other offers a hand of support. This image is a lesson: sometimes, your greatest ally is the person you become through hardship. When the world feels heavy, remember, you are not alone, even within your own story.<br><br>
                 Every dreamer has two voices: the one that wants to give up, and the one that says, “We didn’t come this far just to give up.” Growth comes when you learn to encourage yourself, to sit with your pain and turn it into power. I made this piece to remind myself, and anyone who sees it, that you are both the student and the teacher in your journey. Keep going. You are becoming the person you need.
                 <br>
                 <span class="project-hashtag">#KeepGoing #SelfGrowth #JayTeeArt</span>
