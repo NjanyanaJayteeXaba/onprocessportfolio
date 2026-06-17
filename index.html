@@ -61,7 +61,7 @@
             <button class="chat-close-button" id="chat-close-button">&times;</button>
         </div>
         <div class="chat-body" id="chat-body">
-            <div class="chat-message bot">Hey there! I'm JayTee's AI assistant. Ask me anything about the site, his journey, or if you just need some motivation.</div>
+            <div class="chat-message bot">Hey there. I can help with the site, the About page, the Portfolio page, Services, Contact, and the CV link.</div>
         </div>
         <div class="chat-footer">
             <input type="text" id="chat-input" placeholder="Ask me anything...">
@@ -80,6 +80,14 @@
         const chatBody = document.getElementById('chat-body');
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
+        const allowedShortcutUrls = new Set([
+            '/index.html',
+            '/pages/Portfolio-Page.html',
+            '/pages/About-Page.html',
+            '/pages/Services.html',
+            '/pages/Contact-Page.html',
+            'https://njanyanajayteexaba.github.io/CV/'
+        ]);
 
         const toggleChatWindow = () => {
             chatWindow.classList.toggle('active');
@@ -112,7 +120,7 @@
                 const botResponse = data.reply;
 
                 loadingIndicator.remove();
-                addMessage(botResponse, 'bot');
+                addMessage(botResponse, 'bot', Array.isArray(data.shortcuts) ? data.shortcuts : []);
 
             } catch (error) {
                 console.error('Error:', error);
@@ -121,7 +129,7 @@
             }
         };
 
-        const addMessage = (text, type) => {
+        const addMessage = (text, type, shortcuts = []) => {
             const messageElement = document.createElement('div');
             messageElement.className = `chat-message ${type}`;
             
@@ -129,6 +137,32 @@
                 messageElement.innerHTML = '<div class="typing-indicator"><span></span></div>';
             } else {
                 messageElement.textContent = text;
+                if (type === 'bot' && shortcuts.length) {
+                    const shortcutList = document.createElement('div');
+                    shortcutList.className = 'chat-shortcuts';
+
+                    shortcuts.forEach((shortcut) => {
+                        if (!shortcut || typeof shortcut.label !== 'string' || typeof shortcut.url !== 'string') {
+                            return;
+                        }
+
+                        if (!allowedShortcutUrls.has(shortcut.url)) {
+                            return;
+                        }
+
+                        const shortcutLink = document.createElement('a');
+                        shortcutLink.className = 'chat-shortcut';
+                        shortcutLink.textContent = shortcut.label;
+                        shortcutLink.href = shortcut.url;
+                        shortcutLink.rel = shortcut.url.startsWith('http') ? 'noopener noreferrer' : '';
+                        shortcutLink.target = shortcut.url.startsWith('http') ? '_blank' : '_self';
+                        shortcutList.appendChild(shortcutLink);
+                    });
+
+                    if (shortcutList.childElementCount) {
+                        messageElement.appendChild(shortcutList);
+                    }
+                }
             }
             
             chatBody.appendChild(messageElement);

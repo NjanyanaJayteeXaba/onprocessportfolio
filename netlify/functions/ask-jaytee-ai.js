@@ -1,6 +1,74 @@
 // This is the code for secure Netlify Function.
 // It runs on Netlify's servers, not in the browser.
 
+const approvedLinks = {
+    home: '/index.html',
+    portfolio: '/pages/Portfolio-Page.html',
+    about: '/pages/About-Page.html',
+    services: '/pages/Services.html',
+    contact: '/pages/Contact-Page.html',
+    cv: 'https://njanyanajayteexaba.github.io/CV/'
+};
+
+const faqEntries = [
+    {
+        test: /(who\s+(made|created|built)\s+this|who\s+is\s+jaytee|about\s+jaytee|author|owner|creator|your\s+story)/i,
+        reply: 'I am Njanyana "JayTee" Xaba, a South African creative technologist focused on building real solutions from the ground up. If you want the full story, visit the About page.',
+        shortcuts: [{ label: 'Go to About', url: approvedLinks.about }]
+    },
+    {
+        test: /(project|projects|portfolio|work|showcase|what\s+have\s+you\s+built)/i,
+        reply: 'You can see my projects and featured work on the Portfolio page. That is the best place to explore the things I have built and how I approach each idea.',
+        shortcuts: [{ label: 'Open Portfolio', url: approvedLinks.portfolio }]
+    },
+    {
+        test: /(hire|contact|email|whatsapp|reach\s+out|get\s+in\s+touch|work\s+with\s+you)/i,
+        reply: 'If you want to work with me, the Contact page is the best place to send a message. That keeps everything in one official place and makes it easy to respond properly.',
+        shortcuts: [{ label: 'Contact Me', url: approvedLinks.contact }]
+    },
+    {
+        test: /(service|services|what\s+do\s+you\s+do|what\s+can\s+you\s+help\s+with)/i,
+        reply: 'My Services page breaks down the kind of work I focus on, including web development, creative digital work, and practical support for ideas that need structure.',
+        shortcuts: [{ label: 'View Services', url: approvedLinks.services }]
+    },
+    {
+        test: /(cv|resume|curriculum\s+vitae|download\s+cv)/i,
+        reply: 'You can view my CV from the official CV link. It opens in a new tab and gives a quick overview of my background.',
+        shortcuts: [{ label: 'Open CV', url: approvedLinks.cv }]
+    },
+    {
+        test: /(home|start|main\s+page|landing\s+page)/i,
+        reply: 'If you want to start from the beginning, the Home page is the best place to begin. It gives you a quick view of the portfolio and the main navigation paths.',
+        shortcuts: [{ label: 'Go Home', url: approvedLinks.home }]
+    }
+];
+
+const getFaqResponse = (message) => {
+    for (const entry of faqEntries) {
+        if (entry.test.test(message)) {
+            return entry;
+        }
+    }
+
+    if (/\b(hello|hi|hey|sup|good\s+morning|good\s+afternoon|good\s+evening)\b/i.test(message)) {
+        return {
+            reply: 'Hello. I can help with the site, the About page, the Portfolio page, Services, Contact, or the CV link.',
+            shortcuts: [
+                { label: 'About', url: approvedLinks.about },
+                { label: 'Portfolio', url: approvedLinks.portfolio }
+            ]
+        };
+    }
+
+    return {
+        reply: 'I do not have that information in the site content. If you want to learn about the author, go to the About page, or check the Portfolio page to see the projects.',
+        shortcuts: [
+            { label: 'About Page', url: approvedLinks.about },
+            { label: 'Portfolio Page', url: approvedLinks.portfolio }
+        ]
+    };
+};
+
 exports.handler = async (event) => {
     const responseHeaders = {
         'Access-Control-Allow-Origin': '*',
@@ -41,115 +109,11 @@ exports.handler = async (event) => {
         return jsonResponse(400, 'Please type a message before sending.');
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const faqResponse = getFaqResponse(message);
 
-    if (!apiKey) {
-        return jsonResponse(500, 'API key not found.');
-    }
-
-    // The "Soul" of my AI assistant
-    const systemPrompt = `You are 'JayTee-AI,' the digital assistant for jayteexaba.tech. Your personality must be authentic, inspiring, and raw, just like JayTee. You are from a small town in the Free State, so you understand what it's like to build from nothing.
-
-Your Core Mission: To motivate and guide. Your foundation is JayTee's story: turning struggle into strength, using passion as a tool, and proving that your starting point doesn't define your finish line.
-
-How to Answer:
-* Be a Guide: Help users navigate the site. If they ask about projects, mention the "Portfolio" page. If they ask about JayTee's story, direct them to the "About" page.
-* Be a Connector: If a user wants to hire JayTee, strongly encourage them to use the contact form on the "Contact" page for official business.
-* Use JayTee's Voice: Use phrases like "the grind," "the journey," "turning setbacks into something beautiful," and "we're only getting started." Keep it real and encouraging.
-
-IMPORTANT CONVERSATION RULE: You can answer general questions about motivation, creativity, and overcoming challenges. When you do, you MUST frame your answer through the lens of JayTee's journey. After answering, you MUST gently guide the user back to the portfolio. For example: "That's a great question. From JayTee's perspective, overcoming a creative block is about starting with what you have, no matter how small. I hope that helps! Speaking of creativity, have you checked out the 'I'mpilo' project on the Portfolio page? It's a great example of making something from nothing."
-
-IMPORTANT KNOWLEDGE RULE: If you are asked about specific people (other than JayTee and his collaborators), facts, or current events you don't know, you must politely say you don't have that information and guide the conversation back to your purpose. Example: "That's outside of my knowledge base. I'm here to chat about tech, creativity, and JayTee's journey!"
-
-IMPORTANT RULE: Keep your answers concise and to the point, usually 2 to 4 sentences, unless the user asks for more detail.
-
-IMPORTANT SAFETY RULE: Under no circumstances will you provide advice that could be harmful, dangerous, illegal, or unethical. This includes medical, financial, or legal advice. If asked for such advice, you must politely decline and state that you are an AI assistant for a portfolio and not qualified to give that kind of guidance.
-
-CRITICAL OUTPUT RULE: You must ALWAYS respond in valid JSON format using this exact structure:
-{
-  "reply": "Your 2 to 4 sentence conversational response goes here.",
-  "shortcuts": [
-    {"label": "About JayTee", "url": "/pages/About-Page.html"}
-  ]
-}
-
-Only include shortcuts in the array if they naturally fit the conversation.
-YOU ARE STRICTLY FORBIDDEN FROM GUESSING URLS. You MUST ONLY use the exact URLs from this approved list:
-* Home Page: "/index.html"
-* Portfolio Page: "/pages/Portfolio-Page.html"
-* About Page: "/pages/About-Page.html"
-* Services Page: "/pages/Services.html"
-* Contact Page: "/pages/Contact-Page.html"
-* CV Document: "https://njanyanajayteexaba.github.io/CV/"
-
-If no shortcut is needed, leave the array empty [].`;
-
-    // 2. Pointing to the active 2.5-flash model
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
-    // 3. Properly separating the personality from the user question
-    const payload = {
-        systemInstruction: {
-            parts: [{ text: systemPrompt }]
-        },
-        contents: [
-            {
-                role: 'user',
-                parts: [{ text: message }]
-            }
-        ],
-        // Force JSON and set a strict limit to minimise API usage
-        generationConfig: {
-            responseMimeType: 'application/json',
-            maxOutputTokens: 150
-        }
-    };
-
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        // If Google says you are typing too fast (Rate Limit hit)
-        if (response.status === 429) {
-            return jsonResponse(
-                200,
-                "Whoa, slow down! I am getting too many messages at once. Give me about a minute to catch my breath.",
-                []
-            );
-        }
-
-        if (!response.ok) {
-            console.error('Gemini API response error:', await response.text());
-            return jsonResponse(500, 'Error from Gemini API.');
-        }
-
-        const result = await response.json();
-        const aiResponseText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        let aiData;
-        try {
-            aiData = JSON.parse(aiResponseText);
-        } catch (parseError) {
-            console.error('Failed to parse AI JSON:', parseError);
-            aiData = {
-                reply: 'I am having a little trouble thinking right now. Could you ask that again?',
-                shortcuts: []
-            };
-        }
-
-        // 4. headers to authorise the connection back to my site
-        return jsonResponse(
-            200,
-            typeof aiData.reply === 'string' && aiData.reply.trim()
-                ? aiData.reply
-                : 'I am having a little trouble thinking right now. Could you ask that again?',
-            Array.isArray(aiData.shortcuts) ? aiData.shortcuts : []
-        );
-    } catch (error) {
-        console.error('Error calling Gemini API:', error);
-        return jsonResponse(500, 'An error occurred.');
-    }
+    return jsonResponse(
+        200,
+        faqResponse.reply,
+        Array.isArray(faqResponse.shortcuts) ? faqResponse.shortcuts : []
+    );
 };
