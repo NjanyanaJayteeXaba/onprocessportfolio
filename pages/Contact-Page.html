@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | JayTee Xaba</title>
+  <meta name="description" content="Get in touch with JayTee Xaba for collaborations, freelance opportunities, WIL placement, or to discuss a project. Let's build something great together.">
+  <link rel="canonical" href="https://jayteexaba.me/pages/Contact-Page.html" />
+  <link rel="icon" type="image/png" href="../images/Favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    section { min-height: auto; }
+
+    .contact-wrapper {
+      padding: 14rem 7% 8rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 6rem;
+      flex-wrap: wrap;
+    }
+
+    /* LEFT SIDE */
+    .contact-left {
+      flex: 1;
+      min-width: 280px;
+      position: sticky;
+      top: 10rem;
+    }
+
+    .eyebrow {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .contact-left h1 {
+      font-family: var(--font-heading);
+      font-size: 5.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.6rem;
+    }
+
+    .contact-left h1 span { color: var(--primary); }
+
+    .contact-left .desc {
+      font-size: 1.65rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 3.6rem;
+    }
+
+    .contact-info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin-bottom: 3.2rem;
+    }
+
+    .contact-info-list li {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(20,147,255,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .info-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-label {
+      font-size: 1.2rem;
+      color: var(--text-subtle);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .info-value {
+      font-size: 1.5rem;
+      color: var(--text);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .info-value:hover { color: var(--primary); }
+
+    /* Social */
+    .social-section h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1.4rem;
+    }
+
+    /* RIGHT SIDE — FORM */
+    .contact-right {
+      flex: 1;
+      min-width: 300px;
+      max-width: 560px;
+    }
+
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 4rem;
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .form-card h2 {
+      font-family: var(--font-heading);
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 2.8rem;
+      letter-spacing: -0.3px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 1.3rem 1.5rem;
+      font-size: 1.6rem;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+
+    .form-group select option { background: #111; }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: rgba(20,147,255,0.5);
+      background: rgba(20,147,255,0.04);
+      box-shadow: 0 0 0 3px rgba(20,147,255,0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1.5rem;
+      background: var(--primary);
+      border-radius: 12px;
+      font-size: 1.6rem;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .form-submit:hover {
+      background: #2fa0ff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px var(--primary-glow);
+    }
+
+    #form-result {
+      margin-top: 1.4rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+
+    .modal-content {
+      background: #111;
+      padding: 5rem 4rem;
+      border-radius: 24px;
+      border: 1px solid rgba(20,147,255,0.25);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+
+    .modal-icon { font-size: 5.5rem; color: #00d48a; margin-bottom: 1.6rem; }
+
+    .modal-content h2 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+    }
+
+    .modal-content p {
+      font-size: 1.6rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 3rem;
+    }
+
+    .modal-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+    .modal-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 1.2rem 2.8rem;
+      background: var(--primary);
+      border-radius: 10px;
+      font-size: 1.5rem;
+      color: #000;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .modal-actions a:hover {
+      background: #111;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.8rem;
+      font-size: 2.6rem;
+      color: var(--text-subtle);
+      cursor: pointer;
+      transition: var(--transition);
+      background: none;
+    }
+
+    .close-modal:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .contact-wrapper { gap: 4rem; padding: 12rem 5% 6rem; }
+      .contact-left { position: static; }
+      .contact-left h1 { font-size: 4.4rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .contact-wrapper { padding: 11rem 4% 5rem; flex-direction: column; }
+      .contact-left h1 { font-size: 3.8rem; }
+      .form-card { padding: 2.8rem 2rem; }
+      .modal-content { padding: 3.6rem 2.4rem; }
+    }
+
+    @media (max-width: 420px) {
+      .contact-left h1 { font-size: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <a href="../index.html" class="logo">JayTee Portfolio</a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </label>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="Portfolio-Page.html">Portfolio</a>
+      <a href="About-Page.html">About</a>
+      <a href="Services.html">Services</a>
+      <a href="Contact-Page.html" class="active">Contact</a>
+      <a href="https://njanyanajayteexaba.github.io/CV/" target="_blank" rel="noopener noreferrer" class="nav-cv">CV <i class="fas fa-arrow-up-right-from-square" style="font-size:1.1rem;"></i></a>
+    </nav>
+  </header>
+
+  <!-- ===================== CONTACT WRAPPER ===================== -->
+  <div class="contact-wrapper">
+
+    <!-- LEFT -->
+    <div class="contact-left reveal">
+      <p class="eyebrow"><i class="fas fa-satellite-dish"></i> Let's Connect</p>
+      <h1>Let's <span>Chat.</span></h1>
+      <p class="desc">Have a project in mind? Looking for a WIL student? Just want to say hi? All of the above are valid reasons to reach out.</p>
+
+      <ul class="contact-info-list">
+        <li>
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-text">
+            <span class="info-label">Email</span>
+            <a href="mailto:contactus@jayteexaba.me" class="info-value">contactus@jayteexaba.me</a>
+          </div>
+        </li>
+        <li>
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="info-text">
+            <span class="info-label">Location</span>
+            <span class="info-value">Cape Town / Bellville, SA</span>
+          </div>
+        </li>
+        <li>
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div class="info-text">
+            <span class="info-label">Response Time</span>
+            <span class="info-value">Usually within 24 hours</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="social-section">
+        <h3>Find Me On</h3>
+        <div class="social-icons">
+          <a href="https://wa.me/qr/C7BP2WDUANCXN1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://za.linkedin.com/in/njanyana-xaba-8b6b69296" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/NjanyanaJayteeXaba" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://discord.com/channels/@jayteexaba" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — FORM -->
+    <div class="contact-right reveal">
+      <div class="form-card">
+        <h2>Send a Message</h2>
+
+        <form name="contact" id="contact-form" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">What's this about?</label>
+            <select id="subject" name="subject">
+              <option value="">Choose a topic...</option>
+              <option value="wil">WIL / Internship Placement</option>
+              <option value="web">Website / Web App</option>
+              <option value="brand">Brand Identity / Logo</option>
+              <option value="multimedia">Multimedia / Video</option>
+              <option value="collab">Collaboration</option>
+              <option value="other">Just saying hi 👋</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your idea, project, or opportunity..." required></textarea>
+          </div>
+
+          <div data-netlify-recaptcha="true"></div>
+          <br>
+
+          <button type="submit" class="form-submit">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+
+          <p id="form-result"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SUCCESS MODAL ===================== -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-content">
+      <button class="close-modal" id="close-modal-button" aria-label="Close">&times;</button>
+      <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+      <h2>Message Received!</h2>
+      <p>Thank you for reaching out. I'll get back to you as soon as I see your message. For faster contact:</p>
+      <div class="modal-actions">
+        <a href="https://wa.me/qr/C7BP2WDUANCXN1" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p>&copy; 2026 Njanyana <span>JayTee</span> Xaba. All rights reserved.</p>
+  </footer>
+
+  <script>
+    /* Scroll reveal */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* Form submission */
+    const form           = document.getElementById('contact-form');
+    const formResult     = document.getElementById('form-result');
+    const modal          = document.getElementById('success-modal');
+    const closeModalBtn  = document.getElementById('close-modal-button');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nameVal    = document.getElementById('name').value.trim();
+      const emailVal   = document.getElementById('email').value.trim();
+      const messageVal = document.getElementById('message').value.trim();
+
+      if (!nameVal || !emailVal || !messageVal) {
+        formResult.innerHTML  = 'Please fill in all required fields.';
+        formResult.style.color = '#e55555';
+        return;
+      }
+
+      const formData    = new FormData(form);
+      const captchaToken = formData.get('g-recaptcha-response');
+
+      if (!captchaToken) {
+        formResult.innerHTML  = 'Please complete the CAPTCHA first.';
+        formResult.style.color = '#e55555';
+        return;
+      }
+
+      formResult.innerHTML  = 'Sending... please wait.';
+      formResult.style.color = 'rgba(255,255,255,0.5)';
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        formResult.innerHTML = '';
+        modal.classList.add('active');
+        form.reset();
+        if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+      })
+      .catch(err => {
+        formResult.innerHTML  = 'Something went wrong. Please try again.';
+        formResult.style.color = '#e55555';
+        console.error(err);
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+  </script>
+
+</body>
+</html>
