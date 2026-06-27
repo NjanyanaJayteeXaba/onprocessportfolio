@@ -1174,7 +1174,7 @@ footer span {
   );
 }
 
-/* The scrolling track — contains the 25 cards twice for seamless loop */
+/* The scrolling track — contains the 30 cards twice for seamless loop */
 .cert-track {
   display: flex;
   gap: 2.4rem;
@@ -1197,7 +1197,7 @@ footer span {
 .cert-card {
   flex: 0 0 auto;
   width: 320px;
-  height: 180px;
+  height: 200px;
   border-radius: 1.2rem;
   overflow: hidden;
   border: 1.5px solid rgba(20,147,255,0.45);
