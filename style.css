@@ -1197,7 +1197,7 @@ footer span {
 .cert-card {
   flex: 0 0 auto;
   width: 320px;
-  height: 200px;
+  height: 240px;
   border-radius: 1.2rem;
   overflow: hidden;
   border: 1.5px solid rgba(20,147,255,0.45);
