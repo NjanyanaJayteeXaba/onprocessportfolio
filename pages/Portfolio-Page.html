@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | JayTee Xaba</title>
+  <meta name="description" content="The official portfolio of JayTee Xaba, showcasing a journey of turning struggle into innovation. Explore projects in development, design, and multimedia.">
+  <link rel="canonical" href="https://jayteexaba.me/pages/Portfolio-Page.html" />
+  <link rel="icon" type="image/png" href="../images/Favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    section { min-height: auto; }
+
+    /* PORTFOLIO HERO */
+    .portfolio-hero {
+      padding: 14rem 7% 5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .portfolio-hero::before {
+      content: '';
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(20,147,255,0.06) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      background: var(--primary-dim);
+      padding: 0.6rem 1.6rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(20,147,255,0.2);
+    }
+
+    .portfolio-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 6rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.8rem;
+    }
+
+    .portfolio-hero h1 span { color: var(--primary); }
+
+    .portfolio-hero p {
+      font-size: 1.8rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* FILTER TABS */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 3rem 7% 0;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 2rem;
+      border-radius: var(--radius-full);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary-dim);
+      color: var(--primary);
+      border-color: rgba(20,147,255,0.3);
+    }
+
+    /* PROJECT GRID */
+    .portfolio-grid-section {
+      padding: 4rem 7% 8rem;
+    }
+
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2.4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* PROJECT CARD */
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(20,147,255,0.3);
+      box-shadow: 0 24px 60px rgba(20,147,255,0.12);
+    }
+
+    /* Card media area */
+    .card-media {
+      position: relative;
+      width: 100%;
+      background: #0a0a0a;
+      border-bottom: 1px solid var(--card-border);
+      overflow: hidden;
+    }
+
+    .card-media img,
+    .card-media video,
+    .card-media iframe,
+    .card-media object {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .card-media video { max-height: 300px; }
+
+    /* Slider inside card */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 300px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slider-wrapper img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: translateX(12%) scale(1.02);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+      max-height: none;
+    }
+
+    .slider-wrapper img.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      z-index: 1;
+    }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 1.7rem;
+      cursor: pointer;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+      border: none;
+    }
+
+    .slide-btn:hover { background: rgba(20,147,255,0.9); }
+    .slide-btn.prev  { left: 10px; }
+    .slide-btn.next  { right: 10px; }
+
+    /* Card body */
+    .card-body {
+      padding: 2.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .card-category {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .card-icon-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .card-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-dim);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .card-body h3 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .card-body p {
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .card-tools {
+      font-size: 1.3rem;
+      color: var(--text-subtle);
+    }
+
+    .card-tools strong { color: var(--text-muted); }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.4rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: var(--radius-full);
+      background: var(--primary-dim);
+      border: 1px solid rgba(20,147,255,0.25);
+      color: var(--primary);
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .card-link:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .card-hashtag {
+      font-size: 1.3rem;
+      color: rgba(20,147,255,0.6);
+    }
+
+    /* Art cards (no media area bg) */
+    .card-art-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .portfolio-hero { padding: 12rem 5% 4rem; }
+      .portfolio-hero h1 { font-size: 4.4rem; }
+      .portfolio-grid-section { padding: 3rem 5% 6rem; }
+      .project-gallery { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    }
+
+    @media (max-width: 700px) {
+      .portfolio-hero h1 { font-size: 3.6rem; }
+      .project-gallery { grid-template-columns: 1fr; }
+      .slider-container { max-height: 260px; }
+    }
+
+    @media (max-width: 500px) {
+      .portfolio-hero h1 { font-size: 3rem; }
+      .portfolio-hero p  { font-size: 1.55rem; }
+      .card-body { padding: 2rem 1.8rem; }
+      .card-body h3 { font-size: 2rem; }
+      .card-media video,
+      .card-media img  { max-height: 240px; }
+      .slider-container { max-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Persistent particle background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <a href="../index.html" class="logo">JayTee Portfolio</a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </label>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="Portfolio-Page.html" class="active">Portfolio</a>
+      <a href="About-Page.html">About</a>
+      <a href="Services.html">Services</a>
+      <a href="Contact-Page.html">Contact</a>
+      <a href="https://njanyanajayteexaba.github.io/CV/" target="_blank" rel="noopener noreferrer" class="nav-cv">CV <i class="fas fa-arrow-up-right-from-square" style="font-size:1.1rem;"></i></a>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="portfolio-hero reveal">
+    <span class="eyebrow"><i class="fas fa-layer-group"></i> Selected Work</span>
+    <h1>My <span>Projects</span></h1>
+    <p>Spanning design, development, multimedia, and art — each project is a creative solution, a technical challenge, or both. Explore, click, experience.</p>
+  </section>
+
+  <!-- ===================== FILTER BAR ===================== -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="dev">Development</button>
+    <button class="filter-btn" data-filter="design">Design / UI</button>
+    <button class="filter-btn" data-filter="media">Multimedia</button>
+    <button class="filter-btn" data-filter="art">Art</button>
+  </div>
+
+  <!-- ===================== PROJECT GRID ===================== -->
+  <section class="portfolio-grid-section">
+    <div class="project-gallery">
+
+      <!-- RAVCA NAUTICAL — LIVE CLIENT SITE -->
+      <div class="project-card reveal" data-category="dev design">
+        <!-- Live site preview thumbnail -->
+        <div class="card-media" style="position:relative; overflow:hidden; background:#0a0a0a; height:220px;">
+          <img
+            src="https://api.apiflash.com/v1/urltoimage?access_key=free&url=https://ravcanautical.com&width=800&height=440&fresh=true&format=webp"
+            alt="Ravca Nautical Assets website preview"
+            style="width:100%; height:100%; object-fit:cover; object-position:top; transition:transform 0.5s ease;"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <!-- Fallback if screenshot API unavailable -->
+          <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; gap:1rem; color:rgba(255,255,255,0.3);">
+            <i class="fas fa-anchor" style="font-size:4rem; color:var(--primary);"></i>
+            <span style="font-size:1.4rem;">ravcanautical.com</span>
+          </div>
+          <!-- Live badge -->
+          <span style="
+            position:absolute; top:1.2rem; left:1.2rem;
+            background:#00d48a; color:#000;
+            font-size:1.1rem; font-weight:700;
+            padding:0.4rem 1rem; border-radius:999px;
+            display:flex; align-items:center; gap:0.5rem;
+            box-shadow: 0 2px 12px rgba(0,212,138,0.4);
+          ">
+            <span style="width:7px;height:7px;background:#000;border-radius:50%;display:inline-block;animation:pulse-dot 1.5s infinite;"></span>
+            LIVE
+          </span>
+        </div>
+
+        <div class="card-body">
+          <p class="card-category">Live Client · Web Design &amp; Development</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fas fa-anchor"></i></div>
+            <h3>Ravca Nautical Assets</h3>
+          </div>
+          <p>
+            A professional website for a maritime supply &amp; consulting company with over 15 years in the industry. Bold dark design, strong brand presence, and clear service communication — built to position them as a trusted partner in the maritime sector.
+          </p>
+          <div class="card-links">
+            <a class="card-link" href="https://ravcanautical.com" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-globe"></i> Visit Live Site
+            </a>
+          </div>
+          <p class="card-tools"><strong>Type:</strong> Maritime Supply &amp; Consulting · Professional Business Website</p>
+        </div>
+      </div>
+
+      <!-- KID-TRACKER -->
+      <div class="project-card reveal" data-category="media design">
+        <div class="card-media">
+          <video controls controlsList="nodownload" width="100%">
+            <source src="../videos/KidTracker-Tiktok-MUF-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="card-body">
+          <p class="card-category">Multimedia · Brand</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fas fa-child"></i></div>
+            <h3>KID-Tracker</h3>
+          </div>
+          <p>Brand and marketing concept for child safety through real-time location tracking. Engaging video and materials to promote awareness. No app yet — but the vision is crystal clear.</p>
+          <div class="card-links">
+            <a class="card-link" href="../docs/Kid-Tracker-Brand-Guideline.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> Brand Guideline</a>
+            <a class="card-link" href="../docs/KidTracker-Marketing-Material.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-bullhorn"></i> Marketing</a>
+          </div>
+          <p class="card-tools"><strong>Tools:</strong> Canva, PowerPoint, InShot, Veed</p>
+        </div>
+      </div>
+
+      <!-- SIDEHUSTLE PRO -->
+      <div class="project-card reveal" data-category="dev">
+        <div class="card-media">
+          <img src="../images/side_hustle.jpg" alt="SideHustle Pro">
+        </div>
+        <div class="card-body">
+          <p class="card-category">Development</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fas fa-file-invoice-dollar"></i></div>
+            <h3>SideHustle Pro</h3>
+          </div>
+          <p>A smart invoice generator built for student entrepreneurs. Users can calculate billing totals, instantly download PDF invoices, and share via WhatsApp — no login required.</p>
+          <div class="card-links">
+            <a class="card-link" href="https://www.sidehustlepro.social/" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Try The App</a>
+            <a class="card-link" href="https://github.com/NjanyanaJayteeXaba/SideHustle_Prototype" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Code</a>
+          </div>
+          <p class="card-tools"><strong>Tools:</strong> HTML, CSS, JavaScript</p>
+        </div>
+      </div>
+
+      <!-- INTERNCONNECT -->
+      <div class="project-card reveal" data-category="design">
+        <div class="card-media">
+          <object data="https://jayteexaba.me/docs/InternConnect_Brief_Of_Product_Owner.pdf" type="application/pdf" style="width:100%;height:300px;">
+            <p style="padding:2rem;color:rgba(255,255,255,0.5);font-size:1.4rem;">PDF unavailable. <a href="https://jayteexaba.me/docs/InternConnect_Brief_Of_Product_Owner.pdf" style="color:var(--primary);">Download it here</a>.</p>
+          </object>
+        </div>
+        <div class="card-body">
+          <p class="card-category">UI/UX Design</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fab fa-figma"></i></div>
+            <h3>InternConnect Platform UI</h3>
+          </div>
+          <p>A comprehensive multi-portal UI designed in Figma — dedicated dashboards for students, companies, and admins to organise and manage internship placements.</p>
+          <div class="card-links">
+            <a class="card-link" href="https://www.figma.com/proto/CHzFkE2rofOsEAnWwHCr5G?node-id=148:2" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Figma UI</a>
+            <a class="card-link" href="https://njanyanajayteexaba.github.io/InternConnect/index.html" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Prototype</a>
+          </div>
+          <p class="card-tools"><strong>Tools:</strong> HTML, CSS, JavaScript, Figma</p>
+        </div>
+      </div>
+
+      <!-- MODULE TRACKER -->
+      <div class="project-card reveal" data-category="design dev">
+        <div class="card-media">
+          <object data="https://jayteexaba.me/Module_Tracker_Guide.pdf" type="application/pdf" style="width:100%;height:300px;">
+            <p style="padding:2rem;color:rgba(255,255,255,0.5);font-size:1.4rem;">PDF unavailable. <a href="https://jayteexaba.me/Module_Tracker_Guide.pdf" style="color:var(--primary);">Download here</a>.</p>
+          </object>
+        </div>
+        <div class="card-body">
+          <p class="card-category">Design · Development</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fas fa-layer-group"></i></div>
+            <h3>Module Tracker UI</h3>
+          </div>
+          <p>🤝 <em>Colab with a Team</em> — HTML-based prototype for students to track academic modules and progress. Clean, intuitive UI with a detailed user-flow guide.</p>
+          <div class="card-links">
+            <a class="card-link" href="https://njanyanajayteexaba.github.io/PrototypeModuleTrackerUI_interface/" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Original UX</a>
+            <a class="card-link" href="https://moduletrackercput.netlify.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Modern UX</a>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="../Module_Tracker_Guide.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i> Guide</a>
+            <a class="card-link" href="https://github.com/NjanyanaJayteeXaba/PrototypeModuleTrackerUI_interface" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+          <p class="card-tools"><strong>Tools:</strong> HTML, UI Prototyping</p>
+        </div>
+      </div>
+
+      <!-- CPUT CODING NOTES -->
+      <div class="project-card reveal" data-category="dev design">
+        <div class="card-media">
+          <img src="../images/Coding_Notes.png" alt="CPUT Coding Notes">
+        </div>
+        <div class="card-body">
+          <p class="card-category">Development</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fas fa-book-open"></i></div>
+            <h3>CPUT Coding Notes</h3>
+          </div>
+          <p>Curated coding notes for CPUT students — a comprehensive reference and revision resource for programming concepts and practical tips.</p>
+          <div class="card-links">
+            <a class="card-link" href="https://njanyanajayteexaba.github.io/PrototypeCPUT_CodingNotesUI_interface/index.html" target="_blank" rel="noopener noreferrer"><i class="fas fa-book-reader"></i> Open Notes UI</a>
+            <a class="card-link" href="https://github.com/NjanyanaJayteeXaba/PrototypeCPUT_CodingNotesUI_interface" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+          <p class="card-tools"><strong>Tools:</strong> HTML</p>
+        </div>
+      </div>
+
+      <!-- CAMPUS EVENTS -->
+      <div class="project-card reveal" data-category="design">
+        <div class="card-media">
+          <img src="../images/campus_events.png" alt="CPUT Campus Events UI">
+        </div>
+        <div class="card-body">
+          <p class="card-category">UI/UX Design</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fab fa-figma"></i></div>
+            <h3>CPUT Campus Events UI</h3>
+          </div>
+          <p>A low-fidelity portal UI designed in Figma for students to view and attend campus events — clean navigation and intuitive event discovery.</p>
+          <div class="card-links">
+            <a class="card-link" href="https://www.figma.com/proto/0FjXdtmmysc7zfG0dEyNyV/Campus-Events-App?node-id=2003-3&t=bzdol9wmjsUrG1t1-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Experience UI</a>
+          </div>
+          <p class="card-tools"><strong>Tools:</strong> Figma, UI/UX Design, Prototyping</p>
+        </div>
+      </div>
+
+      <!-- UNDEFEATED ART -->
+      <div class="project-card reveal" data-category="art">
+        <img class="card-art-img" src="../images/DreamBeyondTheStars.png" alt="Dream Beyond The Stars Artwork by JayTee Xaba">
+        <div class="card-body">
+          <p class="card-category">Art</p>
+          <h3>Your Dreams Are Bigger Than Your Limits</h3>
+          <p>This isn't just a picture — it's a statement. For anyone who's been told they're not enough. Look closer at the message: a man who has taken hits from life and is still standing. Identity isn't what people label you; it's what you answer to after the battle.</p>
+          <p class="card-hashtag">#ArtByJaytee #DreamBeyondTheStars #DigitalIdentity</p>
+        </div>
+      </div>
+
+      <!-- DREAM BEYOND THE STARS SLIDER -->
+      <div class="project-card reveal" data-category="art">
+        <div class="card-media">
+          <div class="slider-container">
+            <div class="slider-wrapper" id="artwork-slider">
+              <img src="../images/Pic1.jpg" alt="Artwork 1">
+              <img src="../images/Pic2.jpg" alt="Artwork 2">
+              <img src="../images/Pic3.jpg" alt="Artwork 3">
+              <img src="../images/Pic4.jpg" alt="Artwork 4">
+              <img src="../images/Pic5.jpg" alt="Artwork 5">
+              <img src="../images/Pic6.jpg" alt="Artwork 6">
+              <img src="../images/Pic7.jpg" alt="Artwork 7">
+              <img src="../images/Pic8.jpg" alt="Artwork 8" class="active">
+            </div>
+            <button class="slide-btn prev" type="button" id="prev-btn">&#10094;</button>
+            <button class="slide-btn next" type="button" id="next-btn">&#10095;</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-category">Art</p>
+          <h3>Dream Beyond The Stars</h3>
+          <p>Made during a study break on campus, when the pressure was high. Proof that your best ideas come when you give yourself a moment to breathe. Don't just work for your future — remember to dream in it too.</p>
+          <p class="card-tools"><strong>Technology:</strong> Canva</p>
+        </div>
+      </div>
+
+      <!-- BREAK THE CYCLE -->
+      <div class="project-card reveal" data-category="art">
+        <img class="card-art-img" src="../images/Becoming.jpeg" alt="Becoming">
+        <div class="card-body">
+          <p class="card-category">Art</p>
+          <div class="card-icon-row">
+            <div class="card-icon-wrap"><i class="fas fa-sync-alt"></i></div>
+            <h3>Break the Cycle: Do It Today</h3>
+          </div>
+          <p>A message to myself first. The voice that says "I'll do it tomorrow" is the biggest dream killer. Discipline isn't punishment — it's the hard choice you make today to build the person you want to be tomorrow.</p>
+          <p class="card-hashtag">#DisciplineByJayTee #NoMoreDelays</p>
+        </div>
+      </div>
+
+      <!-- CRAFT ART -->
+      <div class="project-card reveal" data-category="art">
+        <img class="card-art-img" src="../images/Good_Results.jpg" alt="Craft Art — Good prompt equals good results">
+        <div class="card-body">
+          <p class="card-category">AI Art</p>
+          <h3>Craft Art</h3>
+          <p>Good prompt equals good results. A study in how precision in thought produces precision in output — both in art and in code.</p>
+        </div>
+      </div>
+
+      <!-- LOVE OF THE CODE -->
+      <div class="project-card reveal" data-category="media art">
+        <div class="card-media">
+          <video controls controlsList="nodownload" poster="../images/LoveOfTheCode_poster.jpg" style="max-height:300px;">
+            <source src="../images/LoveOfTheCode.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="card-body">
+          <p class="card-category">Multimedia · Art</p>
+          <h3>Love of the Code</h3>
+          <p>"❤️ Carrying dreams heavier than this bag, walking paths that don't always lead home." This is the quiet reality of the grind — solitary walks across campus, head full of code. It's a love for learning so deep it fuels you, even when the path is lonely.</p>
+          <p class="card-hashtag">#TheGrind #DeveloperJourney #CodeIsLife</p>
+        </div>
+      </div>
+
+      <!-- JAYTEE & NJANYANA -->
+      <div class="project-card reveal" data-category="art">
+        <img class="card-art-img" src="../images/jaytee_motivate_bw.jpeg" alt="Jaytee & Njanyana: The Journey Within">
+        <div class="card-body">
+          <p class="card-category">Art</p>
+          <h3>Jaytee &amp; Njanyana: The Journey Within</h3>
+          <p>Two versions of myself side by side — one weighed down by struggle, the other offering a hand. Sometimes your greatest ally is the person you become through hardship. Growth comes when you encourage yourself: sit with your pain and turn it into power.</p>
+          <p class="card-hashtag">#KeepGoing #SelfGrowth #JayTeeArt</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p>&copy; 2026 Njanyana <span>JayTee</span> Xaba. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    /* Scroll reveal */
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* Filter buttons */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards      = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          const cat = card.dataset.category || '';
+          if (filter === 'all' || cat.includes(filter)) {
+            card.style.display = '';
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* Artwork slider */
+    const slides = document.querySelectorAll('#artwork-slider img');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentIndex = slides.length > 0 ? slides.length - 1 : 0;
+
+    if (slides.length > 0) {
+      function updateSlider(index) {
+        slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      }
+
+      function moveNext() { currentIndex = (currentIndex + 1) % slides.length; updateSlider(currentIndex); }
+      function movePrev() { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateSlider(currentIndex); }
+
+      if (nextBtn) nextBtn.addEventListener('click', moveNext);
+      if (prevBtn) prevBtn.addEventListener('click', movePrev);
+
+      const sliderEl = document.querySelector('.slider-container');
+      if (sliderEl) {
+        let touchX = 0;
+        sliderEl.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, { passive: true });
+        sliderEl.addEventListener('touchend', e => {
+          const dx = touchX - e.changedTouches[0].screenX;
+          if (Math.abs(dx) > 40) { dx > 0 ? moveNext() : movePrev(); }
+        }, { passive: true });
+      }
+    }
+
+    /* Auto-pause videos when out of viewport */
+    const videos = document.querySelectorAll('video');
+    const videoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) entry.target.pause();
+      });
+    }, { threshold: 0.25 });
+    videos.forEach(v => videoObserver.observe(v));
+  </script>
+
+  <!-- Persistent particle network -->
+  <script src="../particles.js"></script>
+
+</body>
+</html>

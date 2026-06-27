@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Story of JayTee Xaba | From Free State to Tech Innovator</title>
+  <meta name="description" content="Meet Njanyana 'JayTee' Xaba. Read the story of a developer from Free State, now studying at CPUT in Cape Town and on a mission to bridge the gap between potential and exposure in tech.">
+  <link rel="canonical" href="https://jayteexaba.me/pages/About-Page.html" />
+  <link rel="icon" type="image/png" href="../images/Favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    section { min-height: auto; }
+
+    /* ABOUT HERO */
+    .about-hero {
+      padding: 14rem 7% 6rem;
+      display: flex;
+      align-items: center;
+      gap: 7rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(20,147,255,0.09) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .about-portrait {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .portrait-frame {
+      width: 280px;
+      height: 340px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 2px solid rgba(20,147,255,0.3);
+      box-shadow: 0 0 60px rgba(20,147,255,0.2), 0 24px 60px rgba(0,0,0,0.4);
+      position: relative;
+      background: #0a0a0a;
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .portrait-frame:hover img { transform: scale(1.04); }
+
+    .portrait-badge {
+      position: absolute;
+      bottom: -1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #000;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 0.7rem 1.8rem;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    .about-intro { flex: 1; min-width: 280px; }
+
+    .about-intro .eyebrow {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .about-intro h1 {
+      font-family: var(--font-heading);
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 2.4rem;
+    }
+
+    .about-intro h1 span { color: var(--primary); }
+
+    .about-intro p {
+      font-size: 1.65rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    /* MISSION SECTION */
+    .mission-section {
+      padding: 4rem 7%;
+    }
+
+    .section-label {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -1px;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-heading span { color: var(--primary); }
+
+    .section-sub {
+      font-size: 1.7rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 4.8rem;
+      line-height: 1.7;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .mission-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .mission-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(20,147,255,0.25);
+      box-shadow: 0 16px 40px rgba(20,147,255,0.1);
+    }
+
+    .mission-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--primary-dim);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--primary);
+    }
+
+    .mission-card h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .mission-card p {
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* WIL SECTION */
+    .wil-section {
+      padding: 4rem 7%;
+    }
+
+    .wil-glass {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(20,147,255,0.07), rgba(20,147,255,0.02));
+      border: 1.5px solid rgba(20,147,255,0.2);
+      border-radius: 28px;
+      padding: 4.4rem 4.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wil-glass::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle at top right, rgba(20,147,255,0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .wil-glass h2 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.6rem;
+      letter-spacing: -0.5px;
+    }
+
+    .wil-glass h2 span { color: var(--primary); }
+
+    .wil-glass p {
+      font-size: 1.6rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2.4rem;
+    }
+
+    /* FEATURED WORK */
+    .featured-section {
+      padding: 4rem 7%;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .featured-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(20,147,255,0.12);
+    }
+
+    .featured-media {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .featured-card:hover .featured-media img { transform: scale(1.05); }
+
+    /* Slider inside featured */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slider-wrapper img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: translateX(12%) scale(1.02);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .slider-wrapper img.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      z-index: 1;
+    }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+      border: none;
+    }
+
+    .slide-btn:hover { background: var(--primary); }
+    .slide-btn.prev  { left: 10px; }
+    .slide-btn.next  { right: 10px; }
+
+    .featured-body {
+      padding: 2.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .featured-body h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .featured-body p {
+      font-size: 1.45rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .featured-body a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: auto;
+      transition: gap 0.3s ease;
+    }
+
+    .featured-body a:hover { gap: 1rem; }
+
+    /* DRIVES ME */
+    .drives-section {
+      padding: 4rem 7% 8rem;
+    }
+
+    .drives-glass {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(120deg, rgba(20,147,255,0.06), rgba(0,0,0,0) 60%, rgba(20,147,255,0.04));
+      border: 1px solid rgba(20,147,255,0.12);
+      border-radius: 28px;
+      padding: 5rem 4.8rem;
+      text-align: center;
+    }
+
+    .drives-glass h2 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .drives-glass h2 span { color: var(--primary); }
+
+    .drives-glass p {
+      font-size: 1.65rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 720px;
+      margin: 0 auto 1.6rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .about-hero { padding: 12rem 5% 5rem; gap: 4rem; }
+      .about-intro h1 { font-size: 4rem; }
+      .portrait-frame { width: 220px; height: 280px; }
+    }
+
+    @media (max-width: 700px) {
+      .about-hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 11rem 5% 4rem;
+        gap: 4rem;
+      }
+      .about-intro .eyebrow { justify-content: center; }
+      .about-intro h1 { font-size: 3.6rem; }
+      .portrait-frame { width: 200px; height: 240px; }
+      .mission-section, .wil-section, .featured-section, .drives-section {
+        padding: 3rem 5%;
+      }
+      .section-heading { font-size: 3rem; }
+      .wil-glass { padding: 3rem 2.4rem; }
+      .drives-glass { padding: 3.6rem 2.4rem; }
+    }
+
+    @media (max-width: 500px) {
+      .about-intro h1 { font-size: 3rem; }
+      .section-heading { font-size: 2.6rem; }
+      .wil-glass h2 { font-size: 2.4rem; }
+      .drives-glass h2 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Persistent particle background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <a href="../index.html" class="logo">JayTee Portfolio</a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </label>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="Portfolio-Page.html">Portfolio</a>
+      <a href="About-Page.html" class="active">About</a>
+      <a href="Services.html">Services</a>
+      <a href="Contact-Page.html">Contact</a>
+      <a href="https://njanyanajayteexaba.github.io/CV/" target="_blank" rel="noopener noreferrer" class="nav-cv">CV <i class="fas fa-arrow-up-right-from-square" style="font-size:1.1rem;"></i></a>
+    </nav>
+  </header>
+
+  <!-- ===================== ABOUT HERO ===================== -->
+  <section class="about-hero">
+    <div class="about-portrait">
+      <div class="portrait-frame">
+        <img src="../images/profile.png" alt="JayTee Xaba">
+      </div>
+      <span class="portrait-badge">📍 Cape Town, SA</span>
+    </div>
+
+    <div class="about-intro reveal">
+      <p class="eyebrow"><i class="fas fa-user-astronaut"></i> The Story</p>
+      <h1>I'm <span>Njanyana</span><br>"JayTee" Xaba</h1>
+      <p>
+        I grew up in a small town in the Free State with limited access to technology. Moving to Cape Town to study ICT at CPUT changed everything — it opened my eyes to a world of opportunity and showed me the gap between raw potential and real-world exposure. That gap is exactly what fuels me.
+      </p>
+      <p>
+        While my Higher Certificate and first two years gave me a foundation in HTML, CSS, and Java, my real education happened outside the classroom. I taught myself to deploy sites, manage domains, and solve problems you won't find in any textbook. That sparked something: a love for building things that matter — not just for a grade, but for a purpose.
+      </p>
+      <div style="display:flex; gap:1.4rem; flex-wrap:wrap; margin-top:1.2rem;">
+        <a href="Services.html" class="btn">
+          See What I Offer <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="../images/Njanyana Xaba.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <i class="fas fa-file-pdf"></i> WIL Letter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WIL SECTION ===================== -->
+  <section class="wil-section">
+    <div class="wil-glass reveal">
+      <h2>🎓 Work Integrated Learning (<span>WIL</span>)</h2>
+      <p>
+        I'm actively seeking a WIL placement for the upcoming <strong>July – November cycle</strong>. As a third-year Diploma in ICT student at CPUT, my goal is to join a professional development team in the Cape Town or Bellville area.
+      </p>
+      <p>
+        I'm prepared to step out of the classroom and apply my practical experience in full-stack development to real corporate challenges. I invite you to review my official university placement letter below — let's organise something valuable together.
+      </p>
+      <div style="display:flex; gap:1.4rem; flex-wrap:wrap;">
+        <a href="../images/Njanyana Xaba.pdf" target="_blank" rel="noopener noreferrer" class="btn">
+          <i class="fas fa-file-pdf"></i> View WIL Letter
+        </a>
+        <a href="Contact-Page.html" class="btn btn-outline">
+          Get In Touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MISSION ===================== -->
+  <section class="mission-section">
+    <p class="section-label">The Mission</p>
+    <h2 class="section-heading">Building <span>Bridges</span></h2>
+    <p class="section-sub">This platform isn't just a portfolio — it's proof that greatness can grow anywhere, especially where no one is looking.</p>
+
+    <div class="mission-grid">
+      <div class="mission-card reveal">
+        <div class="mission-icon"><i class="fas fa-hammer"></i></div>
+        <h3>Build Real-World Solutions</h3>
+        <p>I seek developer roles not just for a job, but to get into the trenches and build innovative things that prove what's possible — regardless of where you started.</p>
+      </div>
+
+      <div class="mission-card reveal">
+        <div class="mission-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>Master the Craft</h3>
+        <p>Deepening my expertise in Java, Python, and JavaScript every day. A strong technical foundation is the toolbox I'll use to build opportunities for others.</p>
+      </div>
+
+      <div class="mission-card reveal">
+        <div class="mission-icon"><i class="fas fa-users"></i></div>
+        <h3>Connect &amp; Contribute</h3>
+        <p>Actively participating in the tech community — absorbing knowledge, sharing my journey, and lifting someone up with every connection made.</p>
+      </div>
+
+      <div class="mission-card reveal">
+        <div class="mission-icon"><i class="fas fa-infinity"></i></div>
+        <h3>Never Stop Learning</h3>
+        <p>Tech moves fast and so do I — courses, workshops, certifications, late nights. I stay on the front line because the work demands it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED WORK ===================== -->
+  <section class="featured-section">
+    <p class="section-label">Creative Side</p>
+    <h2 class="section-heading">Featured <span>Work</span></h2>
+    <p class="section-sub">Beyond code — I make art. Here's a peek at two pieces that mean a lot to me.</p>
+
+    <div class="featured-grid">
+      <div class="featured-card reveal">
+        <div class="slider-container">
+          <div class="slider-wrapper" id="artwork-slider">
+            <img src="../images/Pic1.jpg" alt="Artwork 1">
+            <img src="../images/Pic2.jpg" alt="Artwork 2">
+            <img src="../images/Pic3.jpg" alt="Artwork 3">
+            <img src="../images/Pic4.jpg" alt="Artwork 4">
+            <img src="../images/Pic5.jpg" alt="Artwork 5">
+            <img src="../images/Pic6.jpg" alt="Artwork 6">
+            <img src="../images/Pic7.jpg" alt="Artwork 7">
+            <img src="../images/Pic8.jpg" alt="Artwork 8">
+          </div>
+          <button class="slide-btn prev" type="button" id="prev-btn">&#10094;</button>
+          <button class="slide-btn next" type="button" id="next-btn">&#10095;</button>
+        </div>
+        <div class="featured-body">
+          <h3>Dream Beyond The Stars</h3>
+          <p>An artwork conceived during a study break — proving great ideas spark when you give yourself a moment to breathe.</p>
+          <a href="Portfolio-Page.html">View in Portfolio <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="featured-card reveal">
+        <div class="featured-media">
+          <img src="../images/Becoming.jpeg" alt="Break the Cycle">
+        </div>
+        <div class="featured-body">
+          <h3>Break the Cycle</h3>
+          <p>A bold typographic artwork that serves as a motivational jolt — shifting the mindset from "I'll do it tomorrow" to "I'll do it today."</p>
+          <a href="Portfolio-Page.html">View in Portfolio <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT DRIVES ME ===================== -->
+  <section class="drives-section">
+    <div class="drives-glass reveal">
+      <h2>Art, Ambition &amp; <span>Authenticity</span></h2>
+      <p>
+        I love art. I'm driven by a deep desire to build something great for people like me — people who don't always have access or opportunity, who might not have the right tools, but still want to create and belong.
+      </p>
+      <p>
+        For me, technology is more than code: it's how I process pain and turn setbacks into something beautiful. No one truly knows how much I've given to get here — every late night, every risk, every loss has been channelled into this journey.
+      </p>
+      <p>
+        This isn't just about skills or a career. It's about turning struggle into innovation, and making sure that anyone who feels left out can look at my work and say: <strong>"If he can, I can too."</strong><br>
+        I'm not done yet. I'm only getting started.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICATES ===================== -->
+  <section class="cert-strip-section">
+    <div class="cert-strip-header reveal">
+      <p class="section-tag"><i class="fas fa-certificate"></i>&nbsp;Verified Credentials</p>
+      <h2>My <span>Certificates</span></h2>
+      <p class="cert-strip-sub">25 certifications across development, design &amp; digital media &mdash; hover to pause</p>
+    </div>
+    <div class="cert-marquee">
+      <div class="cert-track" id="cert-track" data-base="../images/"></div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p>&copy; 2026 Njanyana <span>JayTee</span> Xaba. All rights reserved.</p>
+  </footer>
+
+  <script>
+    /* Scroll reveal */
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* Slider */
+    const slides = document.querySelectorAll('#artwork-slider img');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentIndex = 0;
+
+    if (slides.length > 0) {
+      slides[0].classList.add('active');
+
+      function updateSlider(index) {
+        slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      }
+
+      function moveNext() { currentIndex = (currentIndex + 1) % slides.length; updateSlider(currentIndex); }
+      function movePrev() { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateSlider(currentIndex); }
+
+      if (nextBtn) nextBtn.addEventListener('click', moveNext);
+      if (prevBtn) prevBtn.addEventListener('click', movePrev);
+
+      const sliderEl = document.querySelector('.slider-container');
+      if (sliderEl) {
+        let touchX = 0;
+        sliderEl.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, { passive: true });
+        sliderEl.addEventListener('touchend', e => {
+          const dx = touchX - e.changedTouches[0].screenX;
+          if (Math.abs(dx) > 40) { dx > 0 ? moveNext() : movePrev(); }
+        }, { passive: true });
+      }
+    }
+  </script>
+
+  <!-- Persistent particle network -->
+  <script src="../particles.js"></script>
+
+  <!-- Certificate track fill -->
+  <script>
+    (function () {
+      var track = document.getElementById('cert-track');
+      if (!track) return;
+      var base = track.dataset.base || '../images/';
+      var html = '';
+      for (var r = 0; r < 2; r++) {
+        for (var i = 1; i <= 25; i++) {
+          html += '<div class="cert-card"><img src="' + base + i + '.png" alt="Certificate ' + i + '" loading="lazy"></div>';
+        }
+      }
+      track.innerHTML = html;
+    })();
+  </script>
+</body>
+</html>

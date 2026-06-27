@@ -414,6 +414,9 @@
 </head>
 <body>
 
+  <!-- Persistent particle background -->
+  <canvas id="bg-canvas"></canvas>
+
   <!-- ===================== HEADER ===================== -->
   <header>
     <a href="../index.html" class="logo">JayTee Portfolio</a>
@@ -609,6 +612,9 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+
+  <!-- Persistent particle network -->
+  <script src="../particles.js"></script>
 
 </body>
 </html>
