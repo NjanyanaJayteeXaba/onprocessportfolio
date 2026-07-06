@@ -983,8 +983,8 @@ footer span { color: var(--primary); }
 
 .cert-card {
   flex: 0 0 auto;
-  width: 340px;
-  height: 191px; /* exact 16:9 — 340 × 9/16 */
+  width: 280px; 
+  height: 191px; 
   border-radius: 1rem;
   overflow: hidden;
   border: 1.5px solid rgba(20,147,255,0.45);
@@ -1222,7 +1222,7 @@ footer span { color: var(--primary); }
   .contact-text h1 { font-size: 3.6rem; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 788px) {
   .cert-card { width: 270px; height: 152px; }
   .cert-track { gap: 1.8rem; }
   .cert-strip-section { padding: 5rem 0 3.5rem; }
