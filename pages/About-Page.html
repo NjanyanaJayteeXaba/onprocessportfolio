@@ -3,21 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Story of JayTee Xaba | From Free State to Tech Innovator</title>
-  <meta name="description" content="Meet Njanyana 'JayTee' Xaba. Read the story of a developer from Free State, now studying at CPUT in Cape Town and on a mission to bridge the gap between potential and exposure in tech.">
+
+  <!-- ── Primary Meta ── -->
+  <title>About JayTee Xaba | Self-Taught Developer from Free State to Cape Town</title>
+  <meta name="description" content="Meet Njanyana 'JayTee' Xaba — a self-driven web developer and UI/UX designer from the Free State, now studying at CPUT in Cape Town. Read his story of turning struggle into innovation and bridging the gap for young South African tech talent.">
+  <meta name="keywords" content="JayTee Xaba about, Njanyana Xaba, CPUT developer, South African tech student, web developer story, Cape Town ICT student, self-taught developer South Africa, young developer South Africa, WIL student Cape Town">
+  <meta name="author" content="Njanyana JayTee Xaba">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#0a0a14">
   <link rel="canonical" href="https://jayteexaba.me/pages/About-Page.html" />
   <link rel="icon" type="image/png" href="../images/Favicon.png">
 
+  <!-- ── Open Graph ── -->
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://jayteexaba.me/pages/About-Page.html">
+  <meta property="og:site_name" content="JayTee Xaba Portfolio">
+  <meta property="og:title" content="About JayTee Xaba | Self-Taught Developer · Cape Town">
+  <meta property="og:description" content="From the Free State to Cape Town — read the story of a self-driven developer on a mission to prove great tech talent can come from anywhere in South Africa.">
+  <meta property="og:image" content="https://jayteexaba.me/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JayTee Xaba — Developer and Designer from Cape Town, South Africa">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="profile:first_name" content="Njanyana">
+  <meta property="profile:last_name" content="Xaba">
+
+  <!-- ── Twitter / X Card ── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About JayTee Xaba | Self-Taught Developer · Cape Town">
+  <meta name="twitter:description" content="From the Free State to Cape Town — a self-driven developer proving great tech talent can come from anywhere in South Africa.">
+  <meta name="twitter:image" content="https://jayteexaba.me/images/og-image.jpg">
+  <meta name="twitter:image:alt" content="JayTee Xaba — Web Developer and Designer">
+
+  <!-- ── Fonts & Styles ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="../style.css">
 
-  <style>
-    section { min-height: auto; }
+  <!-- ── Schema.org Structured Data ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "https://jayteexaba.me/pages/About-Page.html#webpage",
+        "url": "https://jayteexaba.me/pages/About-Page.html",
+        "name": "About JayTee Xaba | Self-Taught Developer from Free State to Cape Town",
+        "description": "The personal story of Njanyana JayTee Xaba — a self-driven ICT student and freelance web developer based in Cape Town, South Africa.",
+        "inLanguage": "en-ZA",
+        "isPartOf": { "@id": "https://jayteexaba.me/#website" },
+        "about": { "@id": "https://jayteexaba.me/#jaytee" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jayteexaba.me/" },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": "https://jayteexaba.me/pages/About-Page.html" }
+          ]
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://jayteexaba.me/#jaytee",
+        "name": "Njanyana JayTee Xaba",
+        "alternateName": "JayTee Xaba",
+        "url": "https://jayteexaba.me",
+        "image": "https://jayteexaba.me/images/og-image.jpg",
+        "jobTitle": "Web Developer & UI/UX Designer",
+        "description": "Self-driven ICT student and freelance developer from Cape Town who builds responsive websites, brand identities, and multimedia content.",
+        "email": "contactus@jayteexaba.me",
+        "knowsAbout": ["HTML","CSS","JavaScript","UI/UX Design","Brand Identity","Web Development","Video Editing","Java","Figma","Netlify"],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Cape Peninsula University of Technology",
+          "sameAs": "https://www.cput.ac.za"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cape Town",
+          "addressRegion": "Western Cape",
+          "addressCountry": "ZA"
+        },
+        "sameAs": [
+          "https://github.com/NjanyanaJayteeXaba",
+          "https://njanyanajayteexaba.github.io/CV/",
+          "https://www.linkedin.com/in/jaytee-xaba"
+        ]
+      }
+    ]
+  }
+  </script>
 
-    /* ABOUT HERO */
+  <style>
+    section { min-height: auto; background: rgba(0,0,0,0.58); }
+
     .about-hero {
       padding: 14rem 7% 6rem;
       display: flex;
@@ -26,6 +107,8 @@
       flex-wrap: wrap;
       position: relative;
       overflow: hidden;
+      min-height: 100vh;
+      background: rgba(0,0,0,0.72);
     }
 
     .about-hero::before {
@@ -40,10 +123,7 @@
       pointer-events: none;
     }
 
-    .about-portrait {
-      flex-shrink: 0;
-      position: relative;
-    }
+    .about-portrait { flex-shrink: 0; position: relative; }
 
     .portrait-frame {
       width: 280px;
@@ -53,7 +133,7 @@
       border: 2px solid rgba(20,147,255,0.3);
       box-shadow: 0 0 60px rgba(20,147,255,0.2), 0 24px 60px rgba(0,0,0,0.4);
       position: relative;
-      background: #0a0a0a;
+      background: rgba(10,10,10,0.6);
     }
 
     .portrait-frame img {
@@ -113,10 +193,7 @@
       margin-bottom: 2rem;
     }
 
-    /* MISSION SECTION */
-    .mission-section {
-      padding: 4rem 7%;
-    }
+    .mission-section { padding: 4rem 7%; }
 
     .section-label {
       font-size: 1.2rem;
@@ -157,14 +234,15 @@
     }
 
     .mission-card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 20px;
       padding: 3rem 2.4rem;
       display: flex;
       flex-direction: column;
       gap: 1.4rem;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(8px);
     }
 
     .mission-card:hover {
@@ -197,10 +275,7 @@
       line-height: 1.7;
     }
 
-    /* WIL SECTION */
-    .wil-section {
-      padding: 4rem 7%;
-    }
+    .wil-section { padding: 4rem 7%; }
 
     .wil-glass {
       max-width: 900px;
@@ -211,6 +286,7 @@
       padding: 4.4rem 4.8rem;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(12px);
     }
 
     .wil-glass::before {
@@ -239,10 +315,7 @@
       margin-bottom: 2.4rem;
     }
 
-    /* FEATURED WORK */
-    .featured-section {
-      padding: 4rem 7%;
-    }
+    .featured-section { padding: 4rem 7%; }
 
     .featured-grid {
       display: grid;
@@ -253,13 +326,14 @@
     }
 
     .featured-card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 20px;
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
+      backdrop-filter: blur(8px);
     }
 
     .featured-card:hover {
@@ -272,7 +346,7 @@
       width: 100%;
       height: 220px;
       overflow: hidden;
-      background: #0a0a0a;
+      background: rgba(10,10,10,0.5);
     }
 
     .featured-media img {
@@ -284,7 +358,6 @@
 
     .featured-card:hover .featured-media img { transform: scale(1.05); }
 
-    /* Slider inside featured */
     .slider-container {
       position: relative;
       width: 100%;
@@ -375,10 +448,7 @@
 
     .featured-body a:hover { gap: 1rem; }
 
-    /* DRIVES ME */
-    .drives-section {
-      padding: 4rem 7% 8rem;
-    }
+    .drives-section { padding: 4rem 7% 8rem; }
 
     .drives-glass {
       max-width: 900px;
@@ -388,6 +458,7 @@
       border-radius: 28px;
       padding: 5rem 4.8rem;
       text-align: center;
+      backdrop-filter: blur(12px);
     }
 
     .drives-glass h2 {
@@ -408,7 +479,6 @@
       margin: 0 auto 1.6rem;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       .about-hero { padding: 12rem 5% 5rem; gap: 4rem; }
       .about-intro h1 { font-size: 4rem; }
@@ -426,9 +496,7 @@
       .about-intro .eyebrow { justify-content: center; }
       .about-intro h1 { font-size: 3.6rem; }
       .portrait-frame { width: 200px; height: 240px; }
-      .mission-section, .wil-section, .featured-section, .drives-section {
-        padding: 3rem 5%;
-      }
+      .mission-section, .wil-section, .featured-section, .drives-section { padding: 3rem 5%; }
       .section-heading { font-size: 3rem; }
       .wil-glass { padding: 3rem 2.4rem; }
       .drives-glass { padding: 3.6rem 2.4rem; }
@@ -444,10 +512,10 @@
 </head>
 <body>
 
-  <!-- Persistent particle background -->
   <canvas id="bg-canvas"></canvas>
+  <canvas id="trail-canvas"></canvas>
 
-  <!-- ===================== HEADER ===================== -->
+  <!-- HEADER -->
   <header>
     <a href="../index.html" class="logo">JayTee Portfolio</a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -464,7 +532,7 @@
     </nav>
   </header>
 
-  <!-- ===================== ABOUT HERO ===================== -->
+  <!-- ABOUT HERO -->
   <section class="about-hero">
     <div class="about-portrait">
       <div class="portrait-frame">
@@ -476,17 +544,11 @@
     <div class="about-intro reveal">
       <p class="eyebrow"><i class="fas fa-user-astronaut"></i> The Story</p>
       <h1>I'm <span>Njanyana</span><br>"JayTee" Xaba</h1>
-      <p>
-         I have always had a deep passion for how things work behind the screen. While my formal university studies gave me a strong foundation in HTML, CSS, and Java, my true technical edge comes from the extra miles I walk outside the lecture hall.
-      </p>
-      <p>
-        Instead of relying solely on a syllabus, I completed numerous short courses to build up my expertise in deploying live platforms, managing custom domains, and solving the exact technical problems you will never find in a textbook. I view software development and user interface design as a digital canvas, and I want to be the greatest in the work of art I do. When I take on a project, I bring a relentless focus to bridge the gap between raw code and real world impact.
-      </p>
+      <p>I have always had a deep passion for how things work behind the screen. While my formal university studies gave me a strong foundation in HTML, CSS, and Java, my true technical edge comes from the extra miles I walk outside the lecture hall.</p>
+      <p>Instead of relying solely on a syllabus, I completed numerous short courses to build up my expertise in deploying live platforms, managing custom domains, and solving the exact technical problems you will never find in a textbook. I view software development and user interface design as a digital canvas, and I want to be the greatest in the work of art I do.</p>
 
       <div style="display:flex; gap:1.4rem; flex-wrap:wrap; margin-top:1.2rem;">
-        <a href="Services.html" class="btn">
-          See What I Offer <i class="fas fa-arrow-right"></i>
-        </a>
+        <a href="Services.html" class="btn">See What I Offer <i class="fas fa-arrow-right"></i></a>
         <a href="../images/Njanyana Xaba.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
           <i class="fas fa-file-pdf"></i> WIL Letter
         </a>
@@ -494,28 +556,22 @@
     </div>
   </section>
 
-  <!-- ===================== WIL SECTION ===================== -->
+  <!-- WIL SECTION -->
   <section class="wil-section">
     <div class="wil-glass reveal">
       <h2>🎓 Work Integrated Learning (<span>WIL</span>)</h2>
-      <p>
-        I'm actively seeking a WIL placement for the upcoming <strong>July – November cycle</strong>. As a third-year Diploma in ICT student at CPUT, my goal is to join a professional development team in the Cape Town or Bellville area.
-      </p>
-      <p>
-        I'm prepared to step out of the classroom and apply my practical experience in full-stack development to real corporate challenges. I invite you to review my official university placement letter below — let's organise something valuable together.
-      </p>
+      <p>I'm actively seeking a WIL placement for the upcoming <strong>July – November cycle</strong>. As a third-year Diploma in ICT student at CPUT, my goal is to join a professional development team in the Cape Town or Bellville area.</p>
+      <p>I'm prepared to step out of the classroom and apply my practical experience in full-stack development to real corporate challenges. I invite you to review my official university placement letter below — let's organise something valuable together.</p>
       <div style="display:flex; gap:1.4rem; flex-wrap:wrap;">
         <a href="../images/Njanyana Xaba.pdf" target="_blank" rel="noopener noreferrer" class="btn">
           <i class="fas fa-file-pdf"></i> View WIL Letter
         </a>
-        <a href="Contact-Page.html" class="btn btn-outline">
-          Get In Touch
-        </a>
+        <a href="Contact-Page.html" class="btn btn-outline">Get In Touch</a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== MISSION ===================== -->
+  <!-- MISSION -->
   <section class="mission-section">
     <p class="section-label">The Mission</p>
     <h2 class="section-heading">Building <span>Bridges</span></h2>
@@ -527,19 +583,16 @@
         <h3>Build Real-World Solutions</h3>
         <p>I seek developer roles not just for a job, but to get into the trenches and build innovative things that prove what's possible — regardless of where you started.</p>
       </div>
-
       <div class="mission-card reveal">
         <div class="mission-icon"><i class="fas fa-laptop-code"></i></div>
         <h3>Master the Craft</h3>
         <p>Deepening my expertise in Java, Python, and JavaScript every day. A strong technical foundation is the toolbox I'll use to build opportunities for others.</p>
       </div>
-
       <div class="mission-card reveal">
         <div class="mission-icon"><i class="fas fa-users"></i></div>
         <h3>Connect &amp; Contribute</h3>
         <p>Actively participating in the tech community — absorbing knowledge, sharing my journey, and lifting someone up with every connection made.</p>
       </div>
-
       <div class="mission-card reveal">
         <div class="mission-icon"><i class="fas fa-infinity"></i></div>
         <h3>Never Stop Learning</h3>
@@ -548,7 +601,7 @@
     </div>
   </section>
 
-  <!-- ===================== FEATURED WORK ===================== -->
+  <!-- FEATURED WORK -->
   <section class="featured-section">
     <p class="section-label">Creative Side</p>
     <h2 class="section-heading">Featured <span>Work</span></h2>
@@ -590,24 +643,17 @@
     </div>
   </section>
 
-  <!-- ===================== WHAT DRIVES ME ===================== -->
+  <!-- WHAT DRIVES ME -->
   <section class="drives-section">
     <div class="drives-glass reveal">
       <h2>Art, Ambition &amp; <span>Authenticity</span></h2>
-      <p>
-        I love art. I'm driven by a deep desire to build something great for people like me — people who don't always have access or opportunity, who might not have the right tools, but still want to create and belong.
-      </p>
-      <p>
-        For me, technology is more than code: it's how I process pain and turn setbacks into something beautiful. No one truly knows how much I've given to get here — every late night, every risk, every loss has been channelled into this journey.
-      </p>
-      <p>
-        This isn't just about skills or a career. It's about turning struggle into innovation, and making sure that anyone who feels left out can look at my work and say: <strong>"If he can, I can too."</strong><br>
-        I'm not done yet. I'm only getting started.
-      </p>
+      <p>I love art. I'm driven by a deep desire to build something great for people like me — people who don't always have access or opportunity, who might not have the right tools, but still want to create and belong.</p>
+      <p>For me, technology is more than code: it's how I process pain and turn setbacks into something beautiful. No one truly knows how much I've given to get here — every late night, every risk, every loss has been channelled into this journey.</p>
+      <p>This isn't just about skills or a career. It's about turning struggle into innovation, and making sure that anyone who feels left out can look at my work and say: <strong>"If he can, I can too."</strong><br>I'm not done yet. I'm only getting started.</p>
     </div>
   </section>
 
-  <!-- ===================== CERTIFICATES ===================== -->
+  <!-- CERTIFICATES -->
   <section class="cert-strip-section">
     <div class="cert-strip-header reveal">
       <p class="section-tag"><i class="fas fa-certificate"></i>&nbsp;Verified Credentials</p>
@@ -619,54 +665,59 @@
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 Njanyana <span>JayTee</span> Xaba. All rights reserved.</p>
   </footer>
 
+  <!-- CHAT WIDGET -->
+  <div class="chat-bubble" id="chat-bubble" aria-label="Open chat">
+    <i class="fas fa-comment-dots" style="font-size:2.2rem;color:#000;"></i>
+  </div>
+  <div class="chat-window" id="chat-window" role="dialog" aria-label="JayTee AI Assistant">
+    <div class="chat-header">
+      <div class="chat-header-title">🤖 JayTee-AI Assistant</div>
+      <button class="chat-close-button" id="chat-close-button" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="chat-message bot">Hey there 👋 Ask me anything about JayTee's work, skills, or how to get in touch.</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chat-input" placeholder="Ask me anything..." aria-label="Chat input">
+      <button id="send-button" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+
   <script>
+    /* Trail canvas resize */
+    (function () {
+      const tc = document.getElementById('trail-canvas');
+      if (!tc) return;
+      function r() { tc.width = window.innerWidth; tc.height = window.innerHeight; }
+      r(); window.addEventListener('resize', r);
+    })();
+
     /* Scroll reveal */
-    const revealObserver = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     /* Slider */
-    const slides = document.querySelectorAll('#artwork-slider img');
+    const slides  = document.querySelectorAll('#artwork-slider img');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     let currentIndex = 0;
-
     if (slides.length > 0) {
       slides[0].classList.add('active');
-
-      function updateSlider(index) {
-        slides.forEach((s, i) => s.classList.toggle('active', i === index));
-      }
-
+      function updateSlider(i) { slides.forEach((s, idx) => s.classList.toggle('active', idx === i)); }
       function moveNext() { currentIndex = (currentIndex + 1) % slides.length; updateSlider(currentIndex); }
       function movePrev() { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateSlider(currentIndex); }
-
       if (nextBtn) nextBtn.addEventListener('click', moveNext);
       if (prevBtn) prevBtn.addEventListener('click', movePrev);
-
-      const sliderEl = document.querySelector('.slider-container');
-      if (sliderEl) {
-        let touchX = 0;
-        sliderEl.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, { passive: true });
-        sliderEl.addEventListener('touchend', e => {
-          const dx = touchX - e.changedTouches[0].screenX;
-          if (Math.abs(dx) > 40) { dx > 0 ? moveNext() : movePrev(); }
-        }, { passive: true });
-      }
     }
-  </script>
 
-  <!-- Persistent particle network -->
-  <script src="../particles.js"></script>
-
-  <!-- Certificate track fill -->
-  <script>
+    /* Cert track */
     (function () {
       var track = document.getElementById('cert-track');
       if (!track) return;
@@ -679,6 +730,44 @@
       }
       track.innerHTML = html;
     })();
+
+    /* Chat */
+    const chatBubble = document.getElementById('chat-bubble');
+    const chatWindow = document.getElementById('chat-window');
+    const chatClose  = document.getElementById('chat-close-button');
+    const chatBody   = document.getElementById('chat-body');
+    const chatInput  = document.getElementById('chat-input');
+    const sendBtn    = document.getElementById('send-button');
+    chatBubble.addEventListener('click', () => chatWindow.classList.toggle('active'));
+    chatClose.addEventListener('click',  () => chatWindow.classList.remove('active'));
+    function addMessage(text, type) {
+      const el = document.createElement('div');
+      el.className = `chat-message ${type}`;
+      el.textContent = text;
+      chatBody.appendChild(el);
+      chatBody.scrollTop = chatBody.scrollHeight;
+      return el;
+    }
+    async function sendMessage() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      addMessage(msg, 'user');
+      chatInput.value = '';
+      const loader = addMessage('...', 'bot');
+      try {
+        const res = await fetch('/.netlify/functions/ask-jaytee-ai', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ message: msg })
+        });
+        const data = await res.json();
+        loader.textContent = data.reply || 'Got it!';
+      } catch { loader.textContent = 'Sorry, something went wrong.'; }
+    }
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
   </script>
+
+  <script src="../particles.js"></script>
+  <script src="../bot-face.js"></script>
 </body>
 </html>
