@@ -44,58 +44,79 @@
 
   <!-- ── Schema.org Structured Data ── -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "ProfilePage",
-        "@id": "https://jayteexaba.me/pages/About-Page.html#webpage",
-        "url": "https://jayteexaba.me/pages/About-Page.html",
-        "name": "About JayTee Xaba | Self-Taught Developer from Free State to Cape Town",
-        "description": "The personal story of Njanyana JayTee Xaba — a self-driven ICT student and freelance web developer based in Cape Town, South Africa.",
-        "inLanguage": "en-ZA",
-        "isPartOf": { "@id": "https://jayteexaba.me/#website" },
-        "about": { "@id": "https://jayteexaba.me/#jaytee" },
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jayteexaba.me/" },
-            { "@type": "ListItem", "position": 2, "name": "About", "item": "https://jayteexaba.me/pages/About-Page.html" }
-          ]
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://jayteexaba.me/#jaytee",
+      "name": "Njanyana JayTee Xaba",
+      "alternateName": "JayTee Xaba",
+      "url": "https://jayteexaba.me",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://jayteexaba.me/images/og-image.jpg",
+        "width": 1200,
+        "height": 630
       },
-      {
-        "@type": "Person",
-        "@id": "https://jayteexaba.me/#jaytee",
-        "name": "Njanyana JayTee Xaba",
-        "alternateName": "JayTee Xaba",
-        "url": "https://jayteexaba.me",
-        "image": "https://jayteexaba.me/images/og-image.jpg",
-        "jobTitle": "Web Developer & UI/UX Designer",
-        "description": "Self-driven ICT student and freelance developer from Cape Town who builds responsive websites, brand identities, and multimedia content.",
-        "email": "contactus@jayteexaba.me",
-        "knowsAbout": ["HTML","CSS","JavaScript","UI/UX Design","Brand Identity","Web Development","Video Editing","Java","Figma","Netlify"],
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Cape Peninsula University of Technology",
-          "sameAs": "https://www.cput.ac.za"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Cape Town",
-          "addressRegion": "Western Cape",
-          "addressCountry": "ZA"
-        },
-        "sameAs": [
-          "https://github.com/NjanyanaJayteeXaba",
-          "https://njanyanajayteexaba.github.io/CV/",
-          "https://www.linkedin.com/in/jaytee-xaba"
+      "jobTitle": "Web Developer & UI/UX Designer",
+      "description": "Self-driven ICT student and freelance web developer based in Cape Town, South Africa. Specialises in responsive websites, brand identity, and multimedia production.",
+      "email": "contactus@jayteexaba.me",
+      "knowsAbout": [
+        "HTML", "CSS", "JavaScript", "UI/UX Design", "Brand Identity",
+        "Web Development", "Responsive Design", "Video Editing",
+        "Graphic Design", "Java", "Netlify", "Figma"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Cape Peninsula University of Technology",
+        "sameAs": "https://www.cput.ac.za"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cape Town",
+        "addressRegion": "Western Cape",
+        "addressCountry": "ZA"
+      },
+      "sameAs": [
+        "https://github.com/NjanyanaJayteeXaba",
+        "https://njanyanajayteexaba.github.io/CV/",
+        "https://www.linkedin.com/in/jaytee-xaba"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://jayteexaba.me/#website",
+      "url": "https://jayteexaba.me",
+      "name": "JayTee Xaba Portfolio",
+      "description": "Official portfolio website of Njanyana JayTee Xaba, web developer, UI/UX designer, and creative technologist based in Cape Town, South Africa.",
+      "author": { "@id": "https://jayteexaba.me/#jaytee" },
+      "inLanguage": "en-ZA",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://jayteexaba.me/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": ["WebPage", "ProfilePage"],
+      "@id": "https://jayteexaba.me/#webpage",
+      "url": "https://jayteexaba.me/",
+      "name": "JayTee Xaba | Web Developer & UI/UX Designer · Cape Town",
+      "isPartOf": { "@id": "https://jayteexaba.me/#website" },
+      "about": { "@id": "https://jayteexaba.me/#jaytee" },
+      "mainEntity": { "@id": "https://jayteexaba.me/#jaytee" },
+      "description": "Home page of JayTee Xaba portfolio, showcasing web development, UI/UX design, and multimedia production work from Cape Town, South Africa.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jayteexaba.me/" }
         ]
       }
-    ]
-  }
-  </script>
-
+    }
+  ]
+}
+</script>
   <style>
     section { min-height: auto; background: rgba(0,0,0,0.58); }
 
